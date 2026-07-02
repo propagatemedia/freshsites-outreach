@@ -23,6 +23,8 @@ from urllib.parse import quote_plus, urlparse
 import requests
 from bs4 import BeautifulSoup
 
+from agents.scoring import score_website_v2
+
 # ── Config ──────────────────────────────────────────────────────────
 TARGET_AREA = "Powys, Wales"
 SEARCH_QUERIES = [
@@ -161,7 +163,6 @@ def get_lead_by_domain(domain: str) -> Optional[dict]:
 
 
 # ── Website Fetch + Score ──────────────────────────────────────────
-
 def fetch_website(url: str, timeout: int = 15) -> Optional[BeautifulSoup]:
     try:
         if not url.startswith("http"):
@@ -172,110 +173,6 @@ def fetch_website(url: str, timeout: int = 15) -> Optional[BeautifulSoup]:
     except Exception as e:
         print(f"    Fetch failed: {e}")
         return None
-
-
-def score_website(soup: BeautifulSoup, url: str) -> tuple[float, dict]:
-    """Score 0-10 across conversion-critical metrics."""
-    text = soup.get_text(separator=" ", strip=True)
-    breakdown = {}
-
-    # 1. Mobile responsive (viewport meta)
-    viewport = soup.find("meta", attrs={"name": "viewport"})
-    breakdown["mobile_responsive"] = 1 if viewport else 0
-
-    # 2. Clear CTA (book/call/contact/quote action)
-    cta_words = re.compile(
-        r"\b(book|call|contact|quote|enquire|appointment|schedule|get in|free|reserve)\b",
-        re.I,
-    )
-    cta_count = len(soup.find_all(string=cta_words))
-    breakdown["cta_present"] = min(2, cta_count)  # 0, 1, or 2
-
-    # 3. Phone number visible
-    phone_pattern = re.compile(r"\b0\d{3,4}[\s\-]?\d{3,4}[\s\-]?\d{3,4}\b")
-    breakdown["phone_visible"] = 1 if phone_pattern.search(text) else 0
-
-    # 4. Social proof (testimonials/reviews/stars)
-    social_words = re.compile(
-        r"\b(testimonial|review|what our|customer say|feedback|star|rating|google review|trustpilot)\b",
-        re.I,
-    )
-    breakdown["social_proof"] = 1 if soup.find(string=social_words) else 0
-
-    # 5. Page title quality
-    title = soup.title.string.strip() if soup.title else ""
-    breakdown["title_quality"] = (
-        2 if len(title) > 30 and title.lower() not in ["home", "index"]
-        else 1 if len(title) > 10
-        else 0
-    )
-
-    # 6. Has H1 with real text
-    h1 = soup.find("h1")
-    h1_text = h1.get_text(strip=True) if h1 else ""
-    breakdown["h1_present"] = (
-        2 if len(h1_text) > 20
-        else 1 if len(h1_text) > 5
-        else 0
-    )
-
-    # 7. Contact form
-    forms = soup.find_all("form")
-    breakdown["contact_form"] = 1 if forms else 0
-
-    # 8. Social links
-    social_domains = ["facebook.com", "twitter.com", "x.com", "instagram.com", "linkedin.com"]
-    social_links = sum(
-        1 for a in soup.find_all("a", href=True)
-        if any(sd in a["href"] for sd in social_domains)
-    )
-    breakdown["social_links"] = min(1, social_links)
-
-    # 9. Image count (content richness)
-    imgs = soup.find_all("img")
-    breakdown["images"] = min(2, len(imgs) // 3)
-
-    # 10. SEO basics (meta description)
-    meta_desc = soup.find("meta", attrs={"name": "description"})
-    breakdown["meta_description"] = 1 if meta_desc and meta_desc.get("content", "") else 0
-
-    # 11. Clean URL structure (no query strings in nav)
-    nav_links = [a.get("href", "") for a in soup.find_all("a", href=True)]
-    messy_urls = sum(1 for h in nav_links if "?" in h or "&" in h)
-    breakdown["clean_urls"] = 0 if messy_urls > 5 else 1
-
-    # Weighted scoring — normalize to 0-10
-    weights = {
-        "mobile_responsive": 1.0,
-        "cta_present": 1.5,
-        "phone_visible": 0.5,
-        "social_proof": 1.0,
-        "title_quality": 0.5,
-        "h1_present": 1.0,
-        "contact_form": 1.0,
-        "social_links": 0.5,
-        "images": 0.5,
-        "meta_description": 0.5,
-        "clean_urls": 0.5,
-    }
-    max_values = {
-        "mobile_responsive": 1,
-        "cta_present": 2,
-        "phone_visible": 1,
-        "social_proof": 1,
-        "title_quality": 2,
-        "h1_present": 2,
-        "contact_form": 1,
-        "social_links": 1,
-        "images": 2,
-        "meta_description": 1,
-        "clean_urls": 1,
-    }
-    weighted = sum(breakdown[k] * weights[k] for k in weights)
-    max_possible = sum(max_values[k] * weights[k] for k in weights)
-    score = round((weighted / max_possible) * 10, 1)
-
-    return score, breakdown
 
 
 def extract_business_info(result: dict) -> Optional[Lead]:
@@ -370,7 +267,7 @@ def discover_and_score_seed_data():
             print(f"   └─ SKIP: Website unreachable")
             continue
 
-        score, breakdown = score_website(soup, url)
+        score, breakdown = score_website_v2(soup, url)
 
         lead = Lead(
             name=name,

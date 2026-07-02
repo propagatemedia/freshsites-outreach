@@ -106,6 +106,8 @@ def get_leads_to_email() -> list[dict]:
     return rows
 
 
+from agents.scoring import WEAKNESS_MAP, get_weaknesses
+
 def format_weaknesses(score_breakdown: str) -> str:
     """Convert score breakdown JSON to HTML list items."""
     try:
@@ -113,27 +115,12 @@ def format_weaknesses(score_breakdown: str) -> str:
     except:
         return "<li>Homepage could convert more visitors into customers</li>"
 
-    weakness_map = {
-        "mobile_responsive": "No mobile-responsive design (over 60% of visitors are on phones)",
-        "cta_present": "No clear call-to-action — visitors don't know what to do next",
-        "phone_visible": "Phone number hidden or missing — callers can't find you",
-        "social_proof": "No customer reviews or testimonials — missing trust signals",
-        "title_quality": "Weak page title — Google doesn't know what you do",
-        "h1_present": "No headline on the page — visitors can't tell what you offer",
-        "contact_form": "No contact form — visitors have to call or email manually",
-        "social_links": "No social media links — missing another trust signal",
-        "images": "Too few images — looks sparse and low-effort",
-        "meta_description": "No meta description — looks bad in Google search results",
-        "clean_urls": "Messy page links — hurts SEO and looks unprofessional",
-    }
-
-    zero_items = [k for k, v in bd.items() if v == 0 and k in weakness_map]
-    if not zero_items:
-        zero_items = [k for k, v in bd.items() if v < 1 and k in weakness_map]
-
+    # Use the real weakness descriptions from scoring module
+    significant = [(k, v) for k, v in bd.items() if v > 0.3]
     items = []
-    for k in zero_items[:3]:
-        items.append(f"<li>{weakness_map.get(k, k)}</li>")
+    for k, _ in significant[:3]:
+        desc = WEAKNESS_MAP.get(k, k.replace("_", " ").title())
+        items.append(f"<li>{desc}</li>")
 
     if not items:
         items = ["<li>Homepage could convert more visitors into customers</li>"]
