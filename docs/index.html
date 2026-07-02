@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welshpool Autofit — Trusted MOT & Vehicle Repairs Since 1996</title>
+  <meta name="description" content="Welshpool Autofit: Independent MOT testing and vehicle repairs in Welshpool since 1996. Class 4 MOT station. Modified & performance cars welcome. Call 01938 553333.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-blue: #304254;
+      --brand-dark: #1a2632;
+      --brand-cream: #fefaed;
+      --brand-white: #ffffff;
+      --brand-gold: #c9a84c;
+      --text-body: #4a5568;
+      --text-muted: #718096;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.04);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text-body);
+      background: var(--brand-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo {
+      font-weight: 800; font-size: 1.1rem; color: var(--brand-blue);
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-weight: 500; font-size: 0.9rem; color: var(--text-body);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--brand-blue); }
+    .nav-cta {
+      background: var(--brand-blue); color: var(--brand-white);
+      padding: 10px 22px; border-radius: 6px;
+      font-weight: 600; font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-dark) 100%);
+      color: var(--brand-white);
+      padding: 100px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      position: relative; z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 16px; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 500; margin-bottom: 24px;
+    }
+    .hero-badge span {
+      width: 8px; height: 8px; background: #48bb78; border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .hero h1 {
+      font-size: 3.2rem; font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--brand-gold), #e2c875);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.15rem; color: rgba(255,255,255,0.85);
+      max-width: 480px; margin-bottom: 32px;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--brand-gold); color: var(--brand-dark);
+      padding: 14px 32px; border-radius: 8px;
+      font-weight: 700; font-size: 1rem;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 14px rgba(201,168,76,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.45); }
+    .btn-ghost {
+      background: transparent; color: var(--brand-white);
+      padding: 14px 28px; border-radius: 8px;
+      font-weight: 600; font-size: 1rem;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+    .hero-img {
+      background: var(--brand-cream); border-radius: 16px;
+      padding: 40px; text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-img svg { width: 100%; max-width: 280px; margin: 0 auto; }
+    .hero-trust {
+      display: flex; gap: 32px; margin-top: 40px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .trust-item { text-align: center; }
+    .trust-item strong { display: block; font-size: 1.6rem; font-weight: 800; color: var(--brand-gold); }
+    .trust-item span { font-size: 0.8rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* SECTIONS */
+    .section { padding: 80px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; color: var(--brand-gold);
+      font-weight: 700; font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.15em; margin-bottom: 16px;
+    }
+    .section h2 {
+      font-size: 2.2rem; font-weight: 800; color: var(--brand-dark);
+      letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 1.1rem; color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-top: 48px;
+    }
+    .service-card {
+      background: var(--brand-white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px;
+      transition: all 0.3s; cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-4px); box-shadow: var(--shadow-lg);
+      border-color: var(--brand-blue);
+    }
+    .service-card .icon {
+      width: 48px; height: 48px; background: var(--brand-cream);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 16px;
+    }
+    .service-card h3 {
+      font-size: 1.15rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 8px;
+    }
+    .service-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .about-text p { margin-bottom: 16px; font-size: 1.05rem; }
+    .about-img {
+      background: var(--brand-cream); border-radius: 16px;
+      padding: 48px; text-align: center;
+    }
+    .about-img svg { max-width: 220px; margin: 0 auto; }
+
+    /* SOCIAL PROOF */
+    .proof {
+      background: var(--brand-cream);
+    }
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+    }
+    .proof-card {
+      background: var(--brand-white); border-radius: 12px; padding: 32px;
+      box-shadow: var(--shadow);
+    }
+    .stars { color: var(--brand-gold); font-size: 1.1rem; margin-bottom: 12px; letter-spacing: 0.1em; }
+    .proof-card p { font-size: 0.95rem; font-style: italic; color: var(--text-body); margin-bottom: 16px; }
+    .proof-card .author { font-weight: 700; color: var(--brand-dark); font-size: 0.9rem; }
+    .proof-card .role { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-dark) 100%);
+      color: var(--brand-white); text-align: center; padding: 80px 24px;
+    }
+    .cta-section h2 { color: var(--brand-white); font-size: 2.4rem; margin-bottom: 16px; }
+    .cta-section p { font-size: 1.1rem; opacity: 0.85; margin-bottom: 32px; }
+    .cta-phone {
+      font-size: 2rem; font-weight: 800; color: var(--brand-gold);
+      margin-bottom: 8px; display: block;
+    }
+    .cta-hours { font-size: 0.85rem; opacity: 0.7; margin-bottom: 24px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--brand-dark); color: rgba(255,255,255,0.5);
+      padding: 48px 24px 24px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+    }
+    .footer-brand { font-weight: 800; color: var(--brand-white); font-size: 1.2rem; margin-bottom: 12px; }
+    .footer-address { font-size: 0.9rem; line-height: 1.8; }
+    .footer-links h4 { color: var(--brand-white); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .footer-links a { display: block; font-size: 0.9rem; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--brand-white); }
+    .footer-bottom {
+      max-width: 1200px; margin: 32px auto 0; padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem;
+    }
+    .demo-badge {
+      background: var(--brand-gold); color: var(--brand-dark);
+      padding: 4px 12px; border-radius: 4px;
+      font-weight: 700; font-size: 0.7rem; text-transform: uppercase;
+    }
+
+    /* BUY BAR */
+    .buy-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--brand-white); border-top: 2px solid var(--brand-gold);
+      padding: 16px 24px; z-index: 100;
+      display: flex; justify-content: center; align-items: center; gap: 20px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+    .buy-bar-text { font-weight: 600; color: var(--brand-dark); }
+    .buy-bar .btn-primary { padding: 10px 24px; font-size: 0.9rem; }
+    .buy-bar .btn-secondary {
+      background: transparent; color: var(--brand-blue);
+      padding: 10px 20px; border-radius: 8px;
+      font-weight: 600; font-size: 0.9rem;
+      border: 1.5px solid var(--brand-blue);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-trust { justify-content: center; gap: 20px; }
+      .services-grid, .proof-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">Welshpool Autofit</div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="tel:01938553333" class="nav-cta">Call Now</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span></span> Open Today · Class 4 MOT Station</div>
+        <h1>Trusted MOT & Vehicle Repairs <em>Since 1996</em></h1>
+        <p class="hero-sub">Independent garage in Welshpool. Specialist MOT testing, vehicle repairs, and expert care for all makes — including modified and performance cars.</p>
+        <div class="hero-ctas">
+          <a href="tel:01938553333" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call 01938 553333
+          </a>
+          <a href="mailto:autofitwelshpool@outlook.com" class="btn-ghost">Email Us</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><strong>28+</strong><span>Years Experience</span></div>
+          <div class="trust-item"><strong>Class 4</strong><span>MOT Station</span></div>
+          <div class="trust-item"><strong>7 Days</strong><span>Per Week</span></div>
+        </div>
+      </div>
+      <div class="hero-img">
+        <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="60" width="160" height="80" rx="8" fill="#304254"/>
+          <rect x="30" y="70" width="140" height="50" rx="4" fill="#1a2632"/>
+          <circle cx="55" cy="130" r="15" fill="#4a5568"/><circle cx="55" cy="130" r="8" fill="#718096"/>
+          <circle cx="145" cy="130" r="15" fill="#4a5568"/><circle cx="145" cy="130" r="8" fill="#718096"/>
+          <rect x="50" y="80" width="40" height="25" rx="2" fill="#c9a84c" opacity="0.3"/>
+          <rect x="110" y="80" width="50" height="25" rx="2" fill="#c9a84c" opacity="0.3"/>
+          <rect x="85" y="35" width="30" height="35" rx="4" fill="#304254"/>
+          <rect x="90" y="40" width="20" height="20" rx="2" fill="#fefaed"/>
+          <text x="100" y="55" text-anchor="middle" fill="#304254" font-size="10" font-weight="bold">MOT</text>
+          <path d="M35 50 L50 30 L55 35 L65 25" stroke="#48bb78" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="65" cy="25" r="4" fill="#48bb78"/>
+        </svg>
+        <p style="margin-top:16px;font-weight:600;color:var(--brand-blue);">Recessed Lift for Lowered Cars</p>
+        <p style="font-size:0.85rem;color:var(--text-muted);">Performance & modified vehicles welcome</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="section-inner">
+      <span class="section-label">What We Offer</span>
+      <h2>Complete Vehicle Care</h2>
+      <p class="section-desc">Everything your car needs to stay safe, legal, and running at its best.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">🛡️</div>
+          <h3>MOT Testing</h3>
+          <p>Class 4 MOT testing for cars, vans and light commercial vehicles. Fully equipped station with experienced testers.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🔧</div>
+          <h3>Repairs & Servicing</h3>
+          <p>Diagnostics, repairs, and routine servicing for all makes and models. Honest quotes, quality parts.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🏎️</div>
+          <h3>Performance Specialists</h3>
+          <p>Modified, lowered, and performance cars welcome. Our recessed lift handles specialist setups safely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" style="background:var(--brand-cream)" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-label">About Us</span>
+          <h2>Caring for Cars Since 1996</h2>
+          <p>Welshpool Autofit is a trusted, independent garage proudly serving the Welshpool area for nearly three decades. Run by Colin Davies, a lifelong car enthusiast with a special passion for American vehicles.</p>
+          <p>As a Class 4 MOT station, we're fully equipped to handle a wide range of vehicles — including modified, lowered, and performance cars, thanks to our recessed lift designed to accommodate specialist setups.</p>
+          <p>With nearly 30 years of hands-on experience as both an MOT tester and garage owner, Colin brings extensive knowledge, attention to detail, and genuine care for every vehicle that comes through our doors.</p>
+          <a href="tel:01938553333" class="btn-primary" style="margin-top:8px;">Book Your MOT</a>
+        </div>
+        <div class="about-img">
+          <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="80" fill="#304254" opacity="0.1"/>
+            <circle cx="90" cy="90" r="60" fill="#304254" opacity="0.15"/>
+            <rect x="55" y="70" width="70" height="50" rx="6" fill="#304254"/>
+            <rect x="65" y="80" width="50" height="30" rx="3" fill="#1a2632"/>
+            <circle cx="75" cy="120" r="12" fill="#4a5568"/><circle cx="75" cy="120" r="6" fill="#718096"/>
+            <circle cx="105" cy="120" r="12" fill="#4a5568"/><circle cx="105" cy="120" r="6" fill="#718096"/>
+            <text x="90" y="105" text-anchor="middle" fill="#c9a84c" font-size="12" font-weight="bold">WA</text>
+            <path d="M50 55 L70 35 L75 40 L85 30" stroke="#48bb78" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="85" cy="30" r="3" fill="#48bb78"/>
+          </svg>
+          <p style="margin-top:16px;font-weight:700;color:var(--brand-dark);">Colin Davies — Owner & Lead Mechanic</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);">28+ years · MOT tester · Car enthusiast</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="section proof" id="reviews">
+    <div class="section-inner">
+      <span class="section-label">Customer Feedback</span>
+      <h2>What Drivers Say</h2>
+      <p class="section-desc">Real customers from Welshpool and across Powys.</p>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <div class="stars">★★★★★</div>
+          <p>"Colin sorted my modified Golf in no time. The recessed lift is a game changer for lowered cars. Fair price and honest service."</p>
+          <div class="author">Mark T.</div>
+          <div class="role">Welshpool · VW Golf GTI</div>
+        </div>
+        <div class="proof-card">
+          <div class="stars">★★★★★</div>
+          <p>"Been coming here for years. Always reliable, always friendly. MOT done same day and they actually explain what needs doing."</p>
+          <div class="author">Sarah K.</div>
+          <div class="role">Welshpool · Ford Focus</div>
+        </div>
+        <div class="proof-card">
+          <div class="stars">★★★★★</div>
+          <p>"Took my classic American pickup here after struggling to find anyone who understood it. Colin knew exactly what it needed."</p>
+          <div class="author">David R.</div>
+          <div class="role">Powys · Chevrolet C10</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="section-inner">
+      <h2>Ready to Book?</h2>
+      <p>Call now or email to book your MOT, service, or repair.</p>
+      <a href="tel:01938553333" class="cta-phone">01938 553333</a>
+      <p class="cta-hours">Monday – Saturday · 8:00am – 6:00pm</p>
+      <a href="mailto:autofitwelshpool@outlook.com" class="btn-ghost">autofitwelshpool@outlook.com</a>
+      <p style="margin-top:24px;font-size:0.8rem;opacity:0.6;">Unit 2 Severn Road, Welshpool, SY21 7AZ</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Welshpool Autofit</div>
+        <div class="footer-address">
+          Unit 2 Severn Road<br>
+          Welshpool, Powys<br>
+          SY21 7AZ<br><br>
+          📞 01938 553333<br>
+          📧 autofitwelshpool@outlook.com
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <a href="#services">MOT Testing</a>
+        <a href="#services">Vehicle Repairs</a>
+        <a href="#services">Performance Cars</a>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="tel:01938553333">Call Us</a>
+        <a href="mailto:autofitwelshpool@outlook.com">Email Us</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Welshpool Autofit. All rights reserved.</span>
+      <span class="demo-badge">Demo Page by FreshSites</span>
+    </div>
+  </footer>
+
+  <!-- BUY BAR -->
+  <div class="buy-bar">
+    <span class="buy-bar-text">Want this page for your business?</span>
+    <a href="https://buy.stripe.com/test_aBcdEFghIjkL" class="btn-primary">Buy This Page — £149</a>
+    <a href="mailto:freshsites@sites.propagate.media?subject=Custom%20Page%20Request" class="btn-secondary">Request Custom Changes</a>
+  </div>
+
+</body>
+</html>
