@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William Nunns — Vehicle Sales, Garage Services, Minibus Hire & MOT | Welshpool</title>
+  <meta name="description" content="William Nunns Welshpool: vehicle sales, garage services, minibus hire, and MOT testing. Serving Powys since 1965. Call 01938 554898.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-red: #c41e3a;
+      --brand-dark: #1a1a1a;
+      --brand-white: #ffffff;
+      --brand-grey: #f5f5f5;
+      --brand-gold: #c9a84c;
+      --text-body: #333333;
+      --text-muted: #666666;
+      --border: #e0e0e0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text-body);
+      background: var(--brand-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--brand-red); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-weight: 500; font-size: 0.9rem; color: var(--text-body); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--brand-red); }
+    .nav-cta {
+      background: var(--brand-red); color: var(--brand-white);
+      padding: 10px 22px; border-radius: 6px;
+      font-weight: 600; font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: #a01830; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--brand-red) 0%, #8b1538 100%);
+      color: var(--brand-white);
+      padding: 100px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      position: relative; z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 16px; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 500; margin-bottom: 24px;
+    }
+    .hero-badge span { width: 8px; height: 8px; background: #48bb78; border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .hero h1 {
+      font-size: 3rem; font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #ffd700, #ffec8b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub { font-size: 1.15rem; color: rgba(255,255,255,0.85); max-width: 480px; margin-bottom: 32px; }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: #ffd700; color: var(--brand-dark);
+      padding: 14px 32px; border-radius: 8px;
+      font-weight: 700; font-size: 1rem;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 14px rgba(255,215,0,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,215,0,0.45); }
+    .btn-ghost {
+      background: transparent; color: var(--brand-white);
+      padding: 14px 28px; border-radius: 8px;
+      font-weight: 600; font-size: 1rem;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+    .hero-trust {
+      display: flex; gap: 32px; margin-top: 40px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .trust-item { text-align: center; }
+    .trust-item strong { display: block; font-size: 1.6rem; font-weight: 800; color: #ffd700; }
+    .trust-item span { font-size: 0.8rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* SERVICES */
+    .section { padding: 80px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; color: var(--brand-red);
+      font-weight: 700; font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.15em; margin-bottom: 16px;
+    }
+    .section h2 { font-size: 2.2rem; font-weight: 800; color: var(--brand-dark); letter-spacing: -0.02em; margin-bottom: 20px; }
+    .section-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+      margin-top: 48px;
+    }
+    .service-card {
+      background: var(--brand-white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 40px;
+      transition: all 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--brand-red); }
+    .service-card .icon {
+      width: 52px; height: 52px; background: var(--brand-grey);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 20px;
+    }
+    .service-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 10px; }
+    .service-card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 16px; }
+    .service-card .link { font-weight: 600; color: var(--brand-red); font-size: 0.9rem; }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--brand-red) 0%, #8b1538 100%);
+      color: var(--brand-white); text-align: center; padding: 80px 24px;
+    }
+    .cta-section h2 { color: var(--brand-white); font-size: 2.4rem; margin-bottom: 16px; }
+    .cta-section p { font-size: 1.1rem; opacity: 0.85; margin-bottom: 32px; }
+    .cta-phone { font-size: 2rem; font-weight: 800; color: #ffd700; margin-bottom: 8px; display: block; }
+    .cta-hours { font-size: 0.85rem; opacity: 0.7; margin-bottom: 24px; }
+
+    /* FOOTER */
+    footer { background: var(--brand-dark); color: rgba(255,255,255,0.5); padding: 48px 24px 24px; }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    }
+    .footer-brand { font-weight: 800; color: var(--brand-white); font-size: 1.2rem; margin-bottom: 12px; }
+    .footer-address { font-size: 0.9rem; line-height: 1.8; }
+    .footer-links h4 { color: var(--brand-white); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .footer-links a { display: block; font-size: 0.9rem; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--brand-white); }
+    .footer-bottom {
+      max-width: 1200px; margin: 32px auto 0; padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem;
+    }
+    .demo-badge {
+      background: #ffd700; color: var(--brand-dark);
+      padding: 4px 12px; border-radius: 4px;
+      font-weight: 700; font-size: 0.7rem; text-transform: uppercase;
+    }
+
+    /* BUY BAR */
+    .buy-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--brand-white); border-top: 2px solid var(--brand-red);
+      padding: 16px 24px; z-index: 100;
+      display: flex; justify-content: center; align-items: center; gap: 20px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+    .buy-bar-text { font-weight: 600; color: var(--brand-dark); }
+    .buy-bar .btn-primary { padding: 10px 24px; font-size: 0.9rem; }
+    .buy-bar .btn-secondary {
+      background: transparent; color: var(--brand-red);
+      padding: 10px 20px; border-radius: 8px;
+      font-weight: 600; font-size: 0.9rem;
+      border: 1.5px solid var(--brand-red);
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-trust { justify-content: center; }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">William Nunns</div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#sales">Vehicle Sales</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="tel:01938554898" class="nav-cta">Call Now</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span></span> Open Today · MOT Test Station</div>
+        <h1>Vehicle Sales, Garage Services <em>& Minibus Hire</em></h1>
+        <p class="hero-sub">Family-run garage in Welshpool since 1965. Vehicle sales, servicing, repairs, MOT testing, and minibus hire — all under one roof.</p>
+        <div class="hero-ctas">
+          <a href="tel:01938554898" class="btn-primary">📞 Call 01938 554898</a>
+          <a href="mailto:garageservices@williamnunns.co.uk" class="btn-ghost">Email Us</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><strong>60+</strong><span>Years Trading</span></div>
+          <div class="trust-item"><strong>4-in-1</strong><span>Services</span></div>
+          <div class="trust-item"><strong>MOT</strong><span>Test Station</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.1);border-radius:16px;padding:48px;text-align:center;">
+        <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:260px;margin:0 auto;">
+          <rect x="20" y="50" width="160" height="80" rx="8" fill="#8b1538"/>
+          <rect x="30" y="60" width="140" height="55" rx="4" fill="#1a1a1a"/>
+          <circle cx="55" cy="120" r="15" fill="#333"/><circle cx="55" cy="120" r="7" fill="#666"/>
+          <circle cx="145" cy="120" r="15" fill="#333"/><circle cx="145" cy="120" r="7" fill="#666"/>
+          <rect x="50" y="70" width="50" height="25" rx="2" fill="#ffd700" opacity="0.4"/>
+          <text x="75" y="88" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">SALE</text>
+          <rect x="110" y="70" width="50" height="25" rx="2" fill="#ffd700" opacity="0.4"/>
+          <text x="135" y="88" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="bold">MOT</text>
+          <rect x="80" y="25" width="40" height="30" rx="4" fill="#c41e3a"/>
+          <text x="100" y="45" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">NUNNS</text>
+        </svg>
+        <p style="margin-top:16px;font-weight:600;">Unit 1, Fox Complex, Welshpool</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="section-inner">
+      <span class="section-label">What We Offer</span>
+      <h2>Four Ways We Help</h2>
+      <p class="section-desc">Everything your vehicle needs — and a ride when you need one.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">🚗</div>
+          <h3>Vehicle Sales</h3>
+          <p>Quality new and used cars, vans and commercials. Part-exchange welcome. Finance options available.</p>
+          <span class="link">Browse stock →</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">🔧</div>
+          <h3>Garage Services</h3>
+          <p>Full servicing, repairs, diagnostics, and maintenance for all makes and models. Dealer-quality work.</p>
+          <span class="link">Book a service →</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">🛡️</div>
+          <h3>MOT Testing</h3>
+          <p>Authorised MOT test station. Cars, vans, and light commercials. Book online or call.</p>
+          <span class="link">Book MOT →</span>
+        </div>
+        <div class="service-card">
+          <div class="icon">🚌</div>
+          <h3>Minibus Hire</h3>
+          <p>Self-drive minibus hire for groups, events, and trips. 9-17 seaters available.</p>
+          <span class="link">Check availability →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contact">
+    <div class="section-inner">
+      <h2>Get In Touch</h2>
+      <p>Call, email, or visit us at Unit 1, Fox Complex, Welshpool.</p>
+      <a href="tel:01938554898" class="cta-phone">01938 554898</a>
+      <p class="cta-hours">Monday – Friday · 8:30am – 5:30pm · Saturday by appointment</p>
+      <a href="mailto:garageservices@williamnunns.co.uk" class="btn-ghost">garageservices@williamnunns.co.uk</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">William Nunns</div>
+        <div class="footer-address">
+          Unit 1, Fox Complex<br>
+          Welshpool, Powys<br>
+          SY21 7AZ<br><br>
+          📞 01938 554898<br>
+          📧 garageservices@williamnunns.co.uk
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <a href="#services">Vehicle Sales</a>
+        <a href="#services">Garage Services</a>
+        <a href="#services">MOT Testing</a>
+        <a href="#services">Minibus Hire</a>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <a href="tel:01938554898">Call Us</a>
+        <a href="mailto:garageservices@williamnunns.co.uk">Email</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 William Nunns. All rights reserved.</span>
+      <span class="demo-badge">Demo Page by FreshSites</span>
+    </div>
+  </footer>
+
+  <div class="buy-bar">
+    <span class="buy-bar-text">Want this page for your business?</span>
+    <a href="https://buy.stripe.com/test_aBcdEFghIjkL" class="btn-primary">Buy This Page — £149</a>
+    <a href="mailto:freshsites@sites.propagate.media" class="btn-secondary">Request Custom Changes</a>
+  </div>
+
+</body>
+</html>

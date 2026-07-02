@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blakemore's Autos — Garage Services Welshpool | MOT, Servicing & Repairs</title>
+  <meta name="description" content="Blakemore's Autos Welshpool: car, van and bike MOTs, servicing, diagnostics, clutch repairs, cam belts, and gearbox servicing. Call 01938 228502.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-blue: #1e40af;
+      --brand-dark: #0f172a;
+      --brand-white: #ffffff;
+      --brand-grey: #f8fafc;
+      --brand-gold: #d97706;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text-body);
+      background: var(--brand-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--brand-blue); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-weight: 500; font-size: 0.9rem; color: var(--text-body); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--brand-blue); }
+    .nav-cta {
+      background: var(--brand-blue); color: var(--brand-white);
+      padding: 10px 22px; border-radius: 6px; font-weight: 600; font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: #1e3a8a; transform: translateY(-1px); }
+
+    .hero {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-dark) 100%);
+      color: var(--brand-white); padding: 100px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero h1 {
+      font-size: 3rem; font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub { font-size: 1.15rem; color: rgba(255,255,255,0.85); max-width: 480px; margin-bottom: 32px; }
+    .btn-primary {
+      background: #fbbf24; color: var(--brand-dark);
+      padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 1rem;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 14px rgba(251,191,36,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(251,191,36,0.45); }
+    .btn-ghost {
+      background: transparent; color: var(--brand-white);
+      padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 1rem;
+      border: 1.5px solid rgba(255,255,255,0.3); transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+    .hero-trust { display: flex; gap: 32px; margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.15); }
+    .trust-item { text-align: center; }
+    .trust-item strong { display: block; font-size: 1.6rem; font-weight: 800; color: #fbbf24; }
+    .trust-item span { font-size: 0.8rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .section { padding: 80px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label { display: inline-block; color: var(--brand-blue); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
+    .section h2 { font-size: 2.2rem; font-weight: 800; color: var(--brand-dark); letter-spacing: -0.02em; margin-bottom: 20px; }
+    .section-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .service-card {
+      background: var(--brand-white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px; transition: all 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--brand-blue); }
+    .service-card .icon { width: 48px; height: 48px; background: var(--brand-grey); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 8px; }
+    .service-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-dark) 100%);
+      color: var(--brand-white); text-align: center; padding: 80px 24px;
+    }
+    .cta-section h2 { color: var(--brand-white); font-size: 2.4rem; margin-bottom: 16px; }
+    .cta-phone { font-size: 2rem; font-weight: 800; color: #fbbf24; margin-bottom: 8px; display: block; }
+    .cta-hours { font-size: 0.85rem; opacity: 0.7; margin-bottom: 24px; }
+
+    footer { background: var(--brand-dark); color: rgba(255,255,255,0.5); padding: 48px 24px 24px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+    .footer-brand { font-weight: 800; color: var(--brand-white); font-size: 1.2rem; margin-bottom: 12px; }
+    .footer-address { font-size: 0.9rem; line-height: 1.8; }
+    .footer-links h4 { color: var(--brand-white); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .footer-links a { display: block; font-size: 0.9rem; margin-bottom: 8px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--brand-white); }
+    .footer-bottom { max-width: 1200px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
+    .demo-badge { background: #fbbf24; color: var(--brand-dark); padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.7rem; text-transform: uppercase; }
+
+    .buy-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--brand-white); border-top: 2px solid var(--brand-blue);
+      padding: 16px 24px; z-index: 100;
+      display: flex; justify-content: center; align-items: center; gap: 20px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+    .buy-bar-text { font-weight: 600; color: var(--brand-dark); }
+    .buy-bar .btn-primary { padding: 10px 24px; font-size: 0.9rem; }
+    .buy-bar .btn-secondary { background: transparent; color: var(--brand-blue); padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; border: 1.5px solid var(--brand-blue); }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2.2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">Blakemore's Autos</div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="tel:01938228502" class="nav-cta">Call Now</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span></span> Open Today · Unit 14, Fox Complex</div>
+        <h1>Garage Services Welshpool <em>MOT, Servicing & Repairs</em></h1>
+        <p class="hero-sub">Reliable car, van, and bike MOTs, servicing, and repairs in Welshpool. Dealer-trained expertise. Transparent quotes. Fast turnaround.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="tel:01938228502" class="btn-primary">📞 Call 01938 228502</a>
+          <a href="mailto:info@blakemoresautos.co.uk" class="btn-ghost">Email Us</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><strong>MOT</strong><span>Test Station</span></div>
+          <div class="trust-item"><strong>Car/Van</strong><span>& Bike</span></div>
+          <div class="trust-item"><strong>Diag</strong><span>Specialists</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:48px;text-align:center;">
+        <svg viewBox="0 0 200 160" fill="none" style="max-width:240px;margin:0 auto;">
+          <rect x="20" y="60" width="160" height="70" rx="8" fill="#1e3a8a"/>
+          <rect x="30" y="70" width="140" height="45" rx="4" fill="#0f172a"/>
+          <circle cx="50" cy="125" r="12" fill="#334155"/><circle cx="50" cy="125" r="6" fill="#64748b"/>
+          <circle cx="150" cy="125" r="12" fill="#334155"/><circle cx="150" cy="125" r="6" fill="#64748b"/>
+          <rect x="45" y="80" width="40" height="20" rx="2" fill="#fbbf24" opacity="0.3"/>
+          <text x="65" y="95" text-anchor="middle" fill="#0f172a" font-size="8" font-weight="bold">MOT</text>
+          <rect x="95" y="80" width="50" height="20" rx="2" fill="#fbbf24" opacity="0.3"/>
+          <text x="120" y="95" text-anchor="middle" fill="#0f172a" font-size="7" font-weight="bold">REPAIR</text>
+        </svg>
+        <p style="margin-top:16px;font-weight:600;">Welshpool, SY21 7AZ</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="section-inner">
+      <span class="section-label">What We Offer</span>
+      <h2>Complete Garage Services</h2>
+      <p class="section-desc">From routine MOTs to complex diagnostics — we keep your vehicle safe and legal.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">🛡️</div>
+          <h3>MOT Testing</h3>
+          <p>Class 4, 5 & 7 MOTs for cars, vans, and bikes. Quick turnaround. Re-tests available.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🔧</div>
+          <h3>Servicing & Repairs</h3>
+          <p>Interim and full services. Clutch repairs, cam belts, gearbox servicing, and general repairs.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🔬</div>
+          <h3>Diagnostics</h3>
+          <p>Advanced diagnostic equipment for engine management, ABS, airbag, and electrical faults.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">⚙️</div>
+          <h3>Walnut Blasting</h3>
+          <p>Carbon cleaning for direct injection engines. Restores power and efficiency.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🌊</div>
+          <h3>Wet Belts</h3>
+          <p>Specialist wet belt replacement and servicing for modern Ford and PSA engines.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🏍️</div>
+          <h3>Bike MOTs</h3>
+          <p>Motorcycle MOT testing and servicing. All makes and engine sizes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contact">
+    <div class="section-inner">
+      <h2>Book Your Service</h2>
+      <p>Call or email to book your MOT, service, or repair.</p>
+      <a href="tel:01938228502" class="cta-phone">01938 228502</a>
+      <p class="cta-hours">Monday – Friday · 8:00am – 5:30pm · Saturday · 8:00am – 12:30pm</p>
+      <a href="mailto:info@blakemoresautos.co.uk" class="btn-ghost">info@blakemoresautos.co.uk</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Blakemore's Autos</div>
+        <div class="footer-address">
+          Unit 14, The Fox Complex<br>
+          Welshpool, Powys<br>
+          SY21 7AZ<br><br>
+          📞 01938 228502
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <a href="#services">MOT Testing</a>
+        <a href="#services">Servicing</a>
+        <a href="#services">Diagnostics</a>
+        <a href="#services">Clutch Repairs</a>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="tel:01938228502">Call Us</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Blakemore's Autos. All rights reserved.</span>
+      <span class="demo-badge">Demo Page by FreshSites</span>
+    </div>
+  </footer>
+
+  <div class="buy-bar">
+    <span class="buy-bar-text">Want this page for your business?</span>
+    <a href="https://buy.stripe.com/test_aBcdEFghIjkL" class="btn-primary">Buy This Page — £149</a>
+    <a href="mailto:freshsites@sites.propagate.media" class="btn-secondary">Request Custom Changes</a>
+  </div>
+
+</body>
+</html>
