@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-FreshSites Email Outreach Agent
-Generates and sends personalized emails to scored leads with demo pages.
+FreshSites Email Outreach Agent v2
+Generates and sends personalized emails to scored leads.
 Uses Himalaya CLI for email delivery.
 
 Usage:
     PYTHONPATH="" ./.venv/bin/python3.11 agents/emailer.py
+    PYTHONPATH="" ./.venv/bin/python3.11 agents/emailer.py --send
 """
 
 import json
@@ -13,7 +14,6 @@ import re
 import sqlite3
 import subprocess
 import sys
-from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
@@ -22,8 +22,12 @@ HIMALAYA_BIN = Path.home() / ".local" / "bin" / "himalaya"
 SENDER_EMAIL = "freshsites@sites.propagate.media"
 SENDER_NAME = "FreshSites by Propagate Media"
 
-# ── Email Templates ────────────────────────────────────────────────
+# Ensure agents/ is on path for imports
+sys.path.insert(0, str(Path(__file__).parent))
+from scoring_v3 import WEAKNESS_MAP, get_weaknesses_v3
 
+
+# ── Email Templates ────────────────────────────────────────────────
 EMAIL_TEMPLATES = {
     "initial": """From: {sender_name} <{sender_email}>
 To: {recipient_name} <{recipient_email}>
@@ -35,68 +39,49 @@ Content-Type: text/html; charset=utf-8
 <head><meta charset="utf-8"></head>
 <body style="font-family:Inter,Helvetica,sans-serif;color:#1a1a1a;background:#fff;margin:0;padding:0;">
 <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
-  <div style="border-bottom:2px solid #F1C204;padding-bottom:16px;margin-bottom:24px;">
+  <div style="border-bottom:2px solid #c41e3a;padding-bottom:16px;margin-bottom:24px;">
     <strong style="font-size:1.2rem;color:#0A0A0A;">FreshSites</strong>
     <span style="float:right;font-size:0.8rem;color:#888;">by Propagate Media</span>
   </div>
 
   <p style="font-size:1.05rem;line-height:1.6;">Hi there,</p>
 
-  <p style="font-size:1.05rem;line-height:1.6;">I run <strong>FreshSites</strong> — we build fast, conversion-focused landing pages for local businesses. I came across <strong>{business_name}</strong> and noticed a few things your current homepage is missing:</p>
+  <p style="font-size:1.05rem;line-height:1.6;">I run <strong>FreshSites</strong> - we build fast, conversion-focused landing pages for local businesses. I came across <strong>{business_name}</strong> and saw the good work you do.</p>
+
+  <p style="font-size:1.05rem;line-height:1.6;">Your current site has the basics, but a few things could help turn more visitors into bookings:</p>
 
   <ul style="font-size:1rem;line-height:1.7;color:#555;padding-left:20px;">
     {weaknesses_html}
   </ul>
 
-  <p style="font-size:1.05rem;line-height:1.6;">So I built you a demo. Same brand colours, same services — but designed to turn visitors into bookings:</p>
+  <p style="font-size:1.05rem;line-height:1.6;">So I built you a demo using your brand colours and info, but designed to convert better:</p>
 
-  <div style="background:#0A0A0A;border-radius:8px;padding:24px;margin:24px 0;text-align:center;">
-    <p style="color:#F1C204;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">YOUR DEMO PAGE</p>
-    <a href="{demo_url}" style="color:#fff;font-size:1.1rem;font-weight:600;text-decoration:underline;">{demo_url}</a>
+  <div style="background:#1a1a1a;border-radius:8px;padding:24px;margin:24px 0;text-align:center;">
+    <p style="color:#c41e3a;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">YOUR DEMO PAGE</p>
+    <a href="{demo_url}" style="color:#fff;font-size:1.1rem;font-weight:600;text-decoration:underline;">View Your Demo</a>
   </div>
 
-  <p style="font-size:1.05rem;line-height:1.6;">The page is <strong>£149 outright</strong> — you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
+  <p style="font-size:1.05rem;line-height:1.6;">The page is <strong>£149 outright</strong> - you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
 
-  <p style="font-size:1.05rem;line-height:1.6;">Want custom changes (different photos, extra sections, your logo)? We can do that too — just reply and tell me what you need.</p>
+  <p style="font-size:1.05rem;line-height:1.6;">Want changes? We can add your logo, swap photos, or adjust anything. Just reply.</p>
 
   <div style="margin-top:32px;padding-top:24px;border-top:1px solid #eee;">
     <p style="font-size:0.9rem;color:#555;">Questions? Just reply to this email.</p>
-    <p style="font-size:0.85rem;color:#888;margin-top:8px;">— {sender_name}</p>
+    <p style="font-size:0.85rem;color:#888;margin-top:8px;">- FreshSites by Propagate Media</p>
   </div>
 </div>
 </body>
-</html>
-""",
-    "followup": """From: {sender_name} <{sender_email}>
-To: {recipient_name} <{recipient_email}>
-Subject: Re: {business_name} homepage — still interested?
-Content-Type: text/html; charset=utf-8
-
-<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"></head>
-<body style="font-family:Inter,Helvetica,sans-serif;color:#1a1a1a;background:#fff;margin:0;padding:0;">
-<div style="max-width:600px;margin:0 auto;padding:40px 24px;">
-  <p style="font-size:1.05rem;">Hi {recipient_name},</p>
-  <p style="font-size:1.05rem;line-height:1.6;">Quick follow-up — I built that demo page for <strong>{business_name}</strong> last week. Wanted to check if you had a chance to look at it:</p>
-  <p style="text-align:center;margin:24px 0;"><a href="{demo_url}" style="background:#0A0A0A;color:#F1C204;padding:14px 28px;border-radius:6px;font-weight:700;text-decoration:none;display:inline-block;">View Your Demo</a></p>
-  <p style="font-size:1.05rem;line-height:1.6;">Still £149 flat. Still no strings. Reply if you want it or if you have questions.</p>
-  <p style="font-size:0.85rem;color:#888;">— {sender_name}</p>
-</div>
-</body>
-</html>
-"""
+</html>""",
 }
 
-# ── Functions ────────────────────────────────────────────────────
 
-def get_leads_to_email() -> list[dict]:
-    """Get leads with demos but not yet emailed."""
+def get_leads_to_email():
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
     c.execute("""
-        SELECT * FROM leads
+        SELECT id, name, email, website, score, score_breakdown, demo_url, status
+        FROM leads
         WHERE status IN ('demo_built', 'emailed')
         AND demo_url IS NOT NULL AND demo_url != ''
         ORDER BY score ASC
@@ -106,8 +91,6 @@ def get_leads_to_email() -> list[dict]:
     return rows
 
 
-from agents.scoring import WEAKNESS_MAP, get_weaknesses
-
 def format_weaknesses(score_breakdown: str) -> str:
     """Convert score breakdown JSON to HTML list items."""
     try:
@@ -115,7 +98,6 @@ def format_weaknesses(score_breakdown: str) -> str:
     except:
         return "<li>Homepage could convert more visitors into customers</li>"
 
-    # Use the real weakness descriptions from scoring module
     significant = [(k, v) for k, v in bd.items() if v > 0.3]
     items = []
     for k, _ in significant[:3]:
@@ -125,21 +107,19 @@ def format_weaknesses(score_breakdown: str) -> str:
     if not items:
         items = ["<li>Homepage could convert more visitors into customers</li>"]
 
-    return "\n".join(items)
+    return "\n    ".join(items)
 
 
-def generate_email(lead: dict, template: str = "initial") -> str:
+def generate_email(lead: dict, template: str = "initial") -> tuple[str, str]:
     """Generate HTML email for a lead."""
     name = lead["name"]
-    # Guess email from domain if not known
     email = lead["email"] or guess_email(lead["website"], name)
-
     weaknesses = format_weaknesses(lead["score_breakdown"])
 
     email_body = EMAIL_TEMPLATES[template].format(
         sender_name=SENDER_NAME,
         sender_email=SENDER_EMAIL,
-        recipient_name="there",  # We don't know their name usually
+        recipient_name="there",
         recipient_email=email,
         business_name=name,
         demo_url=lead["demo_url"],
@@ -156,7 +136,6 @@ def guess_email(website: str, business_name: str) -> str:
     domain = domain.split("/")[0]
     if not domain:
         return ""
-    # Common patterns
     guesses = [
         f"info@{domain}",
         f"hello@{domain}",
@@ -169,29 +148,28 @@ def guess_email(website: str, business_name: str) -> str:
 def send_via_himalaya(email_raw: str, to_email: str) -> bool:
     """Send email using Himalaya CLI."""
     if not HIMALAYA_BIN.exists():
-        print(f"  ❌ Himalaya not found at {HIMALAYA_BIN}")
+        print(f"  Himalaya not found at {HIMALAYA_BIN}")
         return False
 
     try:
-        # Write email to temp file
         tmp = Path("/tmp") / f"freshsites_email_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.eml"
         tmp.write_text(email_raw, encoding="utf-8")
 
         result = subprocess.run(
-            [str(HIMALAYA_BIN), "message", "send", "--account", "gravityaddiction"],
+            [str(HIMALAYA_BIN), "message", "send", "--account", "freshsites"],
             input=tmp.read_text(),
             capture_output=True,
             text=True,
             timeout=30,
         )
         if result.returncode == 0:
-            print(f"  ✅ Sent to {to_email}")
+            print(f"  Sent to {to_email}")
             return True
         else:
-            print(f"  ❌ Himalaya failed: {result.stderr}")
+            print(f"  Himalaya failed: {result.stderr}")
             return False
     except Exception as e:
-        print(f"  ❌ Send error: {e}")
+        print(f"  Send error: {e}")
         return False
 
 
@@ -233,14 +211,14 @@ def preview_email(lead_id: int = None):
     print(f"Score: {target['score']}/10")
     print(f"Demo: {target['demo_url']}")
     print(f"{'='*60}\n")
-    print(email[:1500])
-    print("\n... [truncated for preview] ...")
-    print(f"\nTo send: set SEND=true and run again")
+    print(email)
+    print(f"\n{'='*60}")
+    print(f"To send: add --send flag")
 
 
 def run_emailer():
     """Main entry point."""
-    send_mode = "SEND" in sys.argv or "--send" in sys.argv
+    send_mode = "--send" in sys.argv or "SEND" in sys.argv
 
     leads = get_leads_to_email()
     if not leads:
@@ -248,44 +226,41 @@ def run_emailer():
         return
 
     print(f"{'='*60}")
-    print(f"FreshSites Email Outreach — {len(leads)} leads ready")
+    print(f"FreshSites Email Outreach")
+    print(f"Mode: {'SEND' if send_mode else 'PREVIEW'}")
+    print(f"Leads ready: {len(leads)}")
     print(f"{'='*60}\n")
 
-    sent = 0
     for lead in leads:
-        print(f"📧 {lead['name']} (score: {lead['score']}/10)")
+        if lead["status"] == "emailed":
+            print(f"SKIP: {lead['name']} (already emailed)")
+            continue
+
+        print(f"Processing: {lead['name']} (score: {lead['score']}/10)")
         email, to = generate_email(lead)
 
-        if not to:
-            print(f"   ⚠️  No email address — skipping")
-            continue
-
         if not send_mode:
-            print(f"   ⏸️  PREVIEW mode (add --send to send)")
-            print(f"   → Would send to: {to}")
+            print(f"  PREVIEW: Would email {to}")
+            print(f"  Subject: I built {lead['name']} a better homepage")
             continue
 
-        success = send_via_himalaya(email, to)
-        if success:
+        if send_via_himalaya(email, to):
             mark_emailed(lead["id"])
-            sent += 1
+            print(f"  Marked as emailed")
         else:
-            print(f"   ⚠️  Failed — will retry next run")
+            print(f"  Failed to send")
 
-    print(f"\n{'='*60}")
-    if send_mode:
-        print(f"Sent {sent}/{len(leads)} emails")
-    else:
-        print(f"Previewed {len(leads)} leads. Use --send to dispatch.")
-    print(f"{'='*60}")
+        print()
 
 
 if __name__ == "__main__":
-    if "--preview" in sys.argv or "--id" in sys.argv:
+    if "--preview" in sys.argv:
+        # Find lead_id if specified
         lead_id = None
         for i, arg in enumerate(sys.argv):
-            if arg == "--id" and i + 1 < len(sys.argv):
-                lead_id = int(sys.argv[i + 1])
+            if arg.isdigit():
+                lead_id = int(arg)
+                break
         preview_email(lead_id)
     else:
         run_emailer()
