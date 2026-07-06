@@ -99,7 +99,7 @@ def create_payment_link(price_id: str, product_name: str):
 
     link = stripe.PaymentLink.create(
         line_items=[{"price": price_id, "quantity": 1}],
-        after_completion={"type": "redirect", "redirect": {"url": "https://sites.propagate.media/thanks"}},
+        after_completion={"type": "redirect", "redirect": {"url": "https://propagatemedia.github.io/freshsites-outreach/thanks.html"}},
         metadata={"product": product_name, "source": "freshsites"},
     )
     print(f"  Created link: {link.url}")
