@@ -50,7 +50,8 @@ def send_test_email(lead: dict):
         "name": lead["name"],
         "email": TEST_EMAIL,
         "website": lead["website"],
-        "score_breakdown": json.loads(lead["score_breakdown"]) if lead["score_breakdown"] else {},
+        "score": lead["score"],
+        "score_breakdown": lead["score_breakdown"] or '{}',
         "demo_url": lead["demo_url"],
     }
 
