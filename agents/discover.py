@@ -37,7 +37,7 @@ SEARCH_QUERIES = [
     "auto repair Machynlleth Powys Wales",
     "garage services Montgomery Powys Wales",
 ]
-MIN_SCORE = 7.0
+MIN_SCORE = 5.0
 DB_PATH = Path(__file__).parent.parent / "leads" / "freshsites.db"
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "

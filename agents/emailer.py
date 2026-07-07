@@ -48,20 +48,20 @@ Content-Type: text/html; charset=utf-8
 
   <p style="font-size:1.05rem;line-height:1.6;">I run <strong>FreshSites</strong> - we build fast, conversion-focused landing pages for local businesses. I came across <strong>{business_name}</strong> and saw the good work you do.</p>
 
-  <p style="font-size:1.05rem;line-height:1.6;">Your current site has the basics, but a few things could help turn more visitors into bookings:</p>
+  <p style="font-size:1.05rem;line-height:1.6;">Your current site scores {original_score}/10 on our conversion checklist. Here is what it is missing that costs you bookings:</p>
 
   <ul style="font-size:1rem;line-height:1.7;color:#555;padding-left:20px;">
-    {weaknesses_html}
+    {gaps_html}
   </ul>
 
-  <p style="font-size:1.05rem;line-height:1.6;">So I built you a demo using your brand colours and info, but designed to convert better:</p>
+  <p style="font-size:1.05rem;line-height:1.6;">So I built you a demo that fixes all of this - using your brand colours and info, but designed to convert:</p>
 
   <div style="background:#1a1a1a;border-radius:8px;padding:24px;margin:24px 0;text-align:center;">
     <p style="color:#F1C204;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">YOUR DEMO PAGE</p>
     <a href="{demo_url}" style="color:#F1C204;font-size:1.1rem;font-weight:700;text-decoration:underline;">View Your Demo</a>
   </div>
 
-  <p style="font-size:1.05rem;line-height:1.6;">The page is <strong>£149 outright</strong> - you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
+  <p style="font-size:1.05rem;line-height:1.6;">The page is <strong>149 outright</strong> - you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
 
   <p style="font-size:1.05rem;line-height:1.6;">Want changes? We can add your logo, swap photos, or adjust anything. Just reply.</p>
 
@@ -91,8 +91,23 @@ def get_leads_to_email():
     return rows
 
 
-def format_weaknesses(score_breakdown: str) -> str:
-    """Convert score breakdown JSON to HTML list items."""
+GAP_FIXES = {
+    "no_h1": "No clear headline telling visitors what you do in 2 seconds",
+    "weak_value_prop": "No compelling reason to choose you over the garage down the road",
+    "no_cta_above_fold": "No call-to-action button visible without scrolling",
+    "phone_hidden": "Phone number buried or missing - mobile visitors have to hunt for it",
+    "no_opening_hours": "No opening hours displayed - visitors do not know when to call",
+    "no_contact_form": "No contact form - visitors who prefer email have no way to reach you",
+    "social_proof": "No reviews or testimonials to build trust",
+    "no_personal_touch": "No team names or faces - looks like a faceless operation",
+    "no_location": "No address visible - visitors cannot find you",
+    "generic_title": "Page title is generic - hurts Google rankings",
+    "builder_bloat": "Slow loading due to unnecessary scripts",
+    "weak_mobile": "Poor mobile experience - 70% of visitors are on phones",
+}
+
+def format_gaps(score_breakdown: str) -> str:
+    """Convert score breakdown to specific gap/fix list items."""
     try:
         bd = json.loads(score_breakdown)
     except:
@@ -100,12 +115,12 @@ def format_weaknesses(score_breakdown: str) -> str:
 
     significant = [(k, v) for k, v in bd.items() if v > 0.3]
     items = []
-    for k, _ in significant[:3]:
-        desc = WEAKNESS_MAP.get(k, k.replace("_", " ").title())
-        items.append(f"<li>{desc}</li>")
+    for k, _ in significant[:4]:
+        desc = GAP_FIXES.get(k, k.replace("_", " ").title())
+        items.append(f"<li>{desc} - <strong>our demo fixes this</strong></li>")
 
     if not items:
-        items = ["<li>Homepage could convert more visitors into customers</li>"]
+        items = ["<li>Homepage could convert more visitors into customers - <strong>our demo fixes this</strong></li>"]
 
     return "\n    ".join(items)
 
@@ -114,7 +129,8 @@ def generate_email(lead: dict, template: str = "initial") -> tuple[str, str]:
     """Generate HTML email for a lead."""
     name = lead["name"]
     email = lead["email"] or guess_email(lead["website"], name)
-    weaknesses = format_weaknesses(lead["score_breakdown"])
+    gaps = format_gaps(lead["score_breakdown"])
+    original_score = lead.get("score", 0)
 
     email_body = EMAIL_TEMPLATES[template].format(
         sender_name=SENDER_NAME,
@@ -123,7 +139,8 @@ def generate_email(lead: dict, template: str = "initial") -> tuple[str, str]:
         recipient_email=email,
         business_name=name,
         demo_url=lead["demo_url"],
-        weaknesses_html=weaknesses,
+        gaps_html=gaps,
+        original_score=original_score,
     )
     return email_body, email
 
