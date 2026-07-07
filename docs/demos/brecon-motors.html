@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brecon Motors — Quality Used Cars & Vehicle Servicing Since 1984</title>
+  <meta name="description" content="Family run used car dealership in Brecon for 40+ years. Quality used cars, vans, commercial vehicles. Servicing, MOT, part exchange. Call 01874 611721.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0;padding:0;font-family:'Inter',-apple-system,sans-serif;color:#1a1a1a;background:#fff;line-height:1.6; }
+    img { max-width:100%;display:block; }
+    a { text-decoration:none;transition:all .2s; }
+
+    .top-bar { background:#1a2f4a;color:#fff;padding:10px 24px;font-size:0.8rem;text-align:center; }
+    .top-bar a { color:#c9a84c;font-weight:600; }
+
+    nav { position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.97);backdrop-filter:blur(8px);border-bottom:1px solid #e5e5e5; }
+    .nav-inner { max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px; }
+    .logo { font-weight:800;font-size:1.25rem;color:#1a2f4a; }
+    .logo span { color:#c9a84c; }
+    .nav-links { display:flex;gap:36px;align-items:center; }
+    .nav-links a { font-weight:500;font-size:0.9rem;color:#333; }
+    .nav-links a:hover { color:#1a2f4a; }
+
+    .btn-primary { background:#1a2f4a;color:#fff;padding:10px 22px;border-radius:6px;font-weight:600;font-size:0.85rem;display:inline-block;border:none;cursor:pointer; }
+    .btn-primary:hover { background:#0f1c2e; }
+    .btn-outline { background:transparent;color:#1a2f4a;padding:10px 18px;border-radius:6px;font-weight:600;font-size:0.85rem;border:1.5px solid #1a2f4a;display:inline-block;cursor:pointer; }
+    .btn-outline:hover { background:#1a2f4a;color:#fff; }
+
+    .hero { position:relative;overflow:hidden; }
+    .hero img { width:100%;height:600px;object-fit:cover; }
+    .hero-overlay { position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,47,74,0.85) 0%,rgba(26,47,74,0.5) 60%,transparent 100%); }
+    .hero-content { position:absolute;inset:0;display:flex;align-items:center; }
+    .hero-inner { max-width:1200px;margin:0 auto;padding:0 24px;width:100%; }
+    .hero-text { max-width:560px; }
+    .badge { display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.2);border:1px solid rgba(201,168,76,0.4);padding:6px 14px;border-radius:50px;font-size:0.75rem;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px; }
+    .badge-dot { width:6px;height:6px;background:#c9a84c;border-radius:50%;display:inline-block; }
+    .hero h1 { font-size:3.2rem;font-weight:800;color:#fff;line-height:1.05;letter-spacing:-0.03em;margin:0 0 16px; }
+    .hero p { font-size:1.15rem;color:rgba(255,255,255,0.85);margin:0 0 28px;max-width:440px; }
+    .hero-btns { display:flex;gap:14px;flex-wrap:wrap; }
+    .btn-ghost { background:transparent;color:#fff;padding:14px 24px;border-radius:8px;font-weight:600;font-size:1rem;border:1.5px solid rgba(255,255,255,0.35);display:inline-block; }
+    .btn-ghost:hover { border-color:#fff; }
+
+    .trust { background:#f8f8f8;border-bottom:1px solid #e5e5e5; }
+    .trust-inner { max-width:1200px;margin:0 auto;padding:32px 24px;display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:24px; }
+    .trust-item { text-align:center; }
+    .trust-item strong { display:block;font-size:1.8rem;font-weight:800;color:#1a2f4a; }
+    .trust-item span { font-size:0.8rem;color:#666;text-transform:uppercase;letter-spacing:0.05em; }
+
+    section { padding:80px 24px; }
+    .section-inner { max-width:1200px;margin:0 auto; }
+    .section-header { text-align:center;margin-bottom:56px; }
+    .section-header span { display:inline-block;color:#1a2f4a;font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:12px; }
+    .section-header h2 { font-size:2.4rem;font-weight:800;color:#1a1a1a;letter-spacing:-0.02em;margin:0; }
+    .section-header p { color:#666;font-size:1.1rem;margin:12px auto 0;max-width:500px; }
+
+    .cards { display:grid;grid-template-columns:repeat(3,1fr);gap:32px; }
+    .card { border:1px solid #e5e5e5;border-radius:12px;overflow:hidden;transition:all .3s; }
+    .card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+    .card img { width:100%;height:200px;object-fit:cover; }
+    .card-body { padding:28px; }
+    .card-body h3 { font-size:1.2rem;font-weight:700;color:#1a1a1a;margin:0 0 8px; }
+    .card-body p { color:#666;font-size:0.95rem;margin:0; }
+
+    .about { background:#f8f8f8; }
+    .about-grid { display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center; }
+    .about-text span { display:inline-block;color:#1a2f4a;font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:12px; }
+    .about-text h2 { font-size:2.4rem;font-weight:800;color:#1a1a1a;letter-spacing:-0.02em;margin:0 0 20px; }
+    .about-text p { color:#444;font-size:1.05rem;margin:0 0 16px; }
+    .about-img { width:100%;border-radius:12px;box-shadow:0 20px 40px rgba(0,0,0,0.12); }
+
+    .reviews-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+    .review { background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:28px; }
+    .stars { color:#c9a84c;letter-spacing:2px;font-size:1.1rem;margin-bottom:12px; }
+    .review p { font-style:italic;color:#444;margin:0 0 16px;font-size:0.95rem; }
+    .review-name { font-weight:700;color:#1a1a1a;font-size:0.9rem; }
+    .review-meta { font-size:0.8rem;color:#888; }
+
+    .cta { background:#1a2f4a;color:#fff;text-align:center; }
+    .cta-inner { max-width:600px;margin:0 auto; }
+    .cta-inner span { display:inline-block;color:#c9a84c;font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:16px; }
+    .cta-inner h2 { font-size:2.4rem;font-weight:800;margin:0 0 16px; }
+    .cta-inner > p { font-size:1.1rem;color:rgba(255,255,255,0.75);margin:0 0 28px; }
+    .cta-phone { font-size:2rem;font-weight:800;color:#c9a84c;display:block;margin-bottom:8px; }
+    .cta-phone:hover { color:#fff; }
+    .cta-hours { font-size:0.85rem;color:rgba(255,255,255,0.5);margin:0 0 20px; }
+    .cta-email { color:#fff;font-size:1rem;text-decoration:underline;opacity:0.8; }
+    .cta-email:hover { opacity:1; }
+
+    footer { background:#0d0d0d;color:rgba(255,255,255,0.4);padding:40px 24px 24px;font-size:0.85rem; }
+    .footer-inner { max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px; }
+    footer strong { color:#fff;font-size:1rem; }
+    footer a { color:rgba(255,255,255,0.4); }
+
+    .buy-bar { position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid #1a2f4a;padding:14px 24px;z-index:100;display:flex;justify-content:center;align-items:center;gap:20px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);flex-wrap:wrap; }
+    .buy-bar span { font-weight:600;color:#1a1a1a;font-size:0.95rem; }
+
+    .tier-panel { display:none;position:fixed;bottom:0;left:0;right:0;background:#f8f8f8;border-top:3px solid #1a2f4a;padding:40px 24px 100px;z-index:90;max-height:90vh;overflow-y:auto;box-shadow:0 -8px 40px rgba(0,0,0,0.15); }
+    .tier-panel.active { display:block; }
+    .tier-panel-close { position:absolute;top:16px;right:24px;font-size:1.5rem;color:#999;cursor:pointer;background:none;border:none; }
+    .tier-panel-close:hover { color:#1a2f4a; }
+    .tier-panel h3 { text-align:center;font-size:1.5rem;margin:0 0 8px; }
+    .tier-panel > .section-inner > p { text-align:center;color:#666;margin:0 0 32px; }
+
+    .tiers { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+    .tier { background:#fff;border:2px solid #e5e5e5;border-radius:12px;padding:28px;text-align:center;position:relative;display:flex;flex-direction:column; }
+    .tier.featured { border-color:#1a2f4a;box-shadow:0 8px 24px rgba(26,47,74,0.08); }
+    .tier-badge { position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#1a2f4a;color:#fff;padding:4px 16px;border-radius:50px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em; }
+    .tier h4 { font-size:1.05rem;font-weight:700;color:#1a1a1a;margin:0 0 4px; }
+    .tier .price { font-size:2.2rem;font-weight:800;color:#1a1a1a;margin:0; }
+    .tier .price span { font-size:0.85rem;font-weight:500;color:#888; }
+    .tier-desc { color:#666;font-size:0.85rem;margin:8px 0 16px;min-height:36px; }
+    .tier ul { list-style:none;padding:0;margin:0 0 20px;text-align:left;flex-grow:1; }
+    .tier ul li { padding:5px 0;border-bottom:1px solid #f0f0f0;color:#444;font-size:0.85rem; }
+    .tier ul li:last-child { border-bottom:none; }
+    .tier .btn { display:block;width:100%;padding:10px;border-radius:6px;font-weight:600;text-align:center;margin-bottom:8px; }
+    .tier .decline-link { color:#888;font-size:0.8rem;text-decoration:underline;cursor:pointer;background:none;border:none;padding:0; }
+    .tier .decline-link:hover { color:#1a2f4a; }
+
+    .confirm-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;align-items:center;justify-content:center; }
+    .confirm-overlay.active { display:flex; }
+    .confirm-box { background:#fff;border-radius:12px;padding:32px;max-width:420px;width:90%;text-align:center; }
+    .confirm-box h3 { margin:0 0 12px; }
+    .confirm-box p { color:#666;margin:0 0 20px;font-size:0.95rem; }
+    .confirm-btns { display:flex;gap:12px;justify-content:center; }
+
+    .removed-bar { display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;color:#fff;padding:14px 24px;z-index:100;text-align:center; }
+    .removed-bar.active { display:block; }
+    .removed-bar p { margin:0;font-size:0.9rem; }
+    .removed-bar a { color:#c9a84c;font-weight:600; }
+
+    .modal-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;align-items:center;justify-content:center;cursor:pointer; }
+    .modal-overlay.active { display:flex; }
+    .modal { background:#fff;border-radius:12px;padding:32px;max-width:500px;width:90%;max-height:80vh;overflow-y:auto;cursor:default; }
+    .modal h3 { margin:0 0 16px;font-size:1.3rem; }
+    .modal p { color:#666;margin:0 0 20px;font-size:0.95rem; }
+    .modal textarea { width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-family:inherit;font-size:0.95rem;min-height:120px;resize:vertical; }
+    .modal .modal-btns { display:flex;gap:12px;margin-top:20px;justify-content:flex-end; }
+    .modal .btn-close { background:#f0f0f0;color:#333;padding:10px 20px;border-radius:6px;font-weight:600;border:none;cursor:pointer; }
+    .modal .btn-send { background:#1a2f4a;color:#fff;padding:10px 20px;border-radius:6px;font-weight:600;border:none;cursor:pointer; }
+
+    @media (max-width:768px) {
+      .hero h1 { font-size:2rem; }
+      .cards, .reviews-grid, .tiers { grid-template-columns:1fr; }
+      .about-grid { grid-template-columns:1fr; }
+      .nav-links { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <span>Rich Way, Watton, Brecon, LD3 7EH</span> | <a href="tel:01874611721">01874 611721</a> | <a href="mailto:info@breconmotors.co.uk">info@breconmotors.co.uk</a>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">BRECON <span>MOTORS</span></a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:01874611721" class="btn-primary" style="color:#fff;">Call Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1600&h=700&fit=crop&q=80" alt="Quality used cars at Brecon Motors">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="badge"><span class="badge-dot"></span> Family Run - Est. 1984</div>
+          <h1>Quality Used Cars in Brecon Since 1984</h1>
+          <p>40+ years of trusted service. Carefully selected low-mileage cars, vans and commercial vehicles. Part exchange welcome. Finance available.</p>
+          <div class="hero-btns">
+            <a href="tel:01874611721" class="btn-primary" style="padding:14px 28px;font-size:1rem;">Call 01874 611721</a>
+            <a href="mailto:info@breconmotors.co.uk" class="btn-ghost">Email Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div class="trust-inner">
+      <div class="trust-item"><strong>40+</strong><span>Years Experience</span></div>
+      <div class="trust-item"><strong>Quality</strong><span>Low Mileage Vehicles</span></div>
+      <div class="trust-item"><strong>Part Ex</strong><span>Welcome</span></div>
+      <div class="trust-item"><strong>Finance</strong><span>Available</span></div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-header">
+        <span>What We Offer</span>
+        <h2>Our Services</h2>
+        <p>Everything you need to find and maintain your next vehicle.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1449965408869-e5c97aae5d52?w=500&h=280&fit=crop&q=80" alt="Used car showroom">
+          <div class="card-body">
+            <h3>Used Car Sales</h3>
+            <p>Quality used cars for all budgets. Carefully selected, low mileage, fully prepared. All makes and models.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500&h=280&fit=crop&q=80" alt="MOT testing station">
+          <div class="card-body">
+            <h3>MOT & Service</h3>
+            <p>Class 4 MOT testing and full vehicle servicing. Keep your car safe, legal and running at its best.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&h=280&fit=crop&q=80" alt="Commercial van">
+          <div class="card-body">
+            <h3>Commercial Vehicles</h3>
+            <p>Vans, commercial vehicles and part-exchange deals. We stock a range to suit business and personal use.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <span>About Us</span>
+          <h2>A Family Business for 40+ Years</h2>
+          <p>Brecon Motors is a family-run business in the heart of the Brecon Beacons, providing a diverse selection of quality used cars for over 40 years.</p>
+          <p>Jonathan has over 40 years experience in the retail motor trade, and his daughter Sara has been here for the last 13 years. We specialise in carefully selected QUALITY LOW MILEAGE used vehicles.</p>
+          <p>We pride ourselves on exceptional customer service, professionalism, and a friendly approach. We know buying a car can be daunting - so we go the extra mile to ensure you get the advice you need.</p>
+          <a href="tel:01874611721" class="btn-primary" style="margin-top:8px;">Call Us Today</a>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&h=500&fit=crop&q=80" alt="Car dealership showroom" class="about-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="section-inner">
+      <div class="section-header">
+        <span>Testimonials</span>
+        <h2>What Our Customers Say</h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Jonathan and Sara made buying our first family car so easy. No pressure, honest advice, and the car has been perfect for 2 years now."</p>
+          <div class="review-name">Rachel M.</div>
+          <div class="review-meta">Brecon - Ford Focus</div>
+        </div>
+        <div class="review">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Part-exchanged my old van for a newer one. Got a fair price and the new van was exactly as described. Would recommend to anyone."</p>
+          <div class="review-name">David T.</div>
+          <div class="review-meta">Powys - Vauxhall Vivaro</div>
+        </div>
+        <div class="review">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"Bought my daughter's first car here. They took the time to explain everything and made sure it was safe and reliable. Top service."</p>
+          <div class="review-name">Mark S.</div>
+          <div class="review-meta">Brecon - Volkswagen Polo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="cta">
+    <div class="cta-inner">
+      <span>Get In Touch</span>
+      <h2>Ready to Find Your Next Car?</h2>
+      <p>Call now or email to arrange a viewing or discuss part exchange.</p>
+      <a href="tel:01874611721" class="cta-phone">01874 611721</a>
+      <p class="cta-hours">Monday - Saturday - 9:00am - 5:30pm</p>
+      <a href="mailto:info@breconmotors.co.uk" class="cta-email">info@breconmotors.co.uk</a>
+      <p style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.4);">Rich Way, Watton, Brecon, LD3 7EH</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>Brecon Motors</strong>
+        <span style="margin-left:16px;">Rich Way, Watton, Brecon, LD3 7EH</span>
+      </div>
+      <div style="display:flex;gap:20px;">
+        <a href="#">Privacy</a>
+        <span style="color:rgba(255,255,255,0.2);">-</span>
+        <span>2024 Brecon Motors</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="buy-bar" id="buy-bar">
+    <span>Want this site for your business?</span>
+    <button class="btn-primary" onclick="showTiers()">Get This Site - from 149</button>
+    <button class="btn-outline" onclick="showNotInterested()">Not For Me</button>
+  </div>
+
+  <div class="tier-panel" id="tier-panel">
+    <button class="tier-panel-close" onclick="hideTiers()">&times;</button>
+    <div class="section-inner">
+      <h3>Get Your Site</h3>
+      <p>Pick the package that fits. No monthly fees. No lock-in.</p>
+      <div class="tiers">
+        <div class="tier">
+          <h4>Buy Outright</h4>
+          <p class="price">149 <span>one-time</span></p>
+          <p class="tier-desc">Full page deployed to Vercel. We set up the account and transfer ownership.</p>
+          <ul>
+            <li>Complete page deployed live</li>
+            <li>Free Vercel account setup</li>
+            <li>Ownership transferred to you</li>
+            <li>Add your own custom domain</li>
+            <li>No recurring fees</li>
+          </ul>
+          <a href="https://buy.stripe.com/14AaENc4oeYBgfk26R5EY0f" class="btn btn-primary">Buy - 149</a>
+          <button class="decline-link" onclick="showNotInterested()">Not interested</button>
+        </div>
+        <div class="tier featured">
+          <div class="tier-badge">Popular</div>
+          <h4>Hosted + Edits</h4>
+          <p class="price">399 <span>one-time</span></p>
+          <p class="tier-desc">Hosted 12 months with temp domain. 2 edit rounds included.</p>
+          <ul>
+            <li>Live deployment to Vercel</li>
+            <li>12 months hosting included</li>
+            <li>2 rounds of edits included</li>
+            <li>Email support</li>
+            <li>SSL certificate included</li>
+          </ul>
+          <a href="https://buy.stripe.com/fZu4gpecw2bPbZ4dPz5EY0g" class="btn btn-primary">Buy - 399</a>
+          <button class="decline-link" onclick="showNotInterested()">Not interested</button>
+        </div>
+        <div class="tier">
+          <h4>Premium</h4>
+          <p class="price">997 <span>first 12 months</span></p>
+          <p class="tier-desc">Unlimited edits, Voice AI bolt-on, full service.</p>
+          <ul>
+            <li>Everything in Hosted + Edits</li>
+            <li>Voice AI chatbot bolt-on</li>
+            <li>Unlimited edits for 12 months</li>
+            <li>Priority phone + email support</li>
+          </ul>
+          <button class="btn btn-primary" onclick="showPremiumInquiry()">Get This</button>
+          <button class="decline-link" onclick="showNotInterested()">Not interested</button>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;padding-top:24px;border-top:1px solid #ddd;">
+        <p style="color:#666;font-size:1rem;margin:0 0 12px;">Want something tweaked before you buy?</p>
+        <button class="btn-outline" onclick="showChangesModal()" style="font-size:0.9rem;">Request Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-box">
+      <h3>Remove This Demo?</h3>
+      <p>This will permanently delete the demo page for Brecon Motors. This action cannot be undone.</p>
+      <div class="confirm-btns">
+        <button class="btn-outline" onclick="hideNotInterested()">Keep It</button>
+        <button class="btn-primary" onclick="confirmDelete()" style="background:#666;border-color:#666;">Delete Demo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="removed-bar" id="removed-bar">
+    <p>This demo has been permanently removed. <a href="mailto:freshsites@sites.propagate.media">Email us</a> if you change your mind.</p>
+  </div>
+
+  <div class="modal-overlay" id="changes-modal">
+    <div class="modal">
+      <h3>Request Changes</h3>
+      <p>Tell us what you would like adjusted. We will review and get back to you within 24 hours.</p>
+      <form onsubmit="sendChanges(event)">
+        <textarea id="changes-text" placeholder="Example: Swap the hero photo for our showroom. Add our logo. Change the phone number to..." required></textarea>
+        <div class="modal-btns">
+          <button type="button" class="btn-close" onclick="hideChangesModal()">Cancel</button>
+          <button type="submit" class="btn-send">Send Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="premium-modal">
+    <div class="modal">
+      <h3>Premium Inquiry</h3>
+      <p>The Premium package includes Voice AI, unlimited edits, and full support. Tell us about your needs.</p>
+      <form onsubmit="sendPremiumInquiry(event)">
+        <textarea id="premium-text" placeholder="Tell us about your business and any questions about the Premium package." required></textarea>
+        <div class="modal-btns">
+          <button type="button" class="btn-close" onclick="hidePremiumInquiry()">Cancel</button>
+          <button type="submit" class="btn-send">Send Inquiry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function showTiers() {
+      document.getElementById('tier-panel').classList.add('active');
+      document.getElementById('buy-bar').style.display = 'none';
+      document.getElementById('tier-panel').scrollIntoView({behavior:'smooth'});
+    }
+    function hideTiers() {
+      document.getElementById('tier-panel').classList.remove('active');
+      document.getElementById('buy-bar').style.display = 'flex';
+    }
+    function showNotInterested() {
+      document.getElementById('confirm-overlay').classList.add('active');
+    }
+    function hideNotInterested() {
+      document.getElementById('confirm-overlay').classList.remove('active');
+    }
+    function confirmDelete() {
+      document.getElementById('confirm-overlay').classList.remove('active');
+      document.getElementById('buy-bar').style.display = 'none';
+      document.getElementById('tier-panel').classList.remove('active');
+      document.getElementById('removed-bar').classList.add('active');
+    }
+    function showChangesModal() {
+      document.getElementById('changes-modal').classList.add('active');
+    }
+    function hideChangesModal() {
+      document.getElementById('changes-modal').classList.remove('active');
+    }
+    function sendChanges(e) {
+      e.preventDefault();
+      var text = document.getElementById('changes-text').value;
+      var subject = 'Change Request: Brecon Motors';
+      var body = 'Hi FreshSites team,\n\nI would like to request some changes to the demo page for Brecon Motors:\n\n' + text + '\n\nPlease let me know what is possible.\n\nThanks';
+      window.location.href = 'mailto:tyrone@propagate.media?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      hideChangesModal();
+    }
+    function showPremiumInquiry() {
+      document.getElementById('premium-modal').classList.add('active');
+    }
+    function hidePremiumInquiry() {
+      document.getElementById('premium-modal').classList.remove('active');
+    }
+    function sendPremiumInquiry(e) {
+      e.preventDefault();
+      var text = document.getElementById('premium-text').value;
+      var subject = 'Premium Inquiry: Brecon Motors';
+      var body = 'Hi FreshSites team,\n\nI am interested in the Premium package for Brecon Motors.\n\n' + text + '\n\nPlease get back to me to discuss next steps.\n\nThanks';
+      window.location.href = 'mailto:tyrone@propagate.media?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      hidePremiumInquiry();
+    }
+    document.getElementById('changes-modal').addEventListener('click', function(e) { if (e.target === this) hideChangesModal(); });
+    document.getElementById('premium-modal').addEventListener('click', function(e) { if (e.target === this) hidePremiumInquiry(); });
+    document.getElementById('confirm-overlay').addEventListener('click', function(e) { if (e.target === this) hideNotInterested(); });
+    document.getElementById('tier-panel').addEventListener('click', function(e) { if (e.target === this) hideTiers(); });
+  </script>
+
+</body>
+</html>
