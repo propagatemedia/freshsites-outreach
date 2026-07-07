@@ -61,13 +61,14 @@ Content-Type: text/html; charset=utf-8
     <a href="{demo_url}" style="color:#F1C204;font-size:1.1rem;font-weight:700;text-decoration:underline;">View Your Demo</a>
   </div>
 
-  <p style="font-size:1.05rem;line-height:1.6;">The page is <strong>149 outright</strong> - you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
+  <p style="font-size:1.05rem;line-height:1.6;">To buy this page outright, it is 149, once off, you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
 
   <p style="font-size:1.05rem;line-height:1.6;">Want changes? We can add your logo, swap photos, or adjust anything. Just reply.</p>
 
   <div style="margin-top:32px;padding-top:24px;border-top:1px solid #eee;">
     <p style="font-size:0.9rem;color:#555;">Questions? Just reply to this email.</p>
     <p style="font-size:0.85rem;color:#888;margin-top:8px;">- FreshSites by Propagate Media</p>
+    <p style="font-size:0.8rem;color:#aaa;margin-top:16px;">FreshSites is a division of Propagate Media. Call us on 07400 33 8941. For more information or to view our portfolio, visit propagate.media/clients</p>
   </div>
 </div>
 </body>
@@ -117,10 +118,10 @@ def format_gaps(score_breakdown: str) -> str:
     items = []
     for k, _ in significant[:4]:
         desc = GAP_FIXES.get(k, k.replace("_", " ").title())
-        items.append(f"<li>{desc} - <strong>our demo fixes this</strong></li>")
+        items.append(f"<li>{desc}</li>")
 
     if not items:
-        items = ["<li>Homepage could convert more visitors into customers - <strong>our demo fixes this</strong></li>"]
+        items = ["<li>Homepage could convert more visitors into customers</li>"]
 
     return "\n    ".join(items)
 
