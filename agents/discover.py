@@ -23,6 +23,8 @@ from urllib.parse import quote_plus, urlparse
 import requests
 from bs4 import BeautifulSoup
 
+# Add parent to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from agents.scoring import score_website_v2
 
 # ── Config ──────────────────────────────────────────────────────────
