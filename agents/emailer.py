@@ -57,8 +57,8 @@ Content-Type: text/html; charset=utf-8
   <p style="font-size:1.05rem;line-height:1.6;">So I built you a demo using your brand colours and info, but designed to convert better:</p>
 
   <div style="background:#1a1a1a;border-radius:8px;padding:24px;margin:24px 0;text-align:center;">
-    <p style="color:#c41e3a;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">YOUR DEMO PAGE</p>
-    <a href="{demo_url}" style="color:#fff;font-size:1.1rem;font-weight:600;text-decoration:underline;">View Your Demo</a>
+    <p style="color:#F1C204;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">YOUR DEMO PAGE</p>
+    <a href="{demo_url}" style="color:#F1C204;font-size:1.1rem;font-weight:700;text-decoration:underline;">View Your Demo</a>
   </div>
 
   <p style="font-size:1.05rem;line-height:1.6;">The page is <strong>£149 outright</strong> - you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
