@@ -7,15 +7,12 @@
   <meta name="description" content="M.E. Poston Motors in Abermule, Montgomery. Established 1938. Full workshop facilities for car servicing, repairs, diagnostics, clutches, brakes, engine tuning and more. Call 01686 630 653.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --brand-orange: #e8a010; --brand-dark: #1a1f2e; --brand-navy: #242b3d; }
+    :root { --brand-orange: #e8a010; --brand-dark: #1a1f2e; }
     * { box-sizing: border-box; }
     body { margin:0;padding:0;font-family:'Inter',sans-serif;color:#1a1a1a;background:#fff;line-height:1.6; }
-    img { max-width:100%;display:block; }
     a { text-decoration:none;transition:all .2s; }
-
     .top-bar { background:var(--brand-dark);color:#fff;padding:10px 24px;font-size:0.8rem;text-align:center; }
     .top-bar a { color:var(--brand-orange);font-weight:600; }
-
     nav { position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.97);backdrop-filter:blur(8px);border-bottom:1px solid #e5e5e5; }
     .nav-inner { max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px; }
     .logo { font-weight:800;font-size:1.25rem;color:var(--brand-dark); }
@@ -23,16 +20,13 @@
     .nav-links { display:flex;gap:36px;align-items:center; }
     .nav-links a { font-weight:500;font-size:0.9rem;color:#333; }
     .nav-links a:hover { color:var(--brand-orange); }
-
     .btn-primary { background:var(--brand-orange);color:#1a1a1a;padding:10px 22px;border-radius:6px;font-weight:600;font-size:0.85rem;display:inline-block;border:none;cursor:pointer; }
     .btn-primary:hover { background:#d09000; }
     .btn-outline { background:transparent;color:var(--brand-orange);padding:10px 18px;border-radius:6px;font-weight:600;font-size:0.85rem;border:1.5px solid var(--brand-orange);display:inline-block;cursor:pointer; }
     .btn-outline:hover { background:var(--brand-orange);color:#1a1a1a; }
-
-    .hero { position:relative;height:600px;overflow:hidden; }
-    .hero img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center; }
-    .hero-overlay { position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,31,46,0.9) 0%,rgba(36,43,61,0.7) 60%,transparent 100%); }
-    .hero-content { position:absolute;inset:0;display:flex;align-items:center; }
+    .hero { position:relative;height:600px;overflow:hidden;background:var(--brand-dark); }
+    .hero-bg { position:absolute;inset:0;background:linear-gradient(135deg, #1a1f2e 0%, #2d3548 50%, #1a1f2e 100%); }
+    .hero-content { position:relative;z-index:2;display:flex;align-items:center;height:100%; }
     .hero-inner { max-width:1200px;margin:0 auto;padding:0 24px;width:100%; }
     .hero-text { max-width:560px; }
     .badge { display:inline-flex;align-items:center;gap:8px;background:rgba(232,160,16,0.2);border:1px solid rgba(232,160,16,0.4);padding:6px 14px;border-radius:50px;font-size:0.75rem;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px; }
@@ -42,35 +36,28 @@
     .hero-btns { display:flex;gap:14px;flex-wrap:wrap; }
     .btn-ghost { background:transparent;color:#fff;padding:14px 24px;border-radius:8px;font-weight:600;font-size:1rem;border:1.5px solid rgba(255,255,255,0.35);display:inline-block; }
     .btn-ghost:hover { border-color:#fff; }
-
     .trust { background:#f8f8f8;border-bottom:1px solid #e5e5e5; }
     .trust-inner { max-width:1200px;margin:0 auto;padding:32px 24px;display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:24px; }
     .trust-item { text-align:center; }
     .trust-item strong { display:block;font-size:1.8rem;font-weight:800;color:var(--brand-orange); }
     .trust-item span { font-size:0.8rem;color:#666;text-transform:uppercase;letter-spacing:0.05em; }
-
     section { padding:80px 24px; }
     .section-inner { max-width:1200px;margin:0 auto; }
     .section-header { text-align:center;margin-bottom:56px; }
     .section-header span { display:inline-block;color:var(--brand-orange);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:12px; }
     .section-header h2 { font-size:2.4rem;font-weight:800;color:#1a1a1a;letter-spacing:-0.02em;margin:0; }
     .section-header p { color:#666;font-size:1.1rem;margin:12px auto 0;max-width:500px; }
-
-    .cards { display:grid;grid-template-columns:repeat(3,1fr);gap:32px; }
-    .card { border:1px solid #e5e5e5;border-radius:12px;overflow:hidden;transition:all .3s; }
-    .card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); }
-    .card img { width:100%;height:200px;object-fit:cover;object-position:center; }
-    .card-body { padding:28px; }
-    .card-body h3 { font-size:1.2rem;font-weight:700;color:#1a1a1a;margin:0 0 8px; }
-    .card-body p { color:#666;font-size:0.95rem;margin:0; }
-
+    .services-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+    .service-card { border:1px solid #e5e5e5;border-radius:12px;padding:32px;transition:all .3s;background:#fff; }
+    .service-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08);border-color:var(--brand-orange); }
+    .service-card .icon { width:48px;height:48px;background:var(--brand-orange);color:#1a1a1a;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;margin-bottom:16px; }
+    .service-card h3 { font-size:1.15rem;font-weight:700;color:#1a1a1a;margin:0 0 8px; }
+    .service-card p { color:#666;font-size:0.9rem;margin:0;line-height:1.5; }
     .about { background:#f8f8f8; }
     .about-grid { display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center; }
     .about-text span { display:inline-block;color:var(--brand-orange);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:12px; }
     .about-text h2 { font-size:2.4rem;font-weight:800;color:#1a1a1a;letter-spacing:-0.02em;margin:0 0 20px; }
     .about-text p { color:#444;font-size:1.05rem;margin:0 0 16px; }
-    .about-img { width:100%;border-radius:12px;box-shadow:0 20px 40px rgba(0,0,0,0.12); }
-
     .cta { background:var(--brand-dark);color:#fff;text-align:center; }
     .cta-inner { max-width:600px;margin:0 auto; }
     .cta-inner span { display:inline-block;color:var(--brand-orange);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:16px; }
@@ -79,14 +66,11 @@
     .cta-phone { font-size:2rem;font-weight:800;color:var(--brand-orange);display:block;margin-bottom:8px; }
     .cta-phone:hover { color:#fff; }
     .cta-hours { font-size:0.85rem;color:rgba(255,255,255,0.5);margin:0 0 20px; }
-
     footer { background:#0d0d0d;color:rgba(255,255,255,0.4);padding:40px 24px 24px;font-size:0.85rem; }
     .footer-inner { max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px; }
     footer strong { color:#fff;font-size:1rem; }
-
     .buy-bar { position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--brand-orange);padding:14px 24px;z-index:100;display:flex;justify-content:center;align-items:center;gap:20px;box-shadow:0 -4px 20px rgba(0,0,0,0.1);flex-wrap:wrap; }
     .buy-bar span { font-weight:600;color:#1a1a1a;font-size:0.95rem; }
-
     .tier-panel { display:none;position:fixed;bottom:0;left:0;right:0;background:#f8f8f8;border-top:3px solid var(--brand-orange);padding:40px 24px 100px;z-index:90;max-height:90vh;overflow-y:auto;box-shadow:0 -8px 40px rgba(0,0,0,0.15); }
     .tier-panel.active { display:block; }
     .tiers { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
@@ -96,18 +80,15 @@
     .tier h4 { font-size:1.05rem;font-weight:700;color:#1a1a1a;margin:0 0 4px; }
     .tier .price { font-size:2.2rem;font-weight:800;color:#1a1a1a;margin:0; }
     .tier .price span { font-size:0.85rem;font-weight:500;color:#888; }
-    .tier-desc { color:#666;font-size:0.85rem;margin:8px 0 16px;min-height:36px; }
     .tier ul { list-style:none;padding:0;margin:0 0 20px;text-align:left;flex-grow:1; }
     .tier ul li { padding:5px 0;border-bottom:1px solid #f0f0f0;color:#444;font-size:0.85rem; }
     .tier .btn { display:block;width:100%;padding:10px;border-radius:6px;font-weight:600;text-align:center;margin-bottom:8px; }
-
     .confirm-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;align-items:center;justify-content:center; }
     .confirm-overlay.active { display:flex; }
     .confirm-box { background:#fff;border-radius:12px;padding:32px;max-width:420px;width:90%;text-align:center; }
     .removed-bar { display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;color:#fff;padding:14px 24px;z-index:100;text-align:center; }
     .removed-bar.active { display:block; }
     .removed-bar a { color:var(--brand-orange);font-weight:600; }
-
     .modal-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;align-items:center;justify-content:center; }
     .modal-overlay.active { display:flex; }
     .modal { background:#fff;border-radius:12px;padding:32px;max-width:500px;width:90%; }
@@ -115,11 +96,10 @@
     .modal .modal-btns { display:flex;gap:12px;margin-top:20px;justify-content:flex-end; }
     .modal .btn-close { background:#f0f0f0;color:#333;padding:10px 20px;border-radius:6px;font-weight:600;border:none;cursor:pointer; }
     .modal .btn-send { background:var(--brand-orange);color:#1a1a1a;padding:10px 20px;border-radius:6px;font-weight:600;border:none;cursor:pointer; }
-
     @media (max-width:768px) {
       .hero h1 { font-size:2rem; }
-      .hero img { height:400px; }
-      .cards, .tiers { grid-template-columns:1fr; }
+      .hero { height:400px; }
+      .services-grid, .tiers { grid-template-columns:1fr; }
       .about-grid { grid-template-columns:1fr; }
       .nav-links { display:none; }
     }
@@ -144,8 +124,7 @@
   </nav>
 
   <section class="hero">
-    <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1600&h=700&fit=crop&q=80" alt="Engineering workshop">
-    <div class="hero-overlay"></div>
+    <div class="hero-bg"></div>
     <div class="hero-content">
       <div class="hero-inner">
         <div class="hero-text">
@@ -175,50 +154,53 @@
       <div class="section-header">
         <span>What We Offer</span>
         <h2>Our Services</h2>
-        <p>Comprehensive engineering workshop for all your vehicle needs.</p>
+        <p>Full workshop facilities for all your vehicle needs.</p>
       </div>
-      <div class="cards">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=500&h=280&fit=crop&q=80" alt="Diagnostics">
-          <div class="card-body">
-            <h3>Diagnostics & Fault Finding</h3>
-            <p>Autologic diagnostic equipment. We find the fault fast and fix it right first time.</p>
-          </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">AD</div>
+          <h3>Autologic Diagnostics</h3>
+          <p>Autologic diagnostic equipment. We find the fault fast and fix it right first time.</p>
         </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=500&h=280&fit=crop&q=80" alt="Brake repairs">
-          <div class="card-body">
-            <h3>Brakes & Discs</h3>
-            <p>Brake disc and pad replacements. Breakdown recovery available.</p>
-          </div>
+        <div class="service-card">
+          <div class="icon">BD</div>
+          <h3>Brake Disc + Pad Repairs</h3>
+          <p>Brake disc and pad replacements. Professional fitting and reliable workmanship.</p>
         </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=500&h=280&fit=crop&q=80" alt="Car servicing">
-          <div class="card-body">
-            <h3>Servicing & Repairs</h3>
-            <p>Car servicing, car repairs, cambelt replacements and general maintenance.</p>
-          </div>
+        <div class="service-card">
+          <div class="icon">BR</div>
+          <h3>Breakdown Recovery</h3>
+          <p>Breakdown recovery service available to get you back on the road quickly and safely.</p>
         </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500&h=280&fit=crop&q=80" alt="Clutch replacement">
-          <div class="card-body">
-            <h3>Clutch & DMF Replacements</h3>
-            <p>Clutch replacements and dual mass flywheel (DMF) replacements.</p>
-          </div>
+        <div class="service-card">
+          <div class="icon">CR</div>
+          <h3>Cambelt Replacement</h3>
+          <p>Cambelt replacements to protect your engine from costly damage. Essential maintenance.</p>
         </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=500&h=280&fit=crop&q=80" alt="Car battery">
-          <div class="card-body">
-            <h3>Batteries & Exhausts</h3>
-            <p>Car battery supply and fitting. Exhaust repairs and replacements.</p>
-          </div>
+        <div class="service-card">
+          <div class="icon">BT</div>
+          <h3>Car Batteries</h3>
+          <p>Car battery supply and fitting. Quality batteries fitted by experienced engineers.</p>
         </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&h=280&fit=crop&q=80" alt="Engine tuning">
-          <div class="card-body">
-            <h3>Engine Tuning & Remapping</h3>
-            <p>Engine tuning and remapping services to improve performance and efficiency.</p>
-          </div>
+        <div class="service-card">
+          <div class="icon">RP</div>
+          <h3>Car Repairs</h3>
+          <p>General car repairs. No job too large or too small. All makes and models welcome.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">SV</div>
+          <h3>Car Servicing</h3>
+          <p>Comprehensive car servicing to keep your vehicle running smoothly and efficiently.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">CL</div>
+          <h3>Clutch + DMF Replacements</h3>
+          <p>Clutch replacements and dual mass flywheel (DMF) replacements with expert fitting.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">ET</div>
+          <h3>Engine Tuning + Remapping</h3>
+          <p>Engine tuning and remapping services to improve performance and fuel efficiency.</p>
         </div>
       </div>
     </div>
@@ -235,8 +217,11 @@
           <p>From routine maintenance to complex mechanical issues, we deliver reliable workmanship, transparent quotes and straightforward advice.</p>
           <a href="tel:01686630653" class="btn-primary" style="margin-top:8px;">Call Us Today</a>
         </div>
-        <div>
-          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&h=500&fit=crop&q=80" alt="Mechanic at work" class="about-img">
+        <div style="background:linear-gradient(135deg, #f0f0f0, #e0e0e0);border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;color:#999;">
+            <div style="font-size:4rem;font-weight:800;color:#ddd;">M.E.</div>
+            <div style="font-size:1.5rem;color:#bbb;">EST. 1938</div>
+          </div>
         </div>
       </div>
     </div>
@@ -306,7 +291,6 @@
         <div class="tier">
           <h4>Buy Outright</h4>
           <p class="price">149 <span>one-time</span></p>
-          <p style="color:#666;font-size:0.85rem;margin:8px 0 16px;">Full page deployed to Vercel. We set up the account and transfer ownership.</p>
           <ul>
             <li>Complete page deployed live</li>
             <li>Free Vercel account setup</li>
@@ -319,7 +303,6 @@
           <div class="tier-badge">Popular</div>
           <h4>Hosted + Edits</h4>
           <p class="price">399 <span>one-time</span></p>
-          <p style="color:#666;font-size:0.85rem;margin:8px 0 16px;">Hosted 12 months with temp domain. 2 edit rounds included.</p>
           <ul>
             <li>Live deployment to Vercel</li>
             <li>12 months hosting included</li>
@@ -331,7 +314,6 @@
         <div class="tier">
           <h4>Premium</h4>
           <p class="price">997 <span>first 12 months</span></p>
-          <p style="color:#666;font-size:0.85rem;margin:8px 0 16px;">Unlimited edits, Voice AI bolt-on, full service.</p>
           <ul>
             <li>Everything in Hosted + Edits</li>
             <li>Voice AI chatbot bolt-on</li>
