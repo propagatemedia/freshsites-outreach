@@ -36,21 +36,24 @@ print(f"Key prefix: {stripe.api_key[:15]}...")
 PRODUCTS = [
     {
         "name": "FreshSites - Buy Outright",
-        "description": "Complete HTML page file. Host anywhere. Edit anything. No recurring fees.",
+        "description": "Complete page file deployed to Vercel. We set up the account and transfer ownership.",
         "price_pence": 14900,
         "html_placeholder": "PLACEHOLDER_OUTRIGHT",
+        "redirect_url": "https://propagatemedia.github.io/freshsites-outreach/thanks-outright.html",
     },
     {
         "name": "FreshSites - Hosted + Edits",
-        "description": "Hosted 2 years + 2 edit rounds included. SSL + priority email support.",
+        "description": "Hosted 12 months with temp domain. 2 edit rounds included.",
         "price_pence": 39900,
         "html_placeholder": "PLACEHOLDER_HOSTED",
+        "redirect_url": "https://propagatemedia.github.io/freshsites-outreach/thanks-hosted.html",
     },
     {
         "name": "FreshSites - Premium",
         "description": "12 months unlimited edits + Voice AI bolt-on + full support.",
         "price_pence": 99700,
         "html_placeholder": "PLACEHOLDER_PREMIUM",
+        "redirect_url": "https://propagatemedia.github.io/freshsites-outreach/thanks.html",
     },
 ]
 
@@ -83,12 +86,11 @@ def create_price(product_id: str, price_pence: int):
     return price
 
 
-def create_payment_link(price_id: str, product_name: str):
-    """Create a payment link for the price."""
+def create_payment_link(price_id: str, product_name: str, redirect_url: str = ""):
+    """Create a payment link for the price with redirect URL."""
     # Search for existing link via list
     links = stripe.PaymentLink.list(limit=100)
     for link in links.data:
-        # Check if this link uses our price by fetching line items
         try:
             items = stripe.PaymentLink.list_line_items(link.id, limit=1)
             if items.data and items.data[0].price.id == price_id:
@@ -97,9 +99,12 @@ def create_payment_link(price_id: str, product_name: str):
         except Exception:
             continue
 
+    if not redirect_url:
+        redirect_url = "https://sites.propagate.media/thanks"
+
     link = stripe.PaymentLink.create(
         line_items=[{"price": price_id, "quantity": 1}],
-        after_completion={"type": "redirect", "redirect": {"url": "https://propagatemedia.github.io/freshsites-outreach/thanks.html"}},
+        after_completion={"type": "redirect", "redirect": {"url": redirect_url}},
         metadata={"product": product_name, "source": "freshsites"},
     )
     print(f"  Created link: {link.url}")
@@ -152,7 +157,7 @@ def main():
         price = create_price(product.id, product_def["price_pence"])
 
         # Create payment link
-        link = create_payment_link(price.id, product_def["name"])
+        link = create_payment_link(price.id, product_def["name"], product_def.get("redirect_url", ""))
 
         # Store for HTML update
         replacements[product_def["html_placeholder"]] = link.url
