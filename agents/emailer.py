@@ -48,7 +48,7 @@ Content-Type: text/html; charset=utf-8
 
   <p style="font-size:1.05rem;line-height:1.6;">I run <strong>FreshSites</strong> - we build fast, conversion-focused landing pages for local businesses. I came across <strong>{business_name}</strong> and saw the good work you do.</p>
 
-  <p style="font-size:1.05rem;line-height:1.6;">I looked at your current homepage and this is what I found:</p>
+  <p style="font-size:1.05rem;line-height:1.6;">Your current site has room to improve — we rate it <strong>{original_score}/10</strong> on our conversion-readiness checklist. Here is what it is missing that costs you bookings:</p>
 
   <ul style="font-size:1rem;line-height:1.7;color:#555;padding-left:20px;">
     {gaps_html}
