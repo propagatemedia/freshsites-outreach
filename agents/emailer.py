@@ -56,9 +56,9 @@ Content-Type: text/html; charset=utf-8
 
   <p style="font-size:1.05rem;line-height:1.6;">So I built you a demo that fixes all of this - using your brand colours and info, but designed to convert:</p>
 
-  <div style="background:#1a1a1a;border-radius:8px;padding:24px;margin:24px 0;text-align:center;">
-    <p style="color:#F1C204;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">YOUR DEMO PAGE</p>
-    <a href="{demo_url}" style="color:#F1C204;font-size:1.1rem;font-weight:700;text-decoration:underline;">View Your Demo</a>
+  <div style="background:{brand_color};border-radius:8px;padding:24px;margin:24px 0;text-align:center;">
+    <p style="color:#fff;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px;">YOUR DEMO PAGE</p>
+    <a href="{demo_url}" style="color:#fff;font-size:1.1rem;font-weight:700;text-decoration:underline;">View Your Demo</a>
   </div>
 
   <p style="font-size:1.05rem;line-height:1.6;">To buy this page outright, it is 149, once off, you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
@@ -189,10 +189,20 @@ def format_gaps(score_breakdown: str, slug: str = "") -> str:
 
 def generate_email(lead: dict, template: str = "initial") -> tuple[str, str]:
     """Generate HTML email for a lead."""
+    import json
     name = lead["name"]
     email = lead["email"] or guess_email(lead["website"], name)
     gaps = format_gaps(lead["score_breakdown"], re.sub(r"\W+", "-", lead["website"].replace("https://", "").replace("http://", "").rstrip("/")))
     original_score = lead.get("score", 0)
+    
+    # Get brand color from extracted cache
+    slug = re.sub(r"\W+", "-", lead["website"].replace("https://", "").replace("http://", "").rstrip("/"))
+    brand_color = "#1a1a1a"
+    try:
+        extracted = json.load(open(Path(__file__).parent.parent / "extracted" / f"{slug}.json"))
+        brand_color = extracted.get("brand_color", "#1a1a1a")
+    except:
+        pass
 
     email_body = EMAIL_TEMPLATES[template].format(
         sender_name=SENDER_NAME,
@@ -203,6 +213,7 @@ def generate_email(lead: dict, template: str = "initial") -> tuple[str, str]:
         demo_url=lead["demo_url"],
         gaps_html=gaps,
         original_score=original_score,
+        brand_color=brand_color,
     )
     return email_body, email
 
