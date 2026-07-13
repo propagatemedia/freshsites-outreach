@@ -9,7 +9,7 @@ from emailer import generate_email, send_via_himalaya
 conn = sqlite3.connect("leads/freshsites.db")
 conn.row_factory = sqlite3.Row
 c = conn.cursor()
-c.execute("SELECT name, email, score, score_breakdown, demo_url FROM leads WHERE status='demo_built' ORDER BY score")
+c.execute("SELECT name, email, score, score_breakdown, demo_url, website FROM leads WHERE status=\u0027demo_built\u0027 ORDER BY score")
 
 sent = 0
 for row in c.fetchall():

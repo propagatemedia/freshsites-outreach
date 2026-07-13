@@ -107,30 +107,91 @@ GAP_FIXES = {
     "weak_mobile": "Poor mobile experience - 70% of visitors are on phones",
 }
 
-def format_gaps(score_breakdown: str) -> str:
-    """Convert score breakdown to specific gap/fix list items."""
+def format_gaps(score_breakdown: str, slug: str = "") -> str:
+    """Convert score breakdown to SPECIFIC gap list items, using extracted data if available."""
     try:
         bd = json.loads(score_breakdown)
     except:
         return "<li>Homepage could convert more visitors into customers</li>"
 
-    significant = [(k, v) for k, v in bd.items() if v > 0.3]
+    # Load extracted data for more specific bullets
+    extracted = {}
+    if slug:
+        cache = Path(__file__).parent.parent / "extracted" / f"{slug}.json"
+        if cache.exists():
+            try:
+                extracted = json.loads(cache.read_text())
+            except:
+                pass
+
+    # Build specific bullets from penalty keys + extracted data
     items = []
-    for k, _ in significant[:4]:
-        desc = GAP_FIXES.get(k, k.replace("_", " ").title())
-        items.append(f"<li>{desc}</li>")
+    significant = [(k, v) for k, v in bd.items() if v > 0.3]
+
+    for k, v in significant[:4]:
+        # Default mapping
+        base = {
+            "no_h1": "No clear headline telling visitors what you do in 2 seconds",
+            "weak_value_prop": "No compelling reason to choose you over the garage down the road",
+            "no_cta_above_fold": "No call-to-action button visible without scrolling",
+            "phone_hidden": "Phone number buried or missing - mobile visitors have to hunt for it",
+            "no_opening_hours": "No opening hours displayed - visitors do not know when to call",
+            "no_contact_form": "No contact form - visitors who prefer email have no way to reach you",
+            "social_proof": "No reviews or testimonials to build trust",
+            "no_personal_touch": "No team names or faces - looks like a faceless operation",
+            "no_location": "No address visible - visitors cannot find you",
+            "generic_title": "Page title is generic - hurts Google rankings",
+            "builder_bloat": "Slow loading due to unnecessary scripts",
+            "weak_mobile": "Poor mobile experience - 70% of visitors are on phones",
+        }.get(k, k.replace("_", " ").title())
+
+        # Override with specific extracted data if available
+        if k == "phone_hidden" and extracted.get("phone"):
+            base = f"Your phone number ({extracted['phone']}) is buried deep in the page - mobile visitors give up before they find it"
+        elif k == "no_opening_hours":
+            hrs = extracted.get("hours", "")
+            if hrs:
+                base = f"Your hours ({hrs}) are not on the homepage - callers phone when you are closed, wasting both your time"
+            else:
+                base = "No opening hours displayed - visitors do not know when to call"
+        elif k == "no_contact_form":
+            base = "No contact form - visitors who prefer email have no way to reach you, so they go to a competitor who does"
+        elif k == "social_proof":
+            if extracted.get("about"):
+                base = "No reviews, testimonials or trust signals visible - yet your 'About' text mentions years of experience. That credibility is hidden."
+            else:
+                base = "No reviews or testimonials visible to build instant trust"
+        elif k == "no_h1" and extracted.get("services"):
+            svcs = ", ".join(extracted.get("services", [])[:3])
+            base = f"Your homepage does not lead with your services ({svcs}). Visitors do not scroll to guess what you do."
+        elif k == "weak_value_prop" and extracted.get("about"):
+            base = "No value proposition above the fold - just a builder template. Visitors do not know why to pick you over the next garage."
+        elif k == "no_personal_touch" and extracted.get("about"):
+            base = "No personal connection - your 'About' text mentions experience, but no names, faces, or story. That warmth is missing."
+        elif k == "no_location" and extracted.get("location"):
+            base = f"Your address ({extracted['location']}) is not on the homepage - Google and customers cannot find you"
+        elif k == "generic_title":
+            title = extracted.get("title", "")
+            if title and len(title) < 20:
+                base = f"Your page title is '{title}' - generic and invisible to Google. You are ranking for nothing."
+            elif title:
+                base = f"Your page title '{title}' is too long and unfocused - no keyword tells Google what you do"
+            else:
+                base = "Page title is generic - hurts Google rankings"
+
+        items.append(base)
 
     if not items:
-        items = ["<li>Homepage could convert more visitors into customers</li>"]
+        items = ["Homepage could convert more visitors into customers"]
 
-    return "\n    ".join(items)
+    return "\n    ".join(f"<li>{x}</li>" for x in items)
 
 
 def generate_email(lead: dict, template: str = "initial") -> tuple[str, str]:
     """Generate HTML email for a lead."""
     name = lead["name"]
     email = lead["email"] or guess_email(lead["website"], name)
-    gaps = format_gaps(lead["score_breakdown"])
+    gaps = format_gaps(lead["score_breakdown"], re.sub(r"\W+", "-", lead["website"].replace("https://", "").replace("http://", "").rstrip("/")))
     original_score = lead.get("score", 0)
 
     email_body = EMAIL_TEMPLATES[template].format(
