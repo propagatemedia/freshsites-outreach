@@ -1,0 +1,28 @@
+{
+  "name": "MOT Testing Welshpool",
+  "slug": "motwelshpool-co-uk",
+  "url": "https://www.motwelshpool.co.uk/",
+  "title": "MOT Testing Welshpool | Border Garage",
+  "brand_color": "#47704c",
+  "services": [
+    "Online MOT Booking",
+    "Services",
+    "Tyres",
+    "Services in Welshpool from Border Garage",
+    "MOT Testing",
+    "Servicing and Repairs",
+    "Service",
+    "Online MOTBooking"
+  ],
+  "about": "Local garage providing professional vehicle services.",
+  "hours": "Monday:8.00 \u00e2\u0080\u0093 18.00Tuesday:8.00 \u00e2\u0080\u0093 18.00Wednesday:8.00 \u00e2\u0080\u0093 18.00Thursday:8.00 \u00e2\u0080\u0093 18.00Friday:8.00 \u00e2\u0080\u0093 18.00Saturday:9.00 \u00e2\u0080\u0093 16.00",
+  "phone": "",
+  "location": "Dinas, Welshpool, SY21 8RP",
+  "images": [
+    "https://www.motwelshpool.co.uk/wp-content/uploads/sites/4/2021/11/6604cc70c30b9d3d6bb9eab4f727ad90.png",
+    "https://www.motwelshpool.co.uk/wp-content/uploads/sites/4/2021/12/trust-my-garage.png",
+    "https://www.motwelshpool.co.uk/wp-content/uploads/sites/4/2021/12/tsi.png",
+    "https://www.motwelshpool.co.uk/wp-content/uploads/sites/4/2021/12/jacks-tyres.png"
+  ],
+  "extracted_at": "2026-07-13T13:55:33.186409"
+}

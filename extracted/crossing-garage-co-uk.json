@@ -1,0 +1,29 @@
+{
+  "name": "Crossing Garage",
+  "slug": "crossing-garage-co-uk",
+  "url": "https://www.crossing-garage.co.uk/",
+  "title": "Crossing Garage - Car Repair, Car Service in Llandrindod Wells",
+  "brand_color": "#e6e7e7",
+  "services": [
+    "Car & Light Commercial Servicing",
+    "Servicing",
+    "MOT",
+    "Tyres",
+    "Exhausts",
+    "Repairs & Parts",
+    "Timing Belts",
+    "Air-con servicing",
+    "Headlamp refurbishment"
+  ],
+  "about": "An independent garagebased in Llandrindod Wells.We offer afull range of servicesforcar and light commercialvehicle ownersthroughout Mid Wales. Opening times:-Mon - Fri - 08.30 - 17.30 Saturday - CLOSEDSunday - CLOSED",
+  "hours": "thumbnail, .featured .carousel-inner .no-thumbnail, .featured .carousel-inner .item {height: 300px;} #site-title {font-family:'Berkshire Swash', cursive;} #site-description {font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;}",
+  "phone": "01597 829243",
+  "location": "Powys, Wales",
+  "images": [
+    "https://www.crossing-garage.co.uk/wp-content/uploads/2022/11/f_logo_RGB-Blue_58_28x28.png",
+    "https://www.crossing-garage.co.uk/wp-content/uploads/2015/10/cropped-cropped-Crossing_Garage_logo_350_2_vts41.png",
+    "https://www.crossing-garage.co.uk/wp-content/uploads/2016/09/frontpage_mot_wtext_bikes_2.jpg",
+    "https://www.crossing-garage.co.uk/wp-content/uploads/2015/10/frontpage_tyres_wtext.jpg"
+  ],
+  "extracted_at": "2026-07-13T13:47:33.525853"
+}
