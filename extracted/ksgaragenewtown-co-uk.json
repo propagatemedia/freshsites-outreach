@@ -1,0 +1,21 @@
+{
+  "name": "K's Garage",
+  "slug": "ksgaragenewtown-co-uk",
+  "url": "https://ksgaragenewtown.co.uk/",
+  "title": "K's Garage",
+  "brand_color": "#2e7d32",
+  "services": [
+    "MOT Testing",
+    "Servicing",
+    "Tyres",
+    "Exhausts",
+    "Brakes",
+    "Diagnostics"
+  ],
+  "about": "K's Garage is a trusted independent garage in Newtown, Powys. We provide honest pricing and quality workmanship on all vehicle repairs.",
+  "hours": "Monday - Friday: 8:00 - 17:30 | Saturday: 8:00 - 12:00",
+  "phone": "",
+  "location": "Powys, Wales",
+  "images": [],
+  "extracted_at": "2026-07-13T14:00:00"
+}
