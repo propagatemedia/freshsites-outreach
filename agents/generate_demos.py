@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate demos from extracted JSON cache in extracted/*.json."""
 import json, re
+import shutil
 from pathlib import Path
 from string import Template
 
@@ -193,16 +194,11 @@ def generate_demo(data):
     about = data.get("about", "Local garage providing professional vehicle services.")
     images = data.get("images", [])
 
-    # Images
+    # Images — use verified Unsplash images only (their own site images may be blocked by hotlink protection)
     hero_img = IMAGES["hero_workshop"]
     about_img = IMAGES["about_mechanic"]
-    if images:
-        hero_candidates = [u for u in images if all(k not in u.lower() for k in ["logo", "icon", "fav", "blank"])]
-        if hero_candidates:
-            hero_img = hero_candidates[0]
-        about_candidates = [u for u in images if any(kw in u.lower() for kw in ["workshop", "garage", "service", "car", "mech", "team"])]
-        if about_candidates:
-            about_img = about_candidates[0]
+    # Only use their extracted images if they exist and we verify them (disabled for now)
+    images = []  # data.get("images", [])
 
     # Fallback services
     if not services:
@@ -258,20 +254,32 @@ def main():
     DEMOS_DIR.mkdir(exist_ok=True)
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Read leads from DB to ensure 1:1 mapping
+    import sqlite3
+    conn = sqlite3.connect(str(Path(__file__).parent.parent / "leads" / "freshsites.db"))
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute("SELECT name, website FROM leads WHERE status='demo_built'")
+    leads = c.fetchall()
+    conn.close()
+
     built = 0
-    for cache in sorted(EXTRACTED_DIR.glob("*.json")):
+    for row in leads:
+        slug = re.sub(r"\W+", "-", row["website"].replace("https://", "").replace("http://", "").rstrip("/"))
+        slug = re.sub(r"^-+|-+$", "", slug)
+        cache = EXTRACTED_DIR / f"{slug}.json"
+        if not cache.exists():
+            print(f"SKIP: {slug} — no extracted cache")
+            continue
         data = json.loads(cache.read_text())
         try:
-            html, slug = generate_demo(data)
+            html, gen_slug = generate_demo(data)
         except Exception as e:
             print(f"SKIP {cache}: {e}")
             continue
-
         path = DEMOS_DIR / f"{slug}.html"
         path.write_text(html, encoding="utf-8")
         print(f"Built: {path}")
-
-        import shutil
         shutil.copy(path, DOCS_DIR / f"{slug}.html")
         built += 1
 
