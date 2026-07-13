@@ -53,6 +53,21 @@ def find_issues(html):
             issues.append(msg)
     return issues
 
+def check_button_contrast(html):
+    """Ensure all .btn elements have white (#fff) text."""
+    btn_css = re.search(r'\.btn\{([^}]+)\}', html)
+    if btn_css:
+        styles = btn_css.group(1)
+        if '#fff' not in styles.lower() and 'white' not in styles.lower() and '#1a1a' not in styles.lower():
+            # Check inline styles in buttons too
+            btn_inline = re.search(r'<button[^>]+class="btn"[^>]*>', html, re.I)
+            if btn_inline:
+                inline = btn_inline.group(0)
+                if 'color:#fff' in inline.lower():
+                    return True, None
+            return False, f".btn text color may be invisible on dark bg. Styles: {styles[:80]}"
+    return True, None
+
 def check_phone_visible(html):
     """Ensure phone number in CTA section uses white text on dark bg."""
     # Look for the CTA phone link - if it has no explicit color or uses brand color, it's invisible
@@ -114,6 +129,14 @@ def review_demo(url, original_score, expected_name=""):
         print(f"[WARN] {err}")
     else:
         print("[PASS] Phone link styling OK")
+    
+    # 3.5 Button contrast - text must be white on dark brand bg
+    ok, err = check_button_contrast(html)
+    if not ok:
+        print(f"[FAIL] {err}")
+        all_ok = False
+    else:
+        print("[PASS] Button text contrast OK")
     
     # 4. Title
     if expected_name:
