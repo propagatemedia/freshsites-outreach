@@ -61,7 +61,7 @@ Content-Type: text/html; charset=utf-8
     <a href="{demo_url}" style="color:#fff;font-size:1.1rem;font-weight:700;text-decoration:underline;">View Your Demo</a>
   </div>
 
-  <p style="font-size:1.05rem;line-height:1.6;">To buy this page outright, it is 149, once off, you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
+  <p style="font-size:1.05rem;line-height:1.6;">To buy this page outright, it is £149, once off, you own it, host it anywhere, tweak it however you like. No monthly fees, no lock-in.</p>
 
   <p style="font-size:1.05rem;line-height:1.6;">Want changes? We can add your logo, swap photos, or adjust anything. Just reply.</p>
 
