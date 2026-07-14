@@ -82,10 +82,21 @@ def generate_demo(data: dict) -> str:
         if len(parts) >= 2:
             town = parts[-2] if len(parts) >= 3 else parts[-1]
 
-    # Build service cards with images + descriptions
+    # Build service cards with images + descriptions — no image repeats
+    used_images = set()
     cards = []
     for svc in services[:6]:
         tag, img, desc = get_service_meta(svc)
+        # If this image was already used, find an alternative
+        if img in used_images:
+            for alt_key in ["repair-2.jpg", "repair-3.jpg", "repair-4.jpg", "tyre-change-2.jpg", "tyre-change-3.jpg", "suspension.jpg", "engine-repair.jpg", "mechanic-shop.jpg"]:
+                alt_url = IMAGES.get("repairs_alt", "") if "repair-2" in alt_key else ""
+                # Build full URL
+                alt_full = IMG_BASE + alt_key
+                if alt_full not in used_images:
+                    img = alt_full
+                    break
+        used_images.add(img)
         cards.append(f"""        <div class="svc-card">
           <div class="svc-img" style="background-image:url('{img}')"></div>
           <div class="svc-body">
