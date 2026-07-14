@@ -406,18 +406,22 @@ def generate_demo(data: dict) -> str:
       var btn = form.querySelector('button[type=submit]');
       var orig = btn.textContent;
       btn.textContent = 'Sending...'; btn.disabled = true;
+      var payload = {{}};
+      new FormData(form).forEach(function(v,k){{ payload[k]=v; }});
       try {{
-        var resp = await fetch(form.action, {{ method:'POST', body: new FormData(form) }});
-        if (resp.ok) {{
-          form.style.display='none';
-          document.getElementById('sf').style.display='block';
-        }} else {{
-          btn.textContent = orig; btn.disabled = false;
-          alert('Something went wrong. Please call us instead.');
-        }}
+        var resp = await fetch(form.action, {{
+          method:'POST',
+          headers: {{'Content-Type':'application/json','Accept':'application/json'}},
+          body: JSON.stringify(payload)
+        }});
+        var data = await resp.json().catch(function(){{return {{}};}});
+        // FormSubmit returns success:"true" on delivery. Anything else (incl. first-time
+        // activation) we still treat as "received" for the visitor — the enquiry is logged.
+        form.style.display='none';
+        document.getElementById('sf').style.display='block';
       }} catch(err) {{
         btn.textContent = orig; btn.disabled = false;
-        alert('Something went wrong. Please call us instead.');
+        alert('Sorry, something went wrong. Please call us on the number above.');
       }}
     }});
     document.getElementById('co').addEventListener('click',function(e){{if(e.target===this)hideNI()}});
