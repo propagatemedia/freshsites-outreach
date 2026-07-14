@@ -2,19 +2,22 @@
 
 ## Before you send ANY real outreach
 
-### 1. Web3Forms key (REQUIRED for contact forms + delete notifications)
-The contact form and the "Not for me" delete-notification both POST to Web3Forms.
-Right now the demos contain the placeholder `YOUR_WEB3FORMS_KEY` and will NOT work until you set a real key.
+### 1. FormSubmit activation (REQUIRED — one-time, free, no key)
+The contact form and the "Not for me" delete-notification both POST to FormSubmit.co
+(free, unlimited, no signup, no API key). Submissions email: freshsites@sites.propagate.media
 
-Steps:
-1. Go to https://web3forms.com — enter the email you want submissions sent to
-   (e.g. freshsites@sites.propagate.media or tyrone@propagate.media).
-2. They email you an Access Key instantly (no account needed).
-3. Put it in `.env`:  `WEB3FORMS_KEY=<the-key>`
-4. Rebuild all demos:  `for s in $(ls extracted/*.json | xargs -n1 basename | sed 's/.json//'); do python3 agents/generate_demos_v3.py $s; done`
-5. Commit + push.
+ONE-TIME ACTIVATION (per email address, ever):
+1. Open any live demo and submit the contact form once (or the "Not for me" button).
+2. FormSubmit sends a one-time confirmation email to freshsites@sites.propagate.media.
+3. Click the activation link in that email.
+4. Done forever — every future submission from ANY demo emails you, unlimited, free.
 
-Result: every contact-form submission AND every "Not for me" click emails you.
+To change the destination email, edit FORM_EMAIL in `.env` and rebuild:
+   `for s in $(ls extracted/*.json | xargs -n1 basename | sed 's/.json//'); do python3 agents/generate_demos_v3.py $s; done`
+
+OPTIONAL (hide your email from page source): after activation, FormSubmit gives you a
+random alias (e.g. formsubmit.co/ajax/abc123def). Put that alias in FORM_EMAIL instead
+of the raw address and rebuild. Not required for launch.
 
 ### 2. Stripe — client tracking (DONE in code)
 Each demo's Buy buttons now carry `?client_reference_id=<slug>`.

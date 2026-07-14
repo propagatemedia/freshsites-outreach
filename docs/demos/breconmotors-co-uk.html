@@ -195,11 +195,10 @@
     <h2 class="sec-title">Book Your Vehicle In</h2>
     <div class="contact-grid">
       <div>
-        <form id="cf" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
-          <input type="hidden" name="subject" value="New enquiry from Brecon Motors demo site">
-          <input type="hidden" name="from_name" value="Brecon Motors website">
-          <input type="text" name="botcheck" style="display:none">
+        <form id="cf" action="https://formsubmit.co/ajax/freshsites@sites.propagate.media" method="POST">
+          <input type="hidden" name="_subject" value="New enquiry from Brecon Motors demo site">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
           <div class="form-grp">
             <label>Your Name</label>
             <input type="text" name="name" required placeholder="John Smith">
@@ -310,14 +309,14 @@
       var box = document.querySelector('#co .confirm-box');
       box.innerHTML = '<h3>Thanks for letting us know</h3><p>This demo will be removed within 12 hours. If you change your mind, just reply to our email.</p>';
       try {
-        await fetch('https://api.web3forms.com/submit', {
+        await fetch('https://formsubmit.co/ajax/freshsites@sites.propagate.media', {
           method: 'POST',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify({
-            access_key: 'YOUR_WEB3FORMS_KEY',
-            subject: 'DELETE REQUEST: Brecon Motors declined their demo',
-            from_name: 'FreshSites Demo',
-            message: 'Prospect clicked "Not for me" on demo: breconmotors-co-uk. Live page: https://propagatemedia.github.io/freshsites-outreach/demos/breconmotors-co-uk.html — remove within 12 hours.'
+            _subject: 'DELETE REQUEST: Brecon Motors declined their demo',
+            demo: 'breconmotors-co-uk',
+            live_page: 'https://propagatemedia.github.io/freshsites-outreach/demos/breconmotors-co-uk.html',
+            action_needed: 'Prospect clicked Not for me. Remove this demo within 12 hours.'
           })
         });
       } catch(e) {}
@@ -326,7 +325,7 @@
       setTimeout(function(){document.getElementById('co').classList.remove('active');}, 4000);
     }
 
-    // Contact form — submit to Web3Forms via fetch, show inline success.
+    // Contact form — submit to FormSubmit (free, no key) via fetch, show inline success.
     document.getElementById('cf').addEventListener('submit', async function(e){
       e.preventDefault();
       var form = e.target;

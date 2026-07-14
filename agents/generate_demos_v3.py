@@ -75,7 +75,7 @@ def generate_demo(data: dict) -> str:
     about = data.get("about", "")
     brand = data.get("brand_color", "#D32F2F")
     slug = data.get("slug", "")
-    form_key = os.environ.get("WEB3FORMS_KEY", "YOUR_WEB3FORMS_KEY")
+    form_email = os.environ.get("FORM_EMAIL", "freshsites@sites.propagate.media")
 
     town = "Powys, Wales"
     if location:
@@ -269,11 +269,10 @@ def generate_demo(data: dict) -> str:
     <h2 class="sec-title">Book Your Vehicle In</h2>
     <div class="contact-grid">
       <div>
-        <form id="cf" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="{form_key}">
-          <input type="hidden" name="subject" value="New enquiry from {name} demo site">
-          <input type="hidden" name="from_name" value="{name} website">
-          <input type="text" name="botcheck" style="display:none">
+        <form id="cf" action="https://formsubmit.co/ajax/{form_email}" method="POST">
+          <input type="hidden" name="_subject" value="New enquiry from {name} demo site">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
           <div class="form-grp">
             <label>Your Name</label>
             <input type="text" name="name" required placeholder="John Smith">
@@ -384,14 +383,14 @@ def generate_demo(data: dict) -> str:
       var box = document.querySelector('#co .confirm-box');
       box.innerHTML = '<h3>Thanks for letting us know</h3><p>This demo will be removed within 12 hours. If you change your mind, just reply to our email.</p>';
       try {{
-        await fetch('https://api.web3forms.com/submit', {{
+        await fetch('https://formsubmit.co/ajax/{form_email}', {{
           method: 'POST',
           headers: {{'Content-Type':'application/json'}},
           body: JSON.stringify({{
-            access_key: '{form_key}',
-            subject: 'DELETE REQUEST: {name} declined their demo',
-            from_name: 'FreshSites Demo',
-            message: 'Prospect clicked "Not for me" on demo: {slug}. Live page: https://propagatemedia.github.io/freshsites-outreach/demos/{slug}.html — remove within 12 hours.'
+            _subject: 'DELETE REQUEST: {name} declined their demo',
+            demo: '{slug}',
+            live_page: 'https://propagatemedia.github.io/freshsites-outreach/demos/{slug}.html',
+            action_needed: 'Prospect clicked Not for me. Remove this demo within 12 hours.'
           }})
         }});
       }} catch(e) {{}}
@@ -400,7 +399,7 @@ def generate_demo(data: dict) -> str:
       setTimeout(function(){{document.getElementById('co').classList.remove('active');}}, 4000);
     }}
 
-    // Contact form — submit to Web3Forms via fetch, show inline success.
+    // Contact form — submit to FormSubmit (free, no key) via fetch, show inline success.
     document.getElementById('cf').addEventListener('submit', async function(e){{
       e.preventDefault();
       var form = e.target;
