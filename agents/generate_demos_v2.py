@@ -139,7 +139,8 @@ def generate_demo(data: dict) -> str:
         .btn {{ background:var(--b); color:#fff; padding:12px 28px; border-radius:8px; font-weight:600; display:inline-block; border:none; cursor:pointer; font-size:0.95rem; }}
         .btn:hover {{ opacity:0.9; }}
 
-        .hero {{ background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('{IMAGES['hero_garage']}') center/cover; color:#fff; padding:140px 24px; text-align:center; }}
+        .hero {{ position:relative; background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('{IMAGES['hero_garage']}') center/cover; color:#fff; padding:140px 24px; text-align:center; overflow:hidden; }}
+        .hero img {{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; }}
         .hero h1 {{ font-size:3rem; margin-bottom:16px; line-height:1.2; }}
         .hero p {{ font-size:1.25rem; max-width:640px; margin:0 auto 32px; opacity:0.95; }}
         .hero .btn {{ font-size:1.1rem; padding:16px 40px; }}

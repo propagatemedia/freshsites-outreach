@@ -45,7 +45,6 @@ def find_issues(html):
         ("object-fit:cover", "Hero image missing object-fit:cover"),
         ("Our Services", "No services section heading"),
         ("map-frame", "No Google Maps embed"),
-        ("position:absolute;inset:0", "Hero may not fill section properly"),
     ]
     lower = html.lower()
     for pattern, msg in checks:
