@@ -15,16 +15,16 @@ EXTRACTED_DIR = Path(__file__).parent.parent / "extracted"
 DEMOS_DIR.mkdir(exist_ok=True)
 DOCS_DIR.mkdir(exist_ok=True, parents=True)
 
-# All verified working Pexels images
+# All verified working Pexels images - actual garage/mechanic photos
 IMAGES = {
-    "hero": "https://images.pexels.com/photos/3807329/pexels-photo-3807329.jpeg?auto=compress&w=1600",
-    "about": "https://images.pexels.com/photos/4489702/pexels-photo-4489702.jpeg?auto=compress&w=800",
-    "mot": "https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&w=600",
-    "tyres": "https://images.pexels.com/photos/3806249/pexels-photo-3806249.jpeg?auto=compress&w=600",
-    "repairs": "https://images.pexels.com/photos/4480488/pexels-photo-4480488.jpeg?auto=compress&w=600",
-    "diagnostic": "https://images.pexels.com/photos/3807377/pexels-photo-3807377.jpeg?auto=compress&w=600",
-    "general": "https://images.pexels.com/photos/3806253/pexels-photo-3806253.jpeg?auto=compress&w=600",
-    "collection": "https://images.pexels.com/photos/9846215/pexels-photo-9846215.jpeg?auto=compress&w=600",
+    "hero": "https://images.pexels.com/photos/4116231/pexels-photo-4116231.jpeg?auto=compress&w=1600",
+    "about": "https://images.pexels.com/photos/8985462/pexels-photo-8985462.jpeg?auto=compress&w=800",
+    "mot": "https://images.pexels.com/photos/8986130/pexels-photo-8986130.jpeg?auto=compress&w=600",
+    "tyres": "https://images.pexels.com/photos/32208774/pexels-photo-32208774.jpeg?auto=compress&w=600",
+    "repairs": "https://images.pexels.com/photos/6870307/pexels-photo-6870307.jpeg?auto=compress&w=600",
+    "diagnostic": "https://images.pexels.com/photos/9626877/pexels-photo-9626877.jpeg?auto=compress&w=600",
+    "general": "https://images.pexels.com/photos/4116168/pexels-photo-4116168.jpeg?auto=compress&w=600",
+    "collection": "https://images.pexels.com/photos/37809545/pexels-photo-37809545.jpeg?auto=compress&w=600",
 }
 
 SERVICE_MAP = {
