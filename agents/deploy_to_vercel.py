@@ -48,10 +48,18 @@ def create_deployment_package(html_path: Path, project_name: str):
     # Copy HTML as index.html
     shutil.copy(html_path, deploy_dir / "index.html")
     
+    # Copy assets/images so they work on Vercel
+    repo_root = Path(__file__).parent.parent
+    src_assets = repo_root / "docs" / "assets"
+    if src_assets.exists():
+        dst_assets = deploy_dir / "assets"
+        shutil.copytree(src_assets, dst_assets)
+    
     # Create vercel.json for clean routing
     vercel_config = {
         "version": 2,
         "routes": [
+            {"src": "/assets/(.*)", "dest": "/assets/$1"},
             {"src": "/(.*)", "dest": "/index.html"}
         ]
     }

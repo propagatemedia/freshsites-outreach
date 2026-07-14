@@ -17,7 +17,7 @@ DOCS_DIR.mkdir(exist_ok=True, parents=True)
 
 # Approved local images (user-reviewed, optimized)
 # Path is relative to the repo root, will be served from GitHub Pages
-IMG_BASE = "https://propagatemedia.github.io/freshsites-outreach/assets/img/"
+IMG_BASE = "assets/img/"
 
 IMAGES = {
     "hero": IMG_BASE + "hero-garage.jpg",
