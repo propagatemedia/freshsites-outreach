@@ -48,3 +48,13 @@ You then delete the file manually:
 - Score shown in the EMAIL is the WEBSITE score, not the business. Wording clarified.
 - Demos do NOT show any score. Clean.
 - .env is gitignored. leads/freshsites.db is now gitignored (was tracked before — see history note).
+
+## Vision Review Gate (run per lead before sending — the honesty layer)
+Old scorers only count keywords. The vision gate actually LOOKS at both sites:
+1. Capture:  `PYTHONPATH="" ./.venv/bin/python3.11 agents/review_and_send.py <slug> --capture`
+2. Agent reviews both screenshots vs agents/references/vision-rubric.md -> writes review/<slug>/verdict.json
+3. Gate + send (test): `PYTHONPATH="" ./.venv/bin/python3.11 agents/review_and_send.py <slug> --send --test`
+4. Gate + send (live): drop --test (sends to the lead's real email; only fires if gate passes)
+
+The gate BLOCKS outreach unless: demo is genuinely better (improvement >= +2.0) AND the
+prospect's current site scores under 6.5/10. We never cold-email someone with a decent site.

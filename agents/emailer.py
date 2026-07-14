@@ -24,7 +24,6 @@ SENDER_NAME = "FreshSites by Propagate Media"
 
 # Ensure agents/ is on path for imports
 sys.path.insert(0, str(Path(__file__).parent))
-from scoring_v3 import WEAKNESS_MAP, get_weaknesses_v3
 
 
 # ── Email Templates ────────────────────────────────────────────────
