@@ -1,0 +1,18 @@
+{
+  "hero": "assets/img/hero-garage.jpg",
+  "about": "assets/img/mechanic-shop.jpg",
+  "servicing": "assets/img/servicing.jpg",
+  "mot": "assets/img/checklist.jpg",
+  "engine": "assets/img/engine-repair.jpg",
+  "suspension": "assets/img/suspension.jpg",
+  "repairs": "assets/img/repair-1.jpg",
+  "repairs_alt_1": "assets/img/repair-2.jpg",
+  "repairs_alt_2": "assets/img/repair-3.jpg",
+  "repairs_alt_3": "assets/img/repair-4.jpg",
+  "tyres": "assets/img/tyre-change.jpg",
+  "tyres_alt_1": "assets/img/tyre-change-2.jpg",
+  "tyres_alt_2": "assets/img/tyre-change-3.jpg",
+  "approved_by": "tyrone",
+  "approved_at": "2026-07-14",
+  "source": "user-provided high-res, optimized with sips -Z 1200 -s formatOptions 80"
+}

@@ -15,46 +15,54 @@ EXTRACTED_DIR = Path(__file__).parent.parent / "extracted"
 DEMOS_DIR.mkdir(exist_ok=True)
 DOCS_DIR.mkdir(exist_ok=True, parents=True)
 
-# All verified working Pexels images - actual garage/mechanic photos
+# Approved local images (user-reviewed, optimized)
+# Path is relative to the repo root, will be served from GitHub Pages
+IMG_BASE = "https://propagatemedia.github.io/freshsites-outreach/assets/img/"
+
 IMAGES = {
-    "hero": "https://images.pexels.com/photos/4116231/pexels-photo-4116231.jpeg?auto=compress&w=1600",
-    "about": "https://images.pexels.com/photos/8985462/pexels-photo-8985462.jpeg?auto=compress&w=800",
-    "mot": "https://images.pexels.com/photos/8986130/pexels-photo-8986130.jpeg?auto=compress&w=600",
-    "tyres": "https://images.pexels.com/photos/32208774/pexels-photo-32208774.jpeg?auto=compress&w=600",
-    "repairs": "https://images.pexels.com/photos/6870307/pexels-photo-6870307.jpeg?auto=compress&w=600",
-    "diagnostic": "https://images.pexels.com/photos/9626877/pexels-photo-9626877.jpeg?auto=compress&w=600",
-    "general": "https://images.pexels.com/photos/4116168/pexels-photo-4116168.jpeg?auto=compress&w=600",
-    "collection": "https://images.pexels.com/photos/37809545/pexels-photo-37809545.jpeg?auto=compress&w=600",
+    "hero": IMG_BASE + "hero-garage.jpg",
+    "about": IMG_BASE + "mechanic-shop.jpg",
+    "servicing": IMG_BASE + "servicing.jpg",
+    "mot": IMG_BASE + "checklist.jpg",
+    "engine": IMG_BASE + "engine-repair.jpg",
+    "suspension": IMG_BASE + "suspension.jpg",
+    "repairs": IMG_BASE + "repair-1.jpg",
+    "repairs_alt": IMG_BASE + "repair-2.jpg",
+    "tyres": IMG_BASE + "tyre-change.jpg",
+    "general": IMG_BASE + "servicing.jpg",
+    "collection": IMG_BASE + "repair-3.jpg",
 }
 
 SERVICE_MAP = {
     "mot": ("MOT", "mot", "Class 4 & 7 testing for cars, vans and goods vehicles."),
     "pre-mot": ("PRE-MOT", "mot", "Full pre-MOT inspection to catch issues before your test."),
-    "servicing": ("SERVICING", "general", "Full manufacturer-equivalent servicing for all makes and models."),
-    "service": ("SERVICING", "general", "Full manufacturer-equivalent servicing for all makes and models."),
+    "servicing": ("SERVICING", "servicing", "Full manufacturer-equivalent servicing for all makes and models."),
+    "service": ("SERVICING", "servicing", "Full manufacturer-equivalent servicing for all makes and models."),
     "repair": ("REPAIRS", "repairs", "Expert repairs for engines, brakes, clutches and more."),
     "tyre": ("TYRES", "tyres", "Supply, fitting and puncture repairs for all vehicle types."),
     "puncture": ("TYRES", "tyres", "Quick puncture repairs to get you back on the road."),
-    "diagnostic": ("DIAGNOSTICS", "diagnostic", "Advanced diagnostic equipment to find faults fast."),
+    "diagnostic": ("DIAGNOSTICS", "engine", "Advanced diagnostic equipment to find faults fast."),
     "brake": ("BRAKES", "repairs", "Brake pad and disc replacement with quality parts."),
     "clutch": ("CLUTCH", "repairs", "Clutch fitting and flywheel replacement."),
-    "exhaust": ("EXHAUST", "general", "Exhaust repair and replacement fitted while you wait."),
+    "exhaust": ("EXHAUST", "engine", "Exhaust repair and replacement fitted while you wait."),
     "collection": ("COLLECTION", "collection", "Local collection and delivery service available."),
     "delivery": ("COLLECTION", "collection", "Local collection and delivery service available."),
-    "air con": ("AIR CON", "general", "Air conditioning recharge and system repairs."),
-    "timing": ("TIMING BELT", "general", "Timing belt and cam belt replacement by specialists."),
+    "air con": ("AIR CON", "servicing", "Air conditioning recharge and system repairs."),
+    "timing": ("TIMING BELT", "engine", "Timing belt and cam belt replacement by specialists."),
     "recovery": ("RECOVERY", "collection", "Vehicle recovery service for breakdowns and accidents."),
-    "battery": ("BATTERIES", "general", "Battery testing and replacement with warranty."),
-    "suspension": ("SUSPENSION", "repairs", "Shock absorber and suspension repair."),
-    "general": ("REPAIRS", "general", "General mechanical repairs and maintenance."),
+    "battery": ("BATTERIES", "engine", "Battery testing and replacement with warranty."),
+    "suspension": ("SUSPENSION", "suspension", "Shock absorber and suspension repair."),
+    "general": ("REPAIRS", "repairs", "General mechanical repairs and maintenance."),
 }
 
 def get_service_meta(name):
     low = name.lower()
-    for kw, (tag, img_key, desc) in SERVICE_MAP.items():
+    # Check more specific keywords first (longer matches take priority)
+    for kw in sorted(SERVICE_MAP.keys(), key=len, reverse=True):
         if kw in low:
-            return tag, IMAGES[img_key], desc
-    return name[:12].upper(), IMAGES["general"], "Professional service by qualified technicians."
+            tag, img_key, desc = SERVICE_MAP[kw]
+            return tag, IMAGES.get(img_key, IMAGES["repairs"]), desc
+    return name[:12].upper(), IMAGES["repairs"], "Professional service by qualified technicians."
 
 
 def generate_demo(data: dict) -> str:
