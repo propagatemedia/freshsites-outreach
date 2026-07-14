@@ -48,7 +48,7 @@ Content-Type: text/html; charset=utf-8
 
   <p style="font-size:1.05rem;line-height:1.6;">I run <strong>FreshSites</strong> - we build fast, conversion-focused landing pages for local businesses. I came across <strong>{business_name}</strong> and saw the good work you do.</p>
 
-  <p style="font-size:1.05rem;line-height:1.6;">Your current site has room to improve — we rate it <strong>{original_score}/10</strong> on our conversion-readiness checklist. Here is what it is missing that costs you bookings:</p>
+  <p style="font-size:1.05rem;line-height:1.6;">I had a look at your current website and scored it against our conversion-readiness checklist - the things that turn a visitor into a booking. It came in at <strong>{original_score}/10</strong>. To be clear, that is a score for the website, not the business - here is what the site is missing that is likely costing you bookings:</p>
 
   <ul style="font-size:1rem;line-height:1.7;color:#555;padding-left:20px;">
     {gaps_html}
@@ -69,6 +69,7 @@ Content-Type: text/html; charset=utf-8
     <p style="font-size:0.9rem;color:#555;">Questions? Just reply to this email.</p>
     <p style="font-size:0.85rem;color:#888;margin-top:8px;">- FreshSites by Propagate Media</p>
     <p style="font-size:0.8rem;color:#aaa;margin-top:16px;">FreshSites is a division of Propagate Media. Call us on 07400 33 8941. For more information or to view our portfolio, visit propagate.media/clients</p>
+    <p style="font-size:0.8rem;color:#aaa;margin-top:8px;">Not interested? Reply with "remove" and we will not contact you again.</p>
   </div>
 </div>
 </body>
