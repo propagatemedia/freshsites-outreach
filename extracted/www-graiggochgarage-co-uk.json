@@ -6,15 +6,23 @@
   "phone": "01982 554695",
   "email": "",
   "location": "Graig Goch Garage, Cwmbach, Builth Wells, Powys, LD2 3RU",
-  "hours": "",
+  "hours": "Mon-Fri 09.00-17.00, MOT by Appointment Only",
   "services": [
-    "MOT Testing Station - Classes 4 and 7",
+    "MOT Testing Station - Classes 4 and 7 (cars, vans and goods vehicles up to 3,500kg)",
     "Pre-MOT service",
     "Servicing",
     "General Repairs",
     "Tyre & puncture repairs",
-    "Local collection and delivery"
+    "Local collection and delivery available"
   ],
+  "about": "Graig Goch Garage is an independent MOT test centre and automotive workshop near Newbridge on Wye in Powys, Wales. Everyone who uses a vehicle on the road must keep it in a roadworthy condition. The MOT test checks that vehicles meet road safety and environmental standards.",
+  "trust_signals": ["facebook", "319 followers"],
   "brand_color": "#D32F2F",
-  "extracted_at": "2026-07-13T21:00:00"
+  "scraped_at": "2026-07-14T00:00:00",
+  "pages_scraped": ["/", "/index.php?id=mot", "/index.php?id=contact-us"],
+  "mot_info": "Authorised MOT test station displaying blue three triangles logo. Classes 4 and 7 tested.",
+  "social": {
+    "facebook": "Graig Goch Garage",
+    "followers": 319
+  }
 }
