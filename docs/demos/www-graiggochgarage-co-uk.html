@@ -11,56 +11,44 @@
     a {text-decoration:none;}
     img {max-width:100%;}
 
-    /* Top bar */
-    .topbar {background:var(--d); color:#fff; padding:8px 24px; font-size:0.88rem; text-align:center;}
+    .topbar {background:var(--d); color:#fff; padding:10px 24px; font-size:0.88rem; text-align:center;}
     .topbar a {color:#fff; font-weight:600;}
 
-    /* Nav */
     nav {background:var(--card); border-bottom:1px solid #eee; padding:14px 24px; position:sticky; top:0; z-index:100; box-shadow:0 1px 4px rgba(0,0,0,.03);}
     .nav-in {max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center;}
     .logo {font-weight:800; font-size:1.35rem; color:var(--b);}
     .nav-links a {margin-left:24px; color:var(--text); font-weight:500; font-size:0.95rem;}
     .nav-links a:hover {color:var(--b);}
 
-    /* Button */
     .btn {background:var(--b); color:#fff !important; padding:12px 28px; border-radius:8px; font-weight:600; display:inline-block; border:none; cursor:pointer; font-size:0.95rem; transition:opacity .15s;}
     .btn:hover {opacity:.88;}
 
-    /* Hero */
     .hero {position:relative; min-height:560px; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; overflow:hidden;}
     .hero-bg {position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
-    .hero-overlay {position:absolute; inset:0; background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.45));}
+    .hero-overlay {position:absolute; inset:0; background:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.4));}
     .hero-content {position:relative; z-index:2; max-width:720px; padding:80px 24px;}
     .hero h1 {font-size:3rem; line-height:1.15; margin-bottom:12px;}
     .hero p {font-size:1.2rem; opacity:.95; margin-bottom:28px;}
     .hero .btn {font-size:1.1rem; padding:16px 40px;}
 
-    /* Sections */
     .wrap {max-width:1200px; margin:0 auto; padding:72px 24px;}
     .eyebrow {color:var(--b); font-weight:700; font-size:0.78rem; text-transform:uppercase; letter-spacing:.12em;}
     .sec-title {font-size:2rem; margin:8px 0 40px; text-align:center;}
 
-    /* Services */
     .svc-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px;}
     .svc-card {background:var(--card); border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s;}
     .svc-card:hover {transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.1);}
     .svc-img {height:180px; background-size:cover; background-position:center;}
     .svc-body {padding:20px 24px;}
     .svc-tag {display:inline-block; background:var(--b)12; color:var(--b); padding:4px 14px; border-radius:50px; font-size:0.72rem; font-weight:700; margin-bottom:8px;}
-    .svc-body h3 {font-size:1.05rem; margin:0; color:var(--text);}
+    .svc-body h3 {font-size:1.05rem; margin:0 0 6px; color:var(--text);}
+    .svc-body p {font-size:0.88rem; color:var(--muted); margin:0; line-height:1.5;}
 
-    /* About */
     .about-sec {background:var(--card);}
     .two-col {display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
     .about-img {height:400px; background-size:cover; background-position:center; border-radius:14px;}
     .about-text p {font-size:1.1rem; color:var(--muted); margin-top:12px;}
 
-    /* Trust */
-    .trust-strip {background:var(--d); padding:28px 24px;}
-    .badges {display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
-    .badge {background:rgba(255,255,255,.1); color:#fff; padding:8px 20px; border-radius:50px; font-size:0.88rem; font-weight:600;}
-
-    /* Contact */
     .contact-grid {display:grid; grid-template-columns:1fr 1fr; gap:40px;}
     .form-grp {margin-bottom:16px;}
     .form-grp label {display:block; font-weight:600; font-size:0.88rem; margin-bottom:6px;}
@@ -70,9 +58,9 @@
     .success {display:none; background:#ecfdf5; padding:20px; border-radius:12px; margin-top:16px; border:2px solid #6ee7b7;}
     .map-frame {width:100%; height:320px; border:0; border-radius:14px;}
     .contact-info p {margin:6px 0; font-size:1.05rem;}
+    .contact-info .hours-row {margin-bottom:24px;}
     .brand-link {color:var(--b); font-weight:600;}
 
-    /* Footer */
     footer {background:var(--d); color:#888; padding:32px 24px; text-align:center; font-size:0.88rem;}
 
     @media(max-width:768px) {
@@ -105,7 +93,7 @@
   </nav>
 
   <header class="hero">
-    <img class="hero-bg" src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?w=1600&q=80" alt="Garage workshop" style="object-fit:cover;">
+    <img class="hero-bg" src="https://images.pexels.com/photos/3807329/pexels-photo-3807329.jpeg?auto=compress&w=1600" alt="Garage workshop">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Graig Goch Garage</h1>
@@ -119,62 +107,66 @@
     <h2 class="sec-title">Our Services</h2>
     <div class="svc-grid">
         <div class="svc-card">
-          <div class="svc-img" style="background-image:url('https://images.unsplash.com/photo-1632823469850-2f5d6d66d3e9?w=600&q=80')"></div>
+          <div class="svc-img" style="background-image:url('https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&w=600')"></div>
           <div class="svc-body">
             <span class="svc-tag">MOT</span>
             <h3>MOT Testing Station - Classes 4 and 7 (cars, vans and goods vehicles up to 3,500kg)</h3>
+            <p>Class 4 & 7 testing for cars, vans and goods vehicles.</p>
           </div>
         </div>
         <div class="svc-card">
-          <div class="svc-img" style="background-image:url('https://images.unsplash.com/photo-1632823469850-2f5d6d66d3e9?w=600&q=80')"></div>
+          <div class="svc-img" style="background-image:url('https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&w=600')"></div>
           <div class="svc-body">
             <span class="svc-tag">MOT</span>
             <h3>Pre-MOT service</h3>
+            <p>Class 4 & 7 testing for cars, vans and goods vehicles.</p>
           </div>
         </div>
         <div class="svc-card">
-          <div class="svc-img" style="background-image:url('https://images.unsplash.com/photo-1506140488892-2e95a3d5b8c0?w=600&q=80')"></div>
+          <div class="svc-img" style="background-image:url('https://images.pexels.com/photos/3806253/pexels-photo-3806253.jpeg?auto=compress&w=600')"></div>
           <div class="svc-body">
             <span class="svc-tag">SERVICING</span>
             <h3>Servicing</h3>
+            <p>Full manufacturer-equivalent servicing for all makes and models.</p>
           </div>
         </div>
         <div class="svc-card">
-          <div class="svc-img" style="background-image:url('https://images.unsplash.com/photo-1607860108855-64d2074a5d2d?w=600&q=80')"></div>
+          <div class="svc-img" style="background-image:url('https://images.pexels.com/photos/4480488/pexels-photo-4480488.jpeg?auto=compress&w=600')"></div>
           <div class="svc-body">
             <span class="svc-tag">REPAIRS</span>
             <h3>General Repairs</h3>
+            <p>Expert repairs for engines, brakes, clutches and more.</p>
           </div>
         </div>
         <div class="svc-card">
-          <div class="svc-img" style="background-image:url('https://images.unsplash.com/photo-1626668893632-6f3a446e1c9c?w=600&q=80')"></div>
+          <div class="svc-img" style="background-image:url('https://images.pexels.com/photos/4480488/pexels-photo-4480488.jpeg?auto=compress&w=600')"></div>
           <div class="svc-body">
             <span class="svc-tag">REPAIRS</span>
             <h3>Tyre & puncture repairs</h3>
+            <p>Expert repairs for engines, brakes, clutches and more.</p>
           </div>
         </div>
         <div class="svc-card">
-          <div class="svc-img" style="background-image:url('https://images.unsplash.com/photo-1601362840469-51d6d1c7b6ce?w=600&q=80')"></div>
+          <div class="svc-img" style="background-image:url('https://images.pexels.com/photos/9846215/pexels-photo-9846215.jpeg?auto=compress&w=600')"></div>
           <div class="svc-body">
             <span class="svc-tag">COLLECTION</span>
             <h3>Local collection and delivery available</h3>
+            <p>Local collection and delivery service available.</p>
           </div>
         </div>
     </div>
   </section>
 
-      <section class="about-sec">
+      <section id="about" class="about-sec">
         <div class="wrap two-col">
-          <div class="about-img" style="background-image:url('https://images.unsplash.com/photo-1530549387789-4c1017266685?w=800&q=80')"></div>
+          <div class="about-img" style="background-image:url('https://images.pexels.com/photos/4489702/pexels-photo-4489702.jpeg?auto=compress&w=800')"></div>
           <div class="about-text">
             <span class="eyebrow">About Us</span>
             <h2>Your local, independent garage</h2>
             <p>Graig Goch Garage is an independent MOT test centre and automotive workshop near Newbridge on Wye in Powys, Wales. Everyone who uses a vehicle on the road must keep it in a roadworthy condition. The MOT test checks that vehicles meet road safety and environmental standards.</p>
+            <a href="#contact" class="btn" style="margin-top:16px;">Get In Touch</a>
           </div>
         </div>
-      </section>
-      <section class="trust-strip">
-        <div class="wrap"><div class="badges"><span class='badge'>Facebook</span><span class='badge'>319 Followers</span></div></div>
       </section>
 
   <section id="contact" class="wrap">
@@ -206,7 +198,7 @@
         <p><strong>Phone:</strong> <a href="tel:01982 554695" class="brand-link" style="font-size:1.3rem;">01982 554695</a></p>
         
         <p><strong>Address:</strong> Graig Goch Garage, Cwmbach, Builth Wells, Powys, LD2 3RU</p>
-        <p><strong>Hours:</strong> Mon-Fri 09.00-17.00, MOT by Appointment Only</p>
+        <div class="hours-row"><p><strong>Hours:</strong> Mon-Fri 09.00-17.00, MOT by Appointment Only</p></div>
         <iframe class="map-frame" src="https://www.google.com/maps?q=Graig+Goch+Garage++Cwmbach++Builth+Wells++Powys++LD2+3RU&output=embed" loading="lazy" allowfullscreen></iframe>
       </div>
     </div>
