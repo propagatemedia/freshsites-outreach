@@ -349,6 +349,7 @@ def generate_demo(data: dict) -> str:
           <button class="btn" onclick="alert('Contact tyrone@propagate.media for Premium setup')">Get This</button>
         </div>
       </div>
+      <p style="text-align:center;color:#666;margin:24px 0 0;font-size:0.9rem;">Swapping the image for your own is included in any purchase, free of charge.</p>
     </div>
   </div>
 
