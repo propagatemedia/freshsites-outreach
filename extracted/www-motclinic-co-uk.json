@@ -1,0 +1,23 @@
+{
+  "name": "MOT Clinic Ltd",
+  "slug": "www-motclinic-co-uk",
+  "url": "https://www.motclinic.co.uk/",
+  "title": "MOT Clinic Ltd | MOT, Servicing & Repairs | Craven Arms",
+  "phone": "01588 673876",
+  "email": "info@themotclinic.co.uk",
+  "location": "Craven Court, Stokewood Road, Longlane Industrial Estate, Craven Arms, SY7 8PF",
+  "hours": "Monday-Friday 8:30am-5:30pm",
+  "services": [
+    "MOT Testing",
+    "Vehicle Servicing",
+    "Repairs",
+    "Tyres",
+    "Wheel Alignment",
+    "Diagnostics"
+  ],
+  "about": "MOT Clinic Ltd is a local Craven Arms garage offering MOT testing, servicing, repairs, tyres, wheel alignment and diagnostics for cars, light goods vehicles and motorcycles.",
+  "trust_signals": [],
+  "brand_color": "#C62828",
+  "scraped_at": "2026-07-15T08:07:43.543811",
+  "source": "manual verified from public site/search results"
+}

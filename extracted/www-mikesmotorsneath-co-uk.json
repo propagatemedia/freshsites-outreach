@@ -1,0 +1,23 @@
+{
+  "name": "Mike's Motors Ltd",
+  "slug": "www-mikesmotorsneath-co-uk",
+  "url": "https://www.mikesmotorsneath.co.uk/",
+  "title": "Mike's Motors Ltd | MOT, Servicing & Repairs | Neath",
+  "phone": "01639 773 334",
+  "email": "sales@mikesmotorsneath.co.uk",
+  "location": "4 Canal Road, Neath, SA11 1LJ",
+  "hours": "Monday-Friday 8:30am-5:30pm",
+  "services": [
+    "MOT Testing",
+    "Car Servicing",
+    "Vehicle Repairs",
+    "Diagnostics",
+    "Brakes",
+    "Clutches"
+  ],
+  "about": "Mike's Motors Ltd provides local MOT testing, servicing and repair work from Canal Road in Neath, helping drivers keep their cars safe, reliable and roadworthy.",
+  "trust_signals": [],
+  "brand_color": "#C62828",
+  "scraped_at": "2026-07-15T08:07:43.543811",
+  "source": "manual verified from public site/search results"
+}

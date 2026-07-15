@@ -1,0 +1,23 @@
+{
+  "name": "R.S. Autos",
+  "slug": "www-rsautos-bolton-co-uk",
+  "url": "https://www.rsautos-bolton.co.uk/",
+  "title": "R.S. Autos | MOT, Servicing & Repairs | Bolton",
+  "phone": "01204 325644",
+  "email": "rsautos.mot@gmail.com",
+  "location": "Unit 2, Farnworth Business Park, 2 Gladstone Road, Bolton, BL4 7EH",
+  "hours": "Monday-Friday 8:30am-5:30pm",
+  "services": [
+    "MOT Testing",
+    "Garage Services",
+    "Car Diagnostics",
+    "Exhausts",
+    "Repairs",
+    "Servicing"
+  ],
+  "about": "R.S. Autos provides MOT testing, servicing, diagnostics, exhaust work and general repairs from Farnworth Business Park in Bolton.",
+  "trust_signals": [],
+  "brand_color": "#C62828",
+  "scraped_at": "2026-07-15T08:07:43.543811",
+  "source": "manual verified from public site/search results"
+}
