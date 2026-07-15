@@ -33,6 +33,27 @@ IMAGES = {
     "collection": IMG_BASE + "repair-3.jpg",
 }
 
+BLOG_POSTS = [
+    {
+        "title": "How to Prepare Your Car for Its MOT",
+        "subtitle": "Simple checks that could prevent an avoidable MOT failure.",
+        "excerpt": "A few minutes spent checking bulbs, tyres, wipers, number plates and fluid levels can save time and inconvenience before test day.",
+        "image": IMAGES["mot"],
+    },
+    {
+        "title": "Why Skipping a Car Service Can Cost More Later",
+        "subtitle": "Small maintenance delays can turn into expensive mechanical problems.",
+        "excerpt": "Old oil, worn filters and unchecked components can accelerate wear. Regular servicing helps protect reliability, fuel economy and resale value.",
+        "image": IMAGES["servicing"],
+    },
+    {
+        "title": "How to Check Your Tyre Tread Depth",
+        "subtitle": "A simple safety check every driver should know how to perform.",
+        "excerpt": "Tyre tread affects grip, braking and water clearance. This guide explains what to check and why uneven wear deserves professional attention.",
+        "image": IMAGES["tyres"],
+    },
+]
+
 SERVICE_MAP = {
     "mot": ("MOT", "mot", "Class 4 & 7 testing for cars, vans and goods vehicles."),
     "pre-mot": ("PRE-MOT", "mot", "Full pre-MOT inspection to catch issues before your test."),
@@ -133,6 +154,28 @@ def generate_demo(data: dict) -> str:
         </div>
       </section>"""
 
+    blog_cards = []
+    for post in BLOG_POSTS:
+        blog_cards.append(f"""        <article class="blog-card">
+          <div class="blog-img" style="background-image:url('{post['image']}')"></div>
+          <div class="blog-body">
+            <p class="blog-kicker">Advice</p>
+            <h3>{post['title']}</h3>
+            <h4>{post['subtitle']}</h4>
+            <p>{post['excerpt']}</p>
+            <a href="#" class="read-more" onclick="return false;">Read More</a>
+          </div>
+        </article>""")
+    blog_html = f"""      <section id="blog" class="blog-sec">
+        <div class="wrap">
+          <span class="eyebrow" style="display:block;text-align:center;">Useful Guides</span>
+          <h2 class="sec-title">Car Care Advice</h2>
+          <div class="blog-grid">
+{chr(10).join(blog_cards)}
+          </div>
+        </div>
+      </section>"""
+
     email_html = f"<p><strong>Email:</strong> <a href='mailto:{email}' class='brand-link'>{email}</a></p>" if email else ""
     hours_html = f"<p><strong>Hours:</strong> {hours}</p>" if hours else ""
     map_q = location.replace(",", "+").replace(" ", "+") if location else name.replace(" ", "+")
@@ -188,6 +231,20 @@ def generate_demo(data: dict) -> str:
     .about-img {{height:400px; background-size:cover; background-position:center; border-radius:14px;}}
     .about-text p {{font-size:1.1rem; color:var(--muted); margin-top:12px;}}
 
+    .blog-sec {{background:var(--bg);}}
+    .blog-grid {{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}}
+    .blog-card {{background:var(--card); border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.05); border:1px solid #eee; transition:transform .2s, box-shadow .2s, border-color .2s;}}
+    .blog-card:hover {{transform:translateY(-5px); box-shadow:0 16px 34px rgba(0,0,0,.10); border-color:color-mix(in srgb, var(--b) 36%, #eee);}}
+    .blog-img {{height:170px; background-size:cover; background-position:center; transition:transform .25s ease;}}
+    .blog-card:hover .blog-img {{transform:scale(1.03);}}
+    .blog-body {{padding:22px 24px 24px;}}
+    .blog-kicker {{color:var(--b); font-weight:800; font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; margin:0 0 6px;}}
+    .blog-body h3 {{font-size:1.18rem; line-height:1.25; margin:0 0 8px; color:var(--text);}}
+    .blog-body h4 {{font-size:.95rem; line-height:1.45; margin:0 0 10px; color:#444; font-weight:700;}}
+    .blog-body p {{font-size:.9rem; color:var(--muted); margin:0 0 16px; line-height:1.55;}}
+    .read-more {{display:inline-block; color:var(--b); font-weight:800; font-size:.9rem;}}
+    .read-more:hover {{text-decoration:underline;}}
+
     .contact-grid {{display:grid; grid-template-columns:1fr 1fr; gap:40px;}}
     .form-grp {{margin-bottom:16px;}}
     .form-grp label {{display:block; font-weight:600; font-size:0.88rem; margin-bottom:6px;}}
@@ -228,6 +285,7 @@ def generate_demo(data: dict) -> str:
       .nav-links .btn {{display:inline-block;}}
       .hero h1 {{font-size:2.1rem;}}
       .two-col, .contact-grid {{grid-template-columns:1fr;}}
+      .blog-grid {{grid-template-columns:1fr;}}
       .about-img {{height:240px;}}
       .hero {{min-height:420px;}}
       .hero-content {{padding:60px 24px;}}
@@ -271,6 +329,8 @@ def generate_demo(data: dict) -> str:
   </section>
 
 {about_html}
+
+{blog_html}
 
   <section id="contact" class="wrap">
     <span class="eyebrow" style="display:block;text-align:center;">Get In Touch</span>
