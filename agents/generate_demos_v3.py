@@ -107,7 +107,6 @@ def generate_demo(data: dict) -> str:
         cards.append(f"""        <div class="svc-card">
           <div class="svc-img" style="background-image:url('{img}')"></div>
           <div class="svc-body">
-            <span class="svc-tag">{tag}</span>
             <h3>{svc}</h3>
             <p>{desc}</p>
           </div>
@@ -177,7 +176,6 @@ def generate_demo(data: dict) -> str:
     .svc-card:hover {{transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.1);}}
     .svc-img {{height:180px; background-size:cover; background-position:center;}}
     .svc-body {{padding:20px 24px;}}
-    .svc-tag {{display:inline-block; background:var(--b)12; color:var(--b); padding:4px 14px; border-radius:50px; font-size:0.72rem; font-weight:700; margin-bottom:8px;}}
     .svc-body h3 {{font-size:1.05rem; margin:0 0 6px; color:var(--text);}}
     .svc-body p {{font-size:0.88rem; color:var(--muted); margin:0; line-height:1.5;}}
 
@@ -364,6 +362,10 @@ def generate_demo(data: dict) -> str:
         </div>
       </div>
       <p style="text-align:center;color:#666;margin:24px 0 0;font-size:0.9rem;">Swapping the image for your own is included in any purchase, free of charge.</p>
+      <div style="text-align:center;color:#444;margin:18px auto 0;font-size:0.95rem;line-height:1.6;max-width:620px;">
+        <strong>Contact Us:</strong> <a href="tel:07400338941" style="color:var(--b);font-weight:700;">07400 33 8941</a><br>
+        If you're looking for something different or would like to ask us anything, email <a href="mailto:hello@propagate.media" style="color:var(--b);font-weight:700;">hello@propagate.media</a>
+      </div>
     </div>
   </div>
 
