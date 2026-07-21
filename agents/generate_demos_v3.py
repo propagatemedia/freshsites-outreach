@@ -18,6 +18,24 @@ DOCS_DIR.mkdir(exist_ok=True, parents=True)
 # Approved local images (user-reviewed, optimized)
 # Path is relative to the repo root, will be served from GitHub Pages
 IMG_BASE = "../assets/img/"
+POSTHOG_PROJECT_TOKEN = "phc_xkcXiM3PPU5kMWec3s94BZJGZwyykcEtHLzC6Dg7ooNa"
+POSTHOG_API_HOST = "https://eu.i.posthog.com"
+
+def posthog_head(slug: str, business_name: str) -> str:
+    """PostHog browser tracking for demo-page visits and key funnel events."""
+    safe_slug = json.dumps(slug)
+    safe_name = json.dumps(business_name)
+    return f"""
+  <script>
+    !function(t,e){{var o,n,p,r;e.__SV||(window.posthog&&window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){{function g(t,e){{var o=e.split('.');2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){{t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}}}(p=t.createElement('script')).type='text/javascript',p.crossOrigin='anonymous',p.async=!0,p.src=s.api_host.replace('.i.posthog.com','-assets.i.posthog.com')+'/static/array.js',(r=t.getElementsByTagName('script')[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a='posthog',u.people=u.people||[],u.toString=function(t){{var e='posthog';return'posthog'!==a&&(e+='.'+a),t||(e+=' (stub)'),e}},u.people.toString=function(){{return u.toString(1)+'.people (stub)'}},o='init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags on onFeatureFlags identify setPersonProperties unsetPersonProperties group resetGroups reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing debug'.split(' '),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])}},e.__SV=1)}}(document,window.posthog||[]);
+    posthog.init('{POSTHOG_PROJECT_TOKEN}', {{
+      api_host: '{POSTHOG_API_HOST}',
+      defaults: '2026-05-30',
+      person_profiles: 'identified_only'
+    }});
+    posthog.register({{lead_slug: {safe_slug}, business_name: {safe_name}, source: 'freshsites_demo'}});
+    posthog.capture('demo_viewed', {{lead_slug: {safe_slug}, business_name: {safe_name}}});
+  </script>"""
 
 IMAGES = {
     "hero": IMG_BASE + "hero-garage.jpg",
@@ -180,6 +198,7 @@ def generate_demo(data: dict) -> str:
     hours_html = f"<p><strong>Hours:</strong> {hours}</p>" if hours else ""
     map_q = location.replace(",", "+").replace(" ", "+") if location else name.replace(" ", "+")
     map_url = f"https://www.google.com/maps?q={map_q}&output=embed"
+    posthog_html = posthog_head(slug, name)
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -291,6 +310,7 @@ def generate_demo(data: dict) -> str:
       .hero-content {{padding:60px 24px;}}
     }}
   </style>
+{posthog_html}
 </head>
 <body>
 
@@ -399,7 +419,7 @@ def generate_demo(data: dict) -> str:
             <li>Ownership transferred to you</li>
             <li>Add your own custom domain</li>
           </ul>
-          <a href="https://buy.stripe.com/14AaENc4oeYBgfk26R5EY0f?client_reference_id={slug}" class="btn">Buy - £149</a>
+          <a href="https://buy.stripe.com/14AaENc4oeYBgfk26R5EY0f?client_reference_id={slug}" class="btn" onclick="trackEvent('buy_149_clicked')">Buy - £149</a>
         </div>
         <div class="tier featured">
           <div class="tier-badge">Popular</div>
@@ -411,7 +431,7 @@ def generate_demo(data: dict) -> str:
             <li>2 rounds of edits included</li>
             <li>Email support</li>
           </ul>
-          <a href="https://buy.stripe.com/fZu4gpecw2bPbZ4dPz5EY0g?client_reference_id={slug}" class="btn">Buy - £399</a>
+          <a href="https://buy.stripe.com/fZu4gpecw2bPbZ4dPz5EY0g?client_reference_id={slug}" class="btn" onclick="trackEvent('hosted_399_clicked')">Buy - £399</a>
         </div>
         <div class="tier">
           <h4>Want More Than a Page?</h4>
@@ -422,7 +442,7 @@ def generate_demo(data: dict) -> str:
             <li>Automated lead follow-up</li>
             <li>Built to grow with your business</li>
           </ul>
-          <a href="https://propagate.media/web-design" target="_blank" rel="noopener" class="btn">See What We Do</a>
+          <a href="https://propagate.media/web-design" target="_blank" rel="noopener" class="btn" onclick="trackEvent('more_than_page_clicked')">See What We Do</a>
         </div>
       </div>
       <p style="text-align:center;color:#666;margin:24px 0 0;font-size:0.9rem;">Swapping the image for your own is included in any purchase, free of charge.</p>
@@ -445,13 +465,21 @@ def generate_demo(data: dict) -> str:
   </div>
 
   <script>
-    function showTiers(){{document.getElementById('tp').classList.add('active');document.getElementById('bb').style.display='none'}}
+    function trackEvent(eventName, props){{
+      try {{
+        if (window.posthog && typeof window.posthog.capture === 'function') {{
+          window.posthog.capture(eventName, Object.assign({{lead_slug:'{slug}', business_name:'{name}'}}, props || {{}}));
+        }}
+      }} catch(e) {{}}
+    }}
+    function showTiers(){{trackEvent('buy_bar_clicked');trackEvent('pricing_opened');document.getElementById('tp').classList.add('active');document.getElementById('bb').style.display='none'}}
     function hideTiers(){{document.getElementById('tp').classList.remove('active');document.getElementById('bb').style.display='flex'}}
-    function showNI(){{document.getElementById('co').classList.add('active')}}
+    function showNI(){{trackEvent('not_for_me_clicked');document.getElementById('co').classList.add('active')}}
     function hideNI(){{document.getElementById('co').classList.remove('active')}}
 
     // Prospect declined — notify FreshSites via Web3Forms, then confirm to the visitor.
     async function doDel(){{
+      trackEvent('demo_remove_confirmed');
       var box = document.querySelector('#co .confirm-box');
       box.innerHTML = '<h3>Thanks for letting us know</h3><p>This demo will be removed within 12 hours. If you change your mind, just reply to our email.</p>';
       try {{
@@ -472,8 +500,13 @@ def generate_demo(data: dict) -> str:
     }}
 
     // Contact form — submit to FormSubmit (free, no key) via fetch, show inline success.
+    var contactFormStarted = false;
+    document.getElementById('cf').addEventListener('input', function(){{
+      if (!contactFormStarted) {{ contactFormStarted = true; trackEvent('contact_form_started'); }}
+    }});
     document.getElementById('cf').addEventListener('submit', async function(e){{
       e.preventDefault();
+      trackEvent('contact_form_submitted');
       var form = e.target;
       var btn = form.querySelector('button[type=submit]');
       var orig = btn.textContent;
