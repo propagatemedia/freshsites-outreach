@@ -1,0 +1,22 @@
+{
+  "slug": "www-bradleysgarage-co-uk-home",
+  "name": "Bradleys Garage",
+  "title": "Bradleys Garage | Motoring Needs | Powys",
+  "phone": "01686 412106",
+  "email": "bradleysgarage1@gmail.com",
+  "location": "Unit 3 Parc Hafren Industrial Estate, Llanidloes, Powys, SY18 6RB",
+  "hours": "Monday to Thursday 8.30am - 5.00pm; Friday 8.30am - 4.00pm; Saturday appointments only",
+  "services": [
+    "MOT",
+    "Servicing",
+    "Repairs",
+    "Diagnostics",
+    "Tyres",
+    "Brakes"
+  ],
+  "about": "Bradleys Garage is a Llanidloes MOT service and repair centre based at Parc Hafren Industrial Estate, helping local drivers with MOTs, servicing, diagnostics and repairs.",
+  "brand_color": "#0B244C",
+  "website": "https://www.bradleysgarage.co.uk/home",
+  "score": 3.4,
+  "notes": "Public email and phone from homepage. Visual score 3.4 - huge empty homepage section, thin copy, weak conversion path despite acceptable header."
+}

@@ -6,7 +6,7 @@ removed ridiculous full-width Facebook strip, padding fixes.
 
 Design principles from CRO + copywriting + site-architecture skills.
 """
-import json, re, sys, os
+import json, re, sys, os, hashlib
 from pathlib import Path
 
 DEMOS_DIR = Path(__file__).parent.parent / "demos"
@@ -46,31 +46,77 @@ IMAGES = {
     "suspension": IMG_BASE + "suspension.jpg",
     "repairs": IMG_BASE + "repair-1.jpg",
     "repairs_alt": IMG_BASE + "repair-2.jpg",
+    "repairs_alt_2": IMG_BASE + "repair-3.jpg",
+    "repairs_alt_3": IMG_BASE + "repair-4.jpg",
     "tyres": IMG_BASE + "tyre-change.jpg",
+    "tyres_alt_1": IMG_BASE + "tyre-change-2.jpg",
+    "tyres_alt_2": IMG_BASE + "tyre-change-3.jpg",
     "general": IMG_BASE + "servicing.jpg",
     "collection": IMG_BASE + "repair-3.jpg",
 }
 
+IMAGE_VARIANTS = {
+    "hero": [IMAGES["hero"], IMAGES["about"], IMAGES["servicing"], IMAGES["engine"], IMAGES["repairs_alt_3"]],
+    "about": [IMAGES["about"], IMAGES["repairs_alt_2"], IMAGES["servicing"], IMAGES["engine"], IMAGES["suspension"]],
+    "repairs": [IMAGES["repairs"], IMAGES["repairs_alt"], IMAGES["repairs_alt_2"], IMAGES["repairs_alt_3"], IMAGES["engine"]],
+    "servicing": [IMAGES["servicing"], IMAGES["mot"], IMAGES["repairs_alt_2"], IMAGES["about"]],
+    "mot": [IMAGES["mot"], IMAGES["servicing"], IMAGES["repairs_alt_2"], IMAGES["tyres_alt_1"]],
+    "tyres": [IMAGES["tyres"], IMAGES["tyres_alt_1"], IMAGES["tyres_alt_2"], IMAGES["repairs_alt_2"]],
+    "engine": [IMAGES["engine"], IMAGES["repairs_alt_3"], IMAGES["servicing"], IMAGES["repairs"]],
+    "suspension": [IMAGES["suspension"], IMAGES["engine"], IMAGES["repairs_alt_2"]],
+    "collection": [IMAGES["repairs_alt_2"], IMAGES["tyres_alt_1"], IMAGES["about"]],
+}
+
 BLOG_POSTS = [
-    {
-        "title": "How to Prepare Your Car for Its MOT",
-        "subtitle": "Simple checks that could prevent an avoidable MOT failure.",
-        "excerpt": "A few minutes spent checking bulbs, tyres, wipers, number plates and fluid levels can save time and inconvenience before test day.",
-        "image": IMAGES["mot"],
-    },
-    {
-        "title": "Why Skipping a Car Service Can Cost More Later",
-        "subtitle": "Small maintenance delays can turn into expensive mechanical problems.",
-        "excerpt": "Old oil, worn filters and unchecked components can accelerate wear. Regular servicing helps protect reliability, fuel economy and resale value.",
-        "image": IMAGES["servicing"],
-    },
-    {
-        "title": "How to Check Your Tyre Tread Depth",
-        "subtitle": "A simple safety check every driver should know how to perform.",
-        "excerpt": "Tyre tread affects grip, braking and water clearance. This guide explains what to check and why uneven wear deserves professional attention.",
-        "image": IMAGES["tyres"],
-    },
+    {"title":"How to Prepare Your Car for Its MOT","subtitle":"Simple checks that could prevent an avoidable MOT failure.","excerpt":"A few minutes checking bulbs, tyres, wipers, number plates and fluid levels can save time and inconvenience before test day.","image_key":"mot"},
+    {"title":"Why Skipping a Car Service Can Cost More Later","subtitle":"Small maintenance delays can turn into expensive mechanical problems.","excerpt":"Old oil, worn filters and unchecked components can accelerate wear. Regular servicing helps protect reliability, fuel economy and resale value.","image_key":"servicing"},
+    {"title":"How to Check Your Tyre Tread Depth","subtitle":"A simple safety check every driver should know how to perform.","excerpt":"Tyre tread affects grip, braking and water clearance. This guide explains what to check and why uneven wear deserves professional attention.","image_key":"tyres"},
+    {"title":"Warning Signs Your Brakes Need Attention","subtitle":"Small brake changes are easy to ignore - until they become dangerous.","excerpt":"Squealing, grinding, vibration, longer stopping distances and dashboard warnings are signs that a professional brake check should not wait.","image_key":"repairs"},
+    {"title":"What Dashboard Warning Lights Usually Mean","subtitle":"A warning light is your car asking for a proper diagnosis.","excerpt":"Some lights are urgent, others are early warnings. A diagnostic check helps avoid guesswork, wasted parts and avoidable breakdowns.","image_key":"engine"},
+    {"title":"When Should You Replace Your Timing Belt?","subtitle":"Timing belt failure can destroy an engine without warning.","excerpt":"Mileage, age and manufacturer intervals matter. If the belt history is unclear, a garage check can prevent one of the most expensive failures.","image_key":"engine"},
+    {"title":"Why Wheel Alignment Saves Tyres and Fuel","subtitle":"Poor alignment quietly costs money every mile.","excerpt":"Uneven tyre wear, pulling to one side and steering vibration can all point to alignment issues that reduce tyre life and handling.","image_key":"tyres"},
+    {"title":"How Often Should You Check Oil and Coolant?","subtitle":"Basic fluid checks prevent avoidable engine damage.","excerpt":"Low oil, coolant leaks and neglected top-ups can turn minor maintenance into major repair bills. Regular checks catch problems early.","image_key":"servicing"},
+    {"title":"Before a Long Journey: What to Check","subtitle":"A ten-minute check can prevent roadside stress.","excerpt":"Tyres, fluids, lights, brakes and wipers are the basics worth checking before motorway trips, holidays or heavy daily mileage.","image_key":"mot"},
 ]
+
+def stable_index(seed: str, length: int, salt: str = "") -> int:
+    return int(hashlib.sha256((seed + salt).encode("utf-8")).hexdigest(), 16) % max(length, 1)
+
+def rotate_list(items, seed: str, salt: str = ""):
+    if not items:
+        return []
+    i = stable_index(seed, len(items), salt)
+    return items[i:] + items[:i]
+
+def pick_variant(key: str, seed: str, used=None, salt: str = ""):
+    used = used or set()
+    variants = rotate_list(IMAGE_VARIANTS.get(key, [IMAGES.get(key, IMAGES["repairs"])]), seed, salt)
+    for img in variants:
+        if img not in used:
+            return img
+    return variants[0]
+
+def select_blog_posts(seed: str, count: int = 3):
+    """Pick a deterministic but varied blog mix per demo slug.
+
+    Avoid the old failure mode where every page showed the same three cards.
+    Selection uses independent salted hashes rather than a simple contiguous slice.
+    """
+    selected = []
+    used_titles = set()
+    used_images = set()
+    for idx in range(count):
+        post = BLOG_POSTS[0]
+        for attempt in range(len(BLOG_POSTS)):
+            post = BLOG_POSTS[stable_index(seed, len(BLOG_POSTS), f"blog-{idx}-{attempt}")]
+            if post["title"] not in used_titles:
+                break
+        p = dict(post)
+        p["image"] = pick_variant(p.get("image_key", "repairs"), seed, used_images, f"blog-img-{idx}")
+        used_titles.add(p["title"])
+        used_images.add(p["image"])
+        selected.append(p)
+    return selected
 
 SERVICE_MAP = {
     "mot": ("MOT", "mot", "Class 4 & 7 testing for cars, vans and goods vehicles."),
@@ -132,20 +178,17 @@ def generate_demo(data: dict) -> str:
         if len(parts) >= 2:
             town = parts[-2] if len(parts) >= 3 else parts[-1]
 
-    # Build service cards with images + descriptions — no image repeats
+    # Build service cards with images + descriptions — rotate verified images by slug, no repeats within a demo
     used_images = set()
     cards = []
-    for svc in services[:6]:
+    for idx, svc in enumerate(services[:6]):
         tag, img, desc = get_service_meta(svc)
-        # If this image was already used, find an alternative
-        if img in used_images:
-            for alt_key in ["repair-2.jpg", "repair-3.jpg", "repair-4.jpg", "tyre-change-2.jpg", "tyre-change-3.jpg", "suspension.jpg", "engine-repair.jpg", "mechanic-shop.jpg"]:
-                alt_url = IMAGES.get("repairs_alt", "") if "repair-2" in alt_key else ""
-                # Build full URL
-                alt_full = IMG_BASE + alt_key
-                if alt_full not in used_images:
-                    img = alt_full
-                    break
+        key = "repairs"
+        for candidate in ["mot", "servicing", "service", "tyre", "diagnostic", "engine", "suspension", "collection", "brake", "clutch"]:
+            if candidate in svc.lower():
+                key = {"service":"servicing", "diagnostic":"engine", "brake":"repairs", "clutch":"repairs"}.get(candidate, candidate)
+                break
+        img = pick_variant(key, slug or name, used_images, f"service-{idx}")
         used_images.add(img)
         cards.append(f"""        <div class="svc-card">
           <div class="svc-img" style="background-image:url('{img}')"></div>
@@ -162,7 +205,7 @@ def generate_demo(data: dict) -> str:
     if about:
         about_html = f"""      <section id="about" class="about-sec">
         <div class="wrap two-col">
-          <div class="about-img" style="background-image:url('{IMAGES['about']}')"></div>
+          <div class="about-img" style="background-image:url('{pick_variant('about', slug or name, used_images, 'about')}')"></div>
           <div class="about-text">
             <span class="eyebrow">About Us</span>
             <h2>Your local, independent garage</h2>
@@ -173,7 +216,7 @@ def generate_demo(data: dict) -> str:
       </section>"""
 
     blog_cards = []
-    for post in BLOG_POSTS:
+    for post in select_blog_posts(slug or name):
         blog_cards.append(f"""        <article class="blog-card">
           <div class="blog-img" style="background-image:url('{post['image']}')"></div>
           <div class="blog-body">
@@ -199,6 +242,8 @@ def generate_demo(data: dict) -> str:
     map_q = location.replace(",", "+").replace(" ", "+") if location else name.replace(" ", "+")
     map_url = f"https://www.google.com/maps?q={map_q}&output=embed"
     posthog_html = posthog_head(slug, name)
+
+    hero_image = pick_variant('hero', slug or name, used_images, 'hero')
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -331,7 +376,7 @@ def generate_demo(data: dict) -> str:
   </nav>
 
   <header class="hero">
-    <img class="hero-bg" src="{IMAGES['hero']}" alt="Garage workshop">
+    <img class="hero-bg" src="{hero_image}" alt="Garage workshop">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>{name}</h1>
