@@ -143,6 +143,25 @@ def format_gaps(score_breakdown: str, slug: str = "") -> str:
             "generic_title": "Page title is generic - hurts Google rankings",
             "builder_bloat": "Slow loading due to unnecessary scripts",
             "weak_mobile": "Poor mobile experience - 70% of visitors are on phones",
+            "dated_design": "The site looks dated, which makes a good local business feel less established online",
+            "weak_hero": "The first screen does not make the offer clear enough before visitors scroll",
+            "weak_cta": "There is no strong booking action guiding visitors to call, enquire, or book",
+            "thin_trust": "Trust signals are too thin on the homepage - reviews, badges, proof, and experience are not doing enough work",
+            "old_wordpress_layout": "The layout feels like an old WordPress template, not a modern garage homepage",
+            "weak_conversion": "The homepage is not structured to turn visitors into enquiries quickly",
+            "no_reviews_above_fold": "Reviews are not visible early enough to build instant confidence",
+            "broken_whitespace": "Large empty gaps make the page feel unfinished and reduce confidence",
+            "template_design": "The design feels generic, so the garage does not look as credible as the service likely is",
+            "weak_hierarchy": "The page hierarchy is weak - visitors have to work too hard to understand what to do next",
+            "third_party_form_branding": "Third-party form branding makes the enquiry flow feel cheap and less trustworthy",
+            "weak_services_presentation": "Services are not presented cleanly enough for visitors to scan and act",
+            "intrusive_popup": "An intrusive pop-up blocks the homepage before visitors can understand the business",
+            "broken_map": "The map area appears broken or empty, which damages local trust",
+            "broken_bullets": "Broken list formatting makes the page look unfinished",
+            "weak_trust_layer": "The homepage lacks a strong trust layer - reviews, proof, guarantees, or accreditations are not clear enough",
+            "cluttered_announcements": "Announcements dominate the page instead of helping visitors book or call",
+            "no_clear_cta": "There is no clear primary action telling visitors exactly what to do next",
+            "weak_trust_above_fold": "Trust proof is not visible early enough to reassure first-time visitors",
         }.get(k, k.replace("_", " ").title())
 
         # Override with specific extracted data if available
@@ -192,11 +211,15 @@ def generate_email(lead: dict, template: str = "initial") -> tuple[str, str]:
     import json
     name = lead["name"]
     email = lead["email"] or guess_email(lead["website"], name)
-    gaps = format_gaps(lead["score_breakdown"], re.sub(r"\W+", "-", lead["website"].replace("https://", "").replace("http://", "").rstrip("/")))
+    demo_slug = ""
+    if lead.get("demo_url"):
+        demo_slug = Path(lead["demo_url"]).stem
+    fallback_slug = re.sub(r"\W+", "-", lead["website"].replace("https://", "").replace("http://", "").rstrip("/"))
+    slug = demo_slug or fallback_slug
+    gaps = format_gaps(lead["score_breakdown"], slug)
     original_score = lead.get("score", 0)
     
     # Get brand color from extracted cache
-    slug = re.sub(r"\W+", "-", lead["website"].replace("https://", "").replace("http://", "").rstrip("/"))
     brand_color = "#1a1a1a"
     try:
         extracted = json.load(open(Path(__file__).parent.parent / "extracted" / f"{slug}.json"))
