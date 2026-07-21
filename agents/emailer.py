@@ -43,7 +43,7 @@ Content-Type: text/html; charset=utf-8
     <span style="float:right;font-size:0.8rem;color:#888;">by Propagate Media</span>
   </div>
 
-  <p style="font-size:1.05rem;line-height:1.6;">Hi there,</p>
+  <p style="font-size:1.05rem;line-height:1.6;">Hello,</p>
 
   <p style="font-size:1.05rem;line-height:1.6;">I run <strong>FreshSites</strong> - we build fast, conversion-focused landing pages for local businesses. I came across <strong>{business_name}</strong> and saw the good work you do.</p>
 
