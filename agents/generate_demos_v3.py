@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Demo Generator v3.1 — Award-Winning Design
+Demo Generator v3.1 - Award-Winning Design
 Fixes: working Pexels images, service descriptions, about image,
 removed ridiculous full-width Facebook strip, padding fixes.
 
@@ -178,7 +178,7 @@ def generate_demo(data: dict) -> str:
         if len(parts) >= 2:
             town = parts[-2] if len(parts) >= 3 else parts[-1]
 
-    # Build service cards with images + descriptions — rotate verified images by slug, no repeats within a demo
+    # Build service cards with images + descriptions - rotate verified images by slug, no repeats within a demo
     used_images = set()
     cards = []
     for idx, svc in enumerate(services[:6]):
@@ -522,7 +522,7 @@ def generate_demo(data: dict) -> str:
     function showNI(){{trackEvent('not_for_me_clicked');document.getElementById('co').classList.add('active')}}
     function hideNI(){{document.getElementById('co').classList.remove('active')}}
 
-    // Prospect declined — notify FreshSites via Web3Forms, then confirm to the visitor.
+    // Prospect declined - notify FreshSites via Web3Forms, then confirm to the visitor.
     async function doDel(){{
       trackEvent('demo_remove_confirmed');
       var box = document.querySelector('#co .confirm-box');
@@ -544,7 +544,7 @@ def generate_demo(data: dict) -> str:
       setTimeout(function(){{document.getElementById('co').classList.remove('active');}}, 4000);
     }}
 
-    // Contact form — submit to FormSubmit (free, no key) via fetch, show inline success.
+    // Contact form - submit to FormSubmit (free, no key) via fetch, show inline success.
     var contactFormStarted = false;
     document.getElementById('cf').addEventListener('input', function(){{
       if (!contactFormStarted) {{ contactFormStarted = true; trackEvent('contact_form_started'); }}
@@ -566,7 +566,7 @@ def generate_demo(data: dict) -> str:
         }});
         var data = await resp.json().catch(function(){{return {{}};}});
         // FormSubmit returns success:"true" on delivery. Anything else (incl. first-time
-        // activation) we still treat as "received" for the visitor — the enquiry is logged.
+        // activation) we still treat as "received" for the visitor - the enquiry is logged.
         form.style.display='none';
         document.getElementById('sf').style.display='block';
       }} catch(err) {{

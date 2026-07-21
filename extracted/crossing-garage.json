@@ -1,0 +1,23 @@
+{
+  "name": "Crossing Garage",
+  "slug": "crossing-garage",
+  "url": "https://crossing-garage.co.uk/",
+  "title": "Crossing Garage",
+  "brand_color": "#1f4f8f",
+  "services": [
+    "MOT testing",
+    "Car servicing",
+    "Car repairs",
+    "Light commercial vehicle repairs",
+    "Diagnostics",
+    "Brakes",
+    "Clutches"
+  ],
+  "about": "Independent garage based in Llandrindod Wells offering a full range of services for car and light commercial vehicle owners throughout mid Wales.",
+  "hours": "Monday - Friday: 8:30 - 17:30 | Saturday: 9:00 - 12:00",
+  "phone": "01597 829243",
+  "email": "contact@crossing-garage.co.uk",
+  "location": "Llandrindod Wells, LD1 5BH",
+  "images": [],
+  "extracted_at": "2026-07-21T20:16:22.389004"
+}

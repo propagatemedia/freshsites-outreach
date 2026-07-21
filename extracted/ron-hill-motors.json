@@ -1,0 +1,22 @@
+{
+  "name": "Ron Hill Motors",
+  "slug": "ron-hill-motors",
+  "url": "https://www.ronhillmotors.co.uk/",
+  "title": "Ron Hill Motors",
+  "brand_color": "#e90743",
+  "services": [
+    "MOT testing",
+    "General mechanic services",
+    "Servicing",
+    "Oil and filter changes",
+    "Cambelts",
+    "Motorbike MOTs"
+  ],
+  "about": "Family-based general mechanic and MOT test centre for cars and motorbikes in Speke, Liverpool, established in 1970.",
+  "hours": "Monday - Friday: 8:30 - 17:30 | Saturday: 8:30 - 12:00",
+  "phone": "0151 486 6118",
+  "email": "ronhillmotors@hotmail.com",
+  "location": "Speke, Liverpool, L24 9NB",
+  "images": [],
+  "extracted_at": "2026-07-21T20:16:22.389004"
+}

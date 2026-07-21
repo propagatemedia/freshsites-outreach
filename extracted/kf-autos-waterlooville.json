@@ -1,0 +1,25 @@
+{
+  "name": "K.F. Autos Waterlooville",
+  "slug": "kf-autos-waterlooville",
+  "url": "http://kfautoswaterlooville.co.uk/",
+  "title": "K.F. Autos Waterlooville",
+  "brand_color": "#00388f",
+  "services": [
+    "Car repairs",
+    "MOTs",
+    "Servicing",
+    "Car tyres",
+    "Brakes",
+    "Exhausts",
+    "Clutches",
+    "Engine diagnostics",
+    "DPF cleaning"
+  ],
+  "about": "Local Waterlooville garage offering vehicle repairs, MOTs, servicing, tyres, brakes, exhausts, clutches, diagnostics and DPF cleaning.",
+  "hours": "Monday - Friday: 8:00 - 17:00",
+  "phone": "07766731599 / 023 9229 9625",
+  "email": "karlfaircloughautos@gmail.com",
+  "location": "Waterlooville",
+  "images": [],
+  "extracted_at": "2026-07-21T20:16:22.389004"
+}
