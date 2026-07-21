@@ -1,0 +1,18 @@
+{
+  "name": "Blakey's MOT Centre",
+  "location": "Old Rhymney Road, Merthyr Tydfil, CF48 2YG",
+  "phone": "01685 384264",
+  "email": "blakeysmot@gmail.com",
+  "brand_color": "#DC2626",
+  "hours": "Mon-Fri 8:30am-5:30pm, Sat 9:00am-5:00pm",
+  "services": [
+    "MOT Testing",
+    "Vehicle Servicing",
+    "Diagnostics",
+    "Timing Belts & Chains",
+    "Brake Repairs",
+    "Clutch Repairs"
+  ],
+  "about": "Blakey's MOT Centre serves Dowlais and Merthyr Tydfil with MOT testing, servicing, diagnostics and repair work. The demo simplifies the busy current site into a cleaner, conversion-focused local garage page with clearer contact and service pathways.",
+  "slug": "www-blakeysmotcenter-co-uk"
+}

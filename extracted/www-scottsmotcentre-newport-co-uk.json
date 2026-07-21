@@ -1,0 +1,18 @@
+{
+  "name": "Scott's MOT Centre",
+  "location": "134 Corporation Road, Newport, NP19 0BH",
+  "phone": "01633 842 922",
+  "email": "scotty@gcs66.wanadoo.co.uk",
+  "brand_color": "#B91C1C",
+  "hours": "Contact the garage for current opening times",
+  "services": [
+    "MOT Testing",
+    "Car Servicing",
+    "Repairs",
+    "Diagnostics",
+    "Brakes",
+    "Vehicle Checks"
+  ],
+  "about": "Scott's MOT Centre is a Newport garage focused on MOTs and servicing. The current site has the key contact details, but the demo turns that into a stronger booking-focused page with clearer services, trust cues and a proper conversion path.",
+  "slug": "www-scottsmotcentre-newport-co-uk"
+}

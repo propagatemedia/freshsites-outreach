@@ -1,0 +1,18 @@
+{
+  "name": "Merthyr Road Garage",
+  "location": "Brynmawr, South Wales",
+  "phone": "01495 310265",
+  "email": "merthyrroadgarage@gmail.com",
+  "brand_color": "#991B1B",
+  "hours": "Contact the garage for current opening times",
+  "services": [
+    "Car Repairs",
+    "Servicing",
+    "Diagnostics",
+    "MOT Preparation",
+    "Brakes & Clutches",
+    "Timing Belts"
+  ],
+  "about": "Merthyr Road Garage is a family-run Autocare service centre in Brynmawr, established in 1985. The demo gives the garage a much clearer modern homepage for repairs, servicing, diagnostics and booking enquiries while keeping the independent local feel.",
+  "slug": "www-merthyr-road-garage-co-uk"
+}

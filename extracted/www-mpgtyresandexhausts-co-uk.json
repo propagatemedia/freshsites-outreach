@@ -1,0 +1,18 @@
+{
+  "name": "MPG Tyres & Exhausts",
+  "location": "Unit 16 Cramic Way, Port Talbot, SA13 1RU",
+  "phone": "01639 887 399",
+  "email": "mpgtyres@btconnect.com",
+  "brand_color": "#D32F2F",
+  "hours": "Mon-Fri 8:30am-5:00pm, Sat 8:30am-12:00pm",
+  "services": [
+    "Tyre Fitting",
+    "MOT Testing",
+    "Wheel Alignment",
+    "Brakes",
+    "Exhausts",
+    "Diagnostics"
+  ],
+  "about": "MPG Tyres & Exhausts is an independent tyre supplier and repair garage in Port Talbot, helping local drivers with tyres, MOT testing, brakes, exhausts, laser alignment, diagnostics and repairs. The new page brings the important booking details, services and trust signals into one clear local homepage.",
+  "slug": "www-mpgtyresandexhausts-co-uk"
+}
