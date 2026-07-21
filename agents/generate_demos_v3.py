@@ -174,8 +174,10 @@ def generate_demo(data: dict) -> str:
 
     town = "Powys, Wales"
     if location:
-        parts = [p.strip() for p in location.split(",")]
-        if len(parts) >= 2:
+        parts = [p.strip() for p in location.split(",") if p.strip()]
+        if len(parts) == 1:
+            town = parts[0]
+        elif len(parts) >= 2:
             town = parts[-2] if len(parts) >= 3 else parts[-1]
 
     # Build service cards with images + descriptions - rotate verified images by slug, no repeats within a demo
