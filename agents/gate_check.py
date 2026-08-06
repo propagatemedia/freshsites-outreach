@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Outreach Gate — reads a vision-review verdict and decides if a lead may be emailed.
+Outreach Gate - reads a vision-review verdict and decides if a lead may be emailed.
 
 The vision agent writes review/<slug>/verdict.json (see references/vision-rubric.md).
 This gate enforces Tyrone's honesty rules mechanically so nothing gets emailed that
@@ -23,19 +23,22 @@ from pathlib import Path
 REPO = Path(__file__).parent.parent
 MIN_IMPROVEMENT = 2.0
 MAX_PROSPECT_SCORE = 6.5
+MAX_CANDIDATE_SCORE = 50
+MAX_CONVERSION_ASSETS_WITHOUT_OVERRIDE = 4
+MAX_TRUST_SERVICE_ASSETS_WITHOUT_OVERRIDE = 3
 
 
 def check(slug: str) -> bool:
     vpath = REPO / "review" / slug / "verdict.json"
     if not vpath.exists():
-        print(f"BLOCKED: no verdict.json for {slug} — run the vision review first.")
+        print(f"BLOCKED: no verdict.json for {slug} - run the vision review first.")
         return False
 
     v = json.loads(vpath.read_text())
     reasons = []
 
     if not v.get("captured_ok", False):
-        reasons.append("screenshots did not capture cleanly — page unseen")
+        reasons.append("screenshots did not capture cleanly - page unseen")
     if not v.get("send_ok", False):
         reasons.append("agent set send_ok=false (honest call: skip)")
     if not v.get("is_demo_better", False):
@@ -47,10 +50,28 @@ def check(slug: str) -> bool:
 
     prospect_overall = v.get("prospect", {}).get("overall", 0)
     if prospect_overall >= MAX_PROSPECT_SCORE:
-        reasons.append(f"prospect site scores {prospect_overall}/10 (>= {MAX_PROSPECT_SCORE}) — too good to credibly pitch")
+        reasons.append(f"prospect site scores {prospect_overall}/10 (>= {MAX_PROSPECT_SCORE}) - too good to credibly pitch")
+
+    candidate_score = v.get("candidate_score_100")
+    if candidate_score is not None and candidate_score >= MAX_CANDIDATE_SCORE and not v.get("severe_defect_override", False):
+        reasons.append(f"candidate matrix score {candidate_score}/100 (>= {MAX_CANDIDATE_SCORE}) - commercially functional, requires severe_defect_override=true")
+
+    conversion_assets = v.get("conversion_assets", []) or []
+    trust_service_assets = (v.get("trust_assets", []) or []) + (v.get("service_assets", []) or [])
+    if (
+        len(conversion_assets) >= MAX_CONVERSION_ASSETS_WITHOUT_OVERRIDE
+        and len(trust_service_assets) >= MAX_TRUST_SERVICE_ASSETS_WITHOUT_OVERRIDE
+        and not v.get("severe_defect_override", False)
+    ):
+        reasons.append(
+            f"site already has {len(conversion_assets)} conversion assets and {len(trust_service_assets)} trust/service assets - ugliness alone is not enough"
+        )
 
     print(f"=== GATE: {slug} ===")
     print(f"  prospect overall: {prospect_overall}/10")
+    print(f"  candidate score:  {candidate_score if candidate_score is not None else '?'} /100")
+    print(f"  conversion assets:{len(conversion_assets)}")
+    print(f"  trust/service:    {len(trust_service_assets)}")
     print(f"  demo overall:     {v.get('demo', {}).get('overall', '?')}/10")
     print(f"  improvement:      {improvement:+.1f}")
     print(f"  honest call:      {v.get('honest_call', '(none)')}")

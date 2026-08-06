@@ -1,7 +1,7 @@
 # FreshSites Vision Review Rubric
 
-The vision review agent looks at TWO full-page screenshots — the prospect's CURRENT
-live website and the FreshSites DEMO — and judges them like a real small-business owner
+The vision review agent looks at TWO full-page screenshots - the prospect's CURRENT
+live website and the FreshSites DEMO - and judges them like a real small-business owner
 and a conversion expert would. This replaces keyword-counting with actual visual judgment.
 
 The agent MUST look at the images. It does not infer from HTML. It scores what a human sees.
@@ -38,6 +38,20 @@ The agent MUST look at the images. It does not infer from HTML. It scores what a
 - From the screenshot proportions and layout, does it look like it would work on a phone?
 - Tiny text, fixed-width desktop layout, horizontal scroll = low.
 
+## Candidate matrix cross-check
+
+Before the comparison verdict, score the current site against `agents/references/candidate-review-matrix.md`.
+
+This prevents false positives where a website looks ugly but already has strong commercial infrastructure.
+
+Record:
+- **conversion_assets**: visible phone/sticky header, email, contact form, booking/pay/quote CTA, repeated call route.
+- **trust_assets**: reviews, real photos, accreditations/years, full address/service area, third-party proof.
+- **service_assets**: service cards/pages, areas covered, emergency/routine separation, FAQ/guidance.
+- **candidate_score_100**: matrix score out of 100.
+
+Hard honesty rule: if the site has 4+ conversion assets AND 3+ trust/service assets, it is usually a SKIP even if visually ugly. Ugliness is not enough.
+
 ## The comparison verdict (THIS is the gate)
 
 After scoring both, answer plainly:
@@ -45,22 +59,25 @@ After scoring both, answer plainly:
 - **improvement**: demo_overall - prospect_overall (must be >= +2.0 to pass the gate).
 - **honest_call**: one sentence a human would say, e.g. "Their site is a dated single-page
   with no reviews and a buried number; the demo is cleaner, phone is tap-to-call up top, and
-  it has services + a form — genuinely better." OR "Their existing site is actually solid
-  (7/10) — do NOT send, we can't credibly claim to improve it."
+  it has services + a form - genuinely better." OR "Their existing site is actually commercially functional despite dated design - phone, email, booking, reviews, services and areas are all present. Do NOT send."
 
-## Hard honesty rules (non-negotiable — Tyrone's standard)
+## Hard honesty rules (non-negotiable - Tyrone's standard)
 - If the prospect site scores >= 6.5 overall, RECOMMEND SKIP. We cannot credibly cold-email
   someone with a decent site claiming we'll improve it. Set send_ok=false.
 - Never inflate the prospect's flaws to justify outreach. If it's fine, say it's fine.
 - Never claim the demo fixes something the prospect site already does well.
 - The score is of the WEBSITE, not the business. Say so if it ever leaks into copy.
-- If EITHER screenshot failed to capture (blank/error page), set send_ok=false and flag it —
+- If EITHER screenshot failed to capture (blank/error page), set send_ok=false and flag it -
   never review a page you couldn't see.
 
 ## verdict.json schema (write EXACTLY this shape)
 ```json
 {
   "slug": "www-graiggochgarage-co-uk",
+  "candidate_score_100": 28,
+  "conversion_assets": ["phone visible", "contact form"],
+  "trust_assets": ["address visible"],
+  "service_assets": ["basic service list"],
   "prospect": { "design": 3, "trust": 2, "conversion": 3, "mobile": 4, "overall": 3.0,
                 "notes": "Dated single page, no reviews, phone not clickable, thin content." },
   "demo":     { "design": 8, "trust": 6, "conversion": 9, "mobile": 8, "overall": 7.9,
