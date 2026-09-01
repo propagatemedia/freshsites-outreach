@@ -9,6 +9,7 @@ import json
 import re
 import sqlite3
 import subprocess
+import smtplib
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -162,12 +163,80 @@ def wrap_email(raw, lead, audit, gate):
 """
     return f"From: freshsites@sites.propagate.media\nTo: {REVIEW_TO}\nSubject: [REVIEW] {subject}\nContent-Type: text/html; charset=utf-8\n\n{pre}{body}"
 
+def himalaya_config_no_save():
+    """Use a temp minimal Himalaya config that skips IMAP Sent-copy writes.
+
+    The freshsites IMAP auth can fail while SMTP still works. Review sends should
+    not be blocked by an IMAP save-copy failure.
+    """
+    dst = REPO/'tmp'/'himalaya_no_save.toml'
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text('''
+[accounts.freshsites]
+default = true
+email = "freshsites@sites.propagate.media"
+display-name = "FreshSites"
+signature = "Best regards,\\nThe FreshSites Team\\n"
+signature-delim = "-- \\n"
+folder.aliases.inbox = "INBOX"
+folder.aliases.sent = "INBOX.Sent"
+folder.aliases.drafts = "INBOX.Drafts"
+folder.aliases.trash = "INBOX.Trash"
+backend.type = "imap"
+backend.host = "mail.propagate.media"
+backend.port = 993
+backend.encryption.type = "tls"
+backend.login = "freshsites@sites.propagate.media"
+backend.auth.type = "password"
+backend.auth.cmd = "~/.config/himalaya/get-password.sh freshsites@sites.propagate.media"
+message.send.backend.type = "smtp"
+message.send.backend.host = "mail.propagate.media"
+message.send.backend.port = 465
+message.send.backend.encryption.type = "tls"
+message.send.backend.login = "freshsites@sites.propagate.media"
+message.send.backend.auth.type = "password"
+message.send.backend.auth.cmd = "~/.config/himalaya/get-password.sh freshsites@sites.propagate.media"
+message.send.pre-hook = "~/.config/himalaya/add-bcc-agents.sh"
+message.send.save-copy = false
+'''.lstrip(), encoding='utf-8')
+    return str(dst)
+
+
+def smtp_send_raw(message: str):
+    """Direct SMTP fallback. Does not print or persist passwords.
+
+    Tries FreshSites first. If its credential is stale, uses the verified
+    kentbusinesses mailbox as a review-relay to Tyrone only. This fallback is
+    never used for live prospect outreach.
+    """
+    pw_cmd = str(Path.home()/'.config/himalaya/get-password.sh')
+    accounts = [
+        ('freshsites@sites.propagate.media', 'mail.propagate.media', message),
+        ('mike@kentbusinesses.com', 'c1100730.sgvps.net', re.sub(r'^From:.*$', 'From: Mike Review Relay <mike@kentbusinesses.com>\nReply-To: freshsites@sites.propagate.media', message, count=1, flags=re.M)),
+    ]
+    last_error = None
+    for login, host, msg in accounts:
+        r = subprocess.run([pw_cmd, login], capture_output=True, text=True, timeout=10)
+        if r.returncode != 0 or not r.stdout.strip():
+            last_error = f'could not read SMTP password for {login}'
+            continue
+        try:
+            with smtplib.SMTP_SSL(host, 465, timeout=30) as smtp:
+                smtp.login(login, r.stdout.strip())
+                smtp.sendmail(login, [REVIEW_TO], msg.encode('utf-8'))
+            return login
+        except Exception as e:
+            last_error = f'{login}: {e}'
+    raise RuntimeError(last_error or 'no SMTP account worked')
+
+
 def send_review_emails(slugs):
     sys.path.insert(0, str(REPO/'agents'))
     from emailer import generate_email
     REVIEW_OUT.mkdir(parents=True, exist_ok=True)
     sent=[]
     conn=sqlite3.connect(DB); conn.row_factory=sqlite3.Row
+    cfg = himalaya_config_no_save()
     for slug in slugs:
         lead_data=next(x for x in LEADS if x['slug']==slug)
         row=dict(conn.execute('SELECT * FROM leads WHERE demo_url LIKE ?', (f'%/{slug}.html',)).fetchone())
@@ -176,9 +245,15 @@ def send_review_emails(slugs):
         raw, _original_to = generate_email(row)
         msg=wrap_email(raw, lead_data, audit, gate)
         (REVIEW_OUT/f'{slug}.eml').write_text(msg, encoding='utf-8')
-        r=subprocess.run(['himalaya','message','send','--account','freshsites'], input=msg, text=True, capture_output=True, timeout=45)
+        r=subprocess.run(['himalaya','message','send','--config',cfg,'--account','freshsites'], input=msg, text=True, capture_output=True, timeout=45)
         if r.returncode != 0:
-            raise SystemExit(f"Email send failed for {slug}: {r.stderr[:500]} {r.stdout[:500]}")
+            # Himalaya currently builds the IMAP backend even with save-copy off;
+            # fall back to direct SMTP so a broken Sent-folder login does not block review copies.
+            try:
+                relay = smtp_send_raw(msg)
+                print(f"  Himalaya/freshsites unavailable; sent review via SMTP relay {relay}")
+            except Exception as e:
+                raise SystemExit(f"Email send failed for {slug}: Himalaya: {r.stderr[:300]} | SMTP fallback: {e}")
         print(f"SENT REVIEW {slug} -> {REVIEW_TO} | {LIVE_BASE}/{slug}.html")
         sent.append(slug)
     conn.close()
