@@ -1,0 +1,77 @@
+{
+  "slug": "ceredigion-plumbing-supplies",
+  "name": "Ceredigion Plumbing Supplies",
+  "industry": "Plumbing supply store",
+  "website": "http://cpslampeter.co.uk/",
+  "phone": "01570 422772",
+  "email": "info@cpslampeter.co.uk",
+  "location": "Unit 5b, Industrial Estate, Tregaron Road, Lampeter, SA48 8LT",
+  "brand_color": "#0f766e",
+  "services": [
+    "Plumbing supplies",
+    "Heating parts",
+    "Trade counter",
+    "Local delivery",
+    "Bathroom supplies",
+    "Advice and ordering"
+  ],
+  "audit_summary": "The public website resolves to an account suspended page / invalid certificate path. That kills trust before the customer even sees opening hours or stock categories.",
+  "demo_url": "https://propagatemedia.github.io/freshsites-outreach/demos/ceredigion-plumbing-supplies.html",
+  "score": 1.0,
+  "score_breakdown": {
+    "no_h1": 0.48,
+    "phone_hidden": 0.72,
+    "no_cta_above_fold": 0.56,
+    "no_contact_form": 1.0,
+    "thin_imagery": 0.4,
+    "weak_value_prop": 1.0,
+    "social_proof": 0.4,
+    "severe_site_defect": 1.0
+  },
+  "original_audit": {
+    "url": "http://cpslampeter.co.uk/",
+    "final_url": "http://cpslampeter.co.uk/cgi-sys/suspendedpage.cgi",
+    "http_status": 200,
+    "score": 1.0,
+    "candidate_score_100": 0,
+    "decision": "BUILD",
+    "severe_defects": [
+      "account_suspended"
+    ],
+    "conversion_assets": [
+      "email"
+    ],
+    "trust_assets": [],
+    "service_assets": [],
+    "breakdown": {
+      "no_h1": 0.48,
+      "phone_hidden": 0.72,
+      "no_cta_above_fold": 0.56,
+      "no_contact_form": 1.0,
+      "thin_imagery": 0.4,
+      "weak_value_prop": 1.0,
+      "social_proof": 0.4,
+      "severe_site_defect": 1.0
+    },
+    "reasons": [
+      "Severe defect: account_suspended",
+      "No clear H1",
+      "Phone not visible/clickable",
+      "Weak or missing CTA",
+      "No contact form",
+      "Thin imagery (0)",
+      "Thin content (175 words)",
+      "No trust/review/accreditation signal"
+    ],
+    "title": "Account Suspended",
+    "h1": [],
+    "word_count": 175,
+    "image_count": 0,
+    "form_count": 0,
+    "tel_links": 0,
+    "mail_links": 1,
+    "mobile_viewport": true,
+    "platform_signals": []
+  },
+  "created_at": "2026-09-01T20:20:19.730327"
+}

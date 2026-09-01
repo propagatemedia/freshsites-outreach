@@ -1,0 +1,58 @@
+{
+  "slug": "adeilad-claddings",
+  "name": "Adeilad Claddings",
+  "industry": "Construction Company",
+  "website": "https://adclad.co.uk/",
+  "phone": "01550 777497",
+  "email": "adclad@gmail.com",
+  "location": "The Stores, Station Road, Llanwrda, SA19 8EH",
+  "brand_color": "#b45309",
+  "services": [
+    "Agricultural cladding",
+    "Industrial cladding",
+    "Roofing sheets",
+    "Repairs and maintenance",
+    "Commercial projects",
+    "Project enquiries"
+  ],
+  "audit_summary": "The current site is only an under-construction page with office details. It does not show services, projects, proof, sectors or a proper enquiry flow.",
+  "demo_url": "https://propagatemedia.github.io/freshsites-outreach/demos/adeilad-claddings.html",
+  "score": 0.0,
+  "score_breakdown": {
+    "site_unreachable": 1.0,
+    "no_contact_form": 1.0,
+    "weak_mobile": 1.0
+  },
+  "original_audit": {
+    "url": "https://adclad.co.uk/",
+    "final_url": "https://adclad.co.uk/",
+    "http_status": "FETCH_FAIL",
+    "score": 0.0,
+    "candidate_score_100": 0,
+    "decision": "BUILD",
+    "severe_defects": [
+      "fetch_failed"
+    ],
+    "conversion_assets": [],
+    "trust_assets": [],
+    "service_assets": [],
+    "breakdown": {
+      "site_unreachable": 1.0,
+      "no_contact_form": 1.0,
+      "weak_mobile": 1.0
+    },
+    "reasons": [
+      "https://adclad.co.uk/: broken SSL fallback failed: RemoteDisconnected: Remote end closed connection without response | https://adclad.co.uk/: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1016)>"
+    ],
+    "title": "",
+    "h1": [],
+    "word_count": 0,
+    "image_count": 0,
+    "form_count": 0,
+    "tel_links": 0,
+    "mail_links": 0,
+    "mobile_viewport": false,
+    "platform_signals": []
+  },
+  "created_at": "2026-09-01T20:20:21.062428"
+}
