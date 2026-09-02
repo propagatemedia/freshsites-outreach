@@ -68,7 +68,7 @@ LEADS = [
         "slug": "knighton-steel-framed-buildings",
         "name": "Knighton Steel Framed Buildings Ltd",
         "industry": "Construction Company",
-        "website": "http://knighton-steelframedbuildings.co.uk/",
+        "website": "https://knighton-steelframedbuildings.co.uk/",
         "phone": "01547 428078",
         "email": "info@knighton-steelframedbuildings.co.uk",
         "location": "Unit 5, Mochdre Industrial Estate, Newtown, Powys, SY16 8RE",
