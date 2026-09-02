@@ -102,6 +102,9 @@ def score_demo(html: str, base: str, expected_name: str, vertical: str):
         if not ok: broken.append(loc)
     if broken: fail(1.5, 'broken images: '+ '; '.join(broken[:3]))
     if len(p.imgs) < 1: fail(0.8,'no hero/image asset')
+    hero_imgs = [s for s in p.imgs if 'assets/img' in s]
+    if hero_imgs and all(s.lower().endswith('.svg') for s in hero_imgs):
+        fail(1.5,'hero/section images are SVG placeholders - use real photographic assets')
     if vertical and vertical.lower() not in ['garage','automotive'] and re.search(r'\bgarage\b|\bmot\b|\bcar service\b', low):
         fail(1.5,'wrong vertical copy appears to be garage/automotive')
     if re.search(r'lorem ipsum|12345 somewhere|user@untitled|nashville', low): fail(1.2,'template placeholder text leaked')

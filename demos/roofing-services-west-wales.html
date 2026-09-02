@@ -22,8 +22,8 @@ nav {display:flex;align-items:center;justify-content:space-between;padding:18px 
 .hero {position:relative;min-height:620px;color:#fff;overflow:hidden;background:var(--dark)}
 .hero img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.94)}
 .hero:after {content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,19,24,.9),rgba(16,19,24,.72) 48%,rgba(16,19,24,.22))}
-.hero-in {position:relative;z-index:1;min-height:620px;display:grid;align-items:center;justify-items:start;max-width:760px;text-align:left;margin-left:0}
-.hero-in > div {text-align:left;max-width:760px}
+.hero-in {position:relative;z-index:1;min-height:620px;display:flex;align-items:center;text-align:left}
+.hero-in > div {text-align:left;max-width:640px}
 .eyebrow {display:block;color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:950;text-align:left}
 h1 {font-size:clamp(2.35rem,6vw,5rem);line-height:.98;margin:12px 0 18px;letter-spacing:-.06em;text-align:left}
 .lead {font-size:1.22rem;color:#e5e7eb;max-width:680px;text-align:left}
@@ -67,7 +67,7 @@ footer {background:var(--dark);color:#cbd5e1;text-align:center;padding:36px 20px
 <body>
 <div class="top"><div class="wrap"><span>Llangadog, Wales, SA19 9NE</span><span>01267 668637</span></div></div>
 <header><div class="wrap"><nav><a class="brand" href="#">Roofing Services West Wales</a><div class="links"><a href="#services">Services</a><a href="#audit">Why rebuild</a><a href="#contact" class="btn">Get a Quote</a></div></nav></div></header>
-<section class="hero"><img src="../assets/img/hero-roofing.svg" alt="Roofing services for Roofing Services West Wales"><div class="wrap hero-in"><div><span class="eyebrow">Roofing services</span><h1>Roofing Services West Wales rebuilt for calls, quotes and trust.</h1><p class="lead">A cleaner roofing site that turns storm damage, leaks and quote requests into calls.</p><div class="hero-actions"><a class='btn primary' href='tel:01267668637'>Call 01267 668637</a><a class="btn secondary" href="#services">View Services</a></div></div></div></section>
+<section class="hero"><img src="../assets/img/trade-roofing.jpg" alt="Roofing services for Roofing Services West Wales"><div class="wrap hero-in"><div><span class="eyebrow">Roofing services</span><h1>Roofing Services West Wales rebuilt for calls, quotes and trust.</h1><p class="lead">A cleaner roofing site that turns storm damage, leaks and quote requests into calls.</p><div class="hero-actions"><a class='btn primary' href='tel:01267668637'>Call 01267 668637</a><a class="btn secondary" href="#services">View Services</a></div></div></div></section>
 <section class="section" id="services"><div class="wrap"><span class="eyebrow">What customers need fast</span><h2>Services made obvious in seconds.</h2><div class="grid">
         <article class="service-card">
           <div class="svc-icon">⚡</div>

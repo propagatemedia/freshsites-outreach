@@ -33,7 +33,7 @@ VERTICALS = {
         "services": ["Emergency call-outs", "Consumer unit upgrades", "Rewires and fault finding", "Testing and certification", "Commercial electrical work", "EV charger installation"],
         "proof": ["Qualified credentials", "Clear call-out areas", "Tap-to-call on mobile", "Quote request form"],
         "accent": "#f5b301",
-        "image": "hero-electrician.svg",
+        "image": "trade-electrician.jpg",
     },
     "roofing": {
         "label": "Roofing services",
@@ -41,7 +41,7 @@ VERTICALS = {
         "services": ["Roof repairs", "Flat roofing", "Leadwork", "Moss removal", "Emergency leak response", "New roofs and replacements"],
         "proof": ["Before/after gallery", "Local coverage", "Emergency CTA", "Quote request form"],
         "accent": "#334155",
-        "image": "hero-roofing.svg",
+        "image": "trade-roofing.jpg",
     },
     "plumbing": {
         "label": "Plumbing and heating",
@@ -49,7 +49,7 @@ VERTICALS = {
         "services": ["Emergency plumbing", "Boiler servicing", "Heating repairs", "Bathroom installs", "Leak detection", "Landlord checks"],
         "proof": ["Tap-to-call CTA", "Service area clarity", "Simple request form", "Trust badges"],
         "accent": "#0e7490",
-        "image": "hero-plumbing-supplies.svg",
+        "image": "trade-plumbing-supplies.jpg",
     },
     "construction": {
         "label": "Construction services",
@@ -57,7 +57,7 @@ VERTICALS = {
         "services": ["Cladding", "Roofing", "Maintenance", "Commercial projects", "Repairs", "Project enquiries"],
         "proof": ["Project gallery", "Accreditations", "Clear sectors served", "Enquiry form"],
         "accent": "#b45309",
-        "image": "hero-cladding.svg",
+        "image": "trade-cladding.jpg",
     },
     "supply": {
         "label": "Trade supplies",
@@ -65,7 +65,7 @@ VERTICALS = {
         "services": ["Plumbing supplies", "Heating parts", "Trade counter", "Local delivery", "Advice and ordering", "Brands stocked"],
         "proof": ["Opening hours", "Clickable directions", "Call-to-order CTA", "Product categories"],
         "accent": "#0f766e",
-        "image": "hero-plumbing-supplies.svg",
+        "image": "trade-plumbing-supplies.jpg",
     },
 }
 
@@ -158,8 +158,8 @@ nav {{display:flex;align-items:center;justify-content:space-between;padding:18px
 .hero {{position:relative;min-height:620px;color:#fff;overflow:hidden;background:var(--dark)}}
 .hero img {{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.94)}}
 .hero:after {{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,19,24,.9),rgba(16,19,24,.72) 48%,rgba(16,19,24,.22))}}
-.hero-in {{position:relative;z-index:1;min-height:620px;display:grid;align-items:center;justify-items:start;max-width:760px;text-align:left;margin-left:0}}
-.hero-in > div {{text-align:left;max-width:760px}}
+.hero-in {{position:relative;z-index:1;min-height:620px;display:flex;align-items:center;text-align:left}}
+.hero-in > div {{text-align:left;max-width:640px}}
 .eyebrow {{display:block;color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:950;text-align:left}}
 h1 {{font-size:clamp(2.35rem,6vw,5rem);line-height:.98;margin:12px 0 18px;letter-spacing:-.06em;text-align:left}}
 .lead {{font-size:1.22rem;color:#e5e7eb;max-width:680px;text-align:left}}
