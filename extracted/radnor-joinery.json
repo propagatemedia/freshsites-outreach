@@ -1,0 +1,75 @@
+{
+  "slug": "radnor-joinery",
+  "name": "Radnor Joinery",
+  "industry": "Joiner",
+  "website": "http://radnorjoinery.co.uk/",
+  "phone": "01544 260727",
+  "email": "info@radnorjoinery.co.uk",
+  "location": "Unit 3, Broadaxe Business Park, Presteigne, Powys, LD8 2UH",
+  "brand_color": "#334155",
+  "services": [
+    "Timber doors",
+    "Timber windows",
+    "Home extensions",
+    "Oak framed buildings",
+    "House renovations",
+    "Custom joinery"
+  ],
+  "audit_summary": "The domain is live but serves the default hosting panel welcome page - the real site was never built or has been broken for some time.",
+  "demo_url": "https://propagatemedia.github.io/freshsites-outreach/demos/radnor-joinery.html",
+  "score": 0,
+  "score_breakdown": {
+    "weak_mobile": 0.8,
+    "no_h1": 0.48,
+    "phone_hidden": 0.72,
+    "no_contact_form": 0.44,
+    "missing_email": 0.28,
+    "thin_imagery": 0.4,
+    "weak_value_prop": 0.6,
+    "social_proof": 0.4
+  },
+  "original_audit": {
+    "url": "http://radnorjoinery.co.uk/",
+    "final_url": "http://radnorjoinery.co.uk/",
+    "http_status": 200,
+    "score": 0,
+    "candidate_score_100": 5,
+    "decision": "BUILD",
+    "severe_defects": [],
+    "conversion_assets": [
+      "cta"
+    ],
+    "trust_assets": [],
+    "service_assets": [],
+    "breakdown": {
+      "weak_mobile": 0.8,
+      "no_h1": 0.48,
+      "phone_hidden": 0.72,
+      "no_contact_form": 0.44,
+      "missing_email": 0.28,
+      "thin_imagery": 0.4,
+      "weak_value_prop": 0.6,
+      "social_proof": 0.4
+    },
+    "reasons": [
+      "No mobile viewport",
+      "No clear H1",
+      "Phone not visible/clickable",
+      "No contact form",
+      "No email visible",
+      "Thin imagery (0)",
+      "Thin content (108 words)",
+      "No trust/review/accreditation signal"
+    ],
+    "title": "Web Server's Default Page",
+    "h1": [],
+    "word_count": 108,
+    "image_count": 0,
+    "form_count": 0,
+    "tel_links": 0,
+    "mail_links": 0,
+    "mobile_viewport": false,
+    "platform_signals": []
+  },
+  "created_at": "2026-09-02T16:56:59.843552"
+}

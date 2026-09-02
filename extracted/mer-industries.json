@@ -1,0 +1,76 @@
+{
+  "slug": "mer-industries",
+  "name": "M E R Industries",
+  "industry": "Security system supplier",
+  "website": "https://mer-ind.co.uk/",
+  "phone": "01547 520673",
+  "email": "sales@merindustries.com",
+  "location": "10 High St, Knighton, Powys, LD7 1AT",
+  "brand_color": "#334155",
+  "services": [
+    "CCTV systems",
+    "Alarm systems",
+    "Access control",
+    "Fault finding",
+    "System installation",
+    "Testing and commissioning"
+  ],
+  "audit_summary": "The site returns a 403 Forbidden error with a broken SSL certificate chain - visitors cannot reach the business online at all.",
+  "demo_url": "https://propagatemedia.github.io/freshsites-outreach/demos/mer-industries.html",
+  "score": 3.8,
+  "score_breakdown": {
+    "no_cta_above_fold": 0.56,
+    "no_contact_form": 1.0,
+    "thin_imagery": 0.4,
+    "social_proof": 0.4,
+    "severe_site_defect": 1.0,
+    "weak_value_prop": 1.0
+  },
+  "original_audit": {
+    "url": "https://mer-ind.co.uk/",
+    "final_url": "https://mer-ind.co.uk/",
+    "http_status": 200,
+    "score": 3.8,
+    "candidate_score_100": 0,
+    "decision": "BUILD",
+    "severe_defects": [
+      "ssl_certificate_invalid"
+    ],
+    "conversion_assets": [
+      "phone",
+      "email"
+    ],
+    "trust_assets": [],
+    "service_assets": [],
+    "breakdown": {
+      "no_cta_above_fold": 0.56,
+      "no_contact_form": 1.0,
+      "thin_imagery": 0.4,
+      "social_proof": 0.4,
+      "severe_site_defect": 1.0,
+      "weak_value_prop": 1.0
+    },
+    "reasons": [
+      "Severe defect: ssl_certificate_invalid",
+      "SSL certificate invalid - browser may warn/block visitors",
+      "Weak or missing CTA",
+      "No contact form",
+      "Thin imagery (1)",
+      "No trust/review/accreditation signal"
+    ],
+    "title": "MER INDUSTRIES",
+    "h1": [
+      "MER INDUSTRIES",
+      "CALL 01547 520673",
+      "Email sales@merindustries.com"
+    ],
+    "word_count": 221,
+    "image_count": 1,
+    "form_count": 0,
+    "tel_links": 0,
+    "mail_links": 0,
+    "mobile_viewport": true,
+    "platform_signals": []
+  },
+  "created_at": "2026-09-02T16:57:00.286041"
+}

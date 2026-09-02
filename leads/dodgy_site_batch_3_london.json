@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Heat & Flow",
+    "trade": "Plumber / Gas engineer",
+    "phone": "020 8648 9807",
+    "address": "41 Cambridge Rd, Mitcham CR4 1DW",
+    "website": "heatandflowsouthlondon.co.uk",
+    "email": "info@heatandflowsouthlondon.co.uk",
+    "score": 1.0,
+    "issue": "Domain shows 'Account Suspended' hosting error page - site is down"
+  },
+  {
+    "name": "PZ Plumber Limited",
+    "trade": "Plumber",
+    "phone": "07568 174450",
+    "address": "24 Castleton Rd, Mitcham CR4 1NY",
+    "website": "pzplumber.co.uk",
+    "email": "info@pzplumber.co.uk",
+    "score": 0.0,
+    "issue": "SSL cert issued to wrong hostname (browser security warning) + dated Joomla template, no real conversion path"
+  },
+  {
+    "name": "Electric Link - Electrical & Property Services",
+    "trade": "Electrician",
+    "phone": "07515 137413",
+    "address": "7 North Down, South Croydon CR2 9PB",
+    "website": "electriclink.co.uk",
+    "email": "info@electriclink.co.uk",
+    "score": 0.0,
+    "issue": "Domain redirects to a parked/lander page - site not resolving to real content"
+  }
+]

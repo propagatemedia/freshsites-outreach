@@ -29,8 +29,8 @@ SEVERE_PATTERNS = {
     "account_suspended": [r"account suspended", r"suspendedpage\.cgi"],
     "under_construction": [r"website under construction", r"coming soon", r"under construction"],
     "blank_lander": [r"^\s*$"],
-    "domain_for_sale": [r"domain.*for sale", r"buy this domain"],
-    "parking_page": [r"parked free", r"sedoparking", r"lander"],
+    "domain_for_sale": [r"domain[\s\-]+(?:name[\s\-]+)?for sale", r"buy this domain", r"this domain (?:may be|is) for sale"],
+    "parking_page": [r"parked free", r"sedoparking", r"this domain is parked", r"\blander\b"],
 }
 
 
@@ -118,7 +118,11 @@ def fetch(url: str, timeout=15) -> tuple[str, str, int | str, str | None]:
     else:
         candidates = [url]
     errors = []
-    ctx = ssl.create_default_context()
+    try:
+        import certifi
+        ctx = ssl.create_default_context(cafile=certifi.where())
+    except ImportError:
+        ctx = ssl.create_default_context()
     for candidate in candidates:
         try:
             req = urllib.request.Request(candidate, headers={"User-Agent": USER_AGENT})

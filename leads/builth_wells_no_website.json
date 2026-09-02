@@ -1,0 +1,6 @@
+[
+  {"name": "J B Waller carpentry and building", "trade": "Building firm", "phone": "+447487748180", "address": "West St, Builth Wells LD2 3AL, United Kingdom", "town": "Builth Wells", "category_raw": "Building firm", "rating": 5, "reviews_count": 8},
+  {"name": "W Williams & Son", "trade": "Plumber", "phone": "+441982553463", "address": "13 Garth Rd, Builth Wells LD2 3AR, United Kingdom", "town": "Builth Wells", "category_raw": "Plumber", "rating": 5, "reviews_count": 2},
+  {"name": "Mike Cooper Electrical", "trade": "Electrician", "phone": "+447817038275", "address": "3 Irfon Rd, Builth Wells LD2 3DE, United Kingdom", "town": "Builth Wells", "category_raw": "Electrician", "rating": 5, "reviews_count": 1},
+  {"name": "Alan Williams Gas Services", "trade": "Gas company", "phone": "+441982551354", "address": "11 Tai-Ar-Y-Bryn, Builth Wells LD2 3US, United Kingdom", "town": "Builth Wells", "category_raw": "Gas company", "rating": null, "reviews_count": null}
+]

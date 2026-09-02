@@ -1,0 +1,82 @@
+[
+  {
+    "name": "CP Electrical (Electrician)",
+    "trade": "Electrician",
+    "phone": "+44 7966 762034",
+    "address": "57 New Rd, Newtown SY16 1AR",
+    "website": "cpelectrical.weebly.com",
+    "email": "cpelectrical1@gmail.com",
+    "score": 4.7,
+    "issue": "Free Weebly site, thin content, no real conversion path"
+  },
+  {
+    "name": "Jules Russell Timber, Carpentry and Sawmilling",
+    "trade": "Carpenter",
+    "phone": "+44 7812 459366",
+    "address": "Esgair Goch, Machynlleth SY20 9JS",
+    "website": "timberarc.wordpress.com (Maps listed dead .co.uk domain)",
+    "email": "artisan.en.bois@googlemail.com",
+    "score": 1.0,
+    "issue": "Abandoned free WordPress.com blog, single 2012 post, no real business site"
+  },
+  {
+    "name": "Radnor Joinery",
+    "trade": "Joiner",
+    "phone": "+44 1544 260727",
+    "address": "Unit 3, Broadaxe Business Park, Presteigne LD8 2UH",
+    "website": "radnorjoinery.co.uk",
+    "email": "info@radnorjoinery.co.uk",
+    "score": 0.0,
+    "issue": "Domain live but serving default Plesk hosting panel page - site never built/broken"
+  },
+  {
+    "name": "M E R Industries",
+    "trade": "Security system supplier",
+    "phone": "+44 1547 520673",
+    "address": "10 High St, Knighton LD7 1AT",
+    "website": "mer-ind.co.uk",
+    "email": "sales@merindustries.com",
+    "score": 3.8,
+    "issue": "403 Forbidden + broken SSL cert chain - site inaccessible to visitors"
+  },
+  {
+    "name": "Knighton Steel Framed Buildings Ltd",
+    "trade": "Construction (steel/agricultural buildings)",
+    "phone": "+44 1547 428078",
+    "address": "37 Fronhir Estate, Knighton LD7 1HT",
+    "website": "knighton-steelframedbuildings.co.uk",
+    "email": "info@knighton-steelframedbuildings.co.uk",
+    "score": 3.8,
+    "issue": "403 Forbidden + SSL cert mismatch (wrong domain on cert) - site inaccessible"
+  },
+  {
+    "name": "Heat & Flow",
+    "trade": "Plumber / Gas engineer",
+    "phone": "020 8648 9807",
+    "address": "41 Cambridge Rd, Mitcham CR4 1DW",
+    "website": "heatandflowsouthlondon.co.uk",
+    "email": "info@heatandflowsouthlondon.co.uk",
+    "score": 1.0,
+    "issue": "Domain shows 'Account Suspended' hosting error page - site is down"
+  },
+  {
+    "name": "PZ Plumber Limited",
+    "trade": "Plumber",
+    "phone": "07568 174450",
+    "address": "24 Castleton Rd, Mitcham CR4 1NY",
+    "website": "pzplumber.co.uk",
+    "email": "info@pzplumber.co.uk",
+    "score": 0.0,
+    "issue": "SSL cert issued to wrong hostname (browser security warning) + dated Joomla template, no real conversion path"
+  },
+  {
+    "name": "Electric Link - Electrical & Property Services",
+    "trade": "Electrician",
+    "phone": "07515 137413",
+    "address": "7 North Down, South Croydon CR2 9PB",
+    "website": "electriclink.co.uk",
+    "email": "info@electriclink.co.uk",
+    "score": 0.0,
+    "issue": "Domain redirects to a parked/lander page - site not resolving to real content"
+  }
+]
