@@ -20,7 +20,7 @@ REPO = Path(__file__).resolve().parents[1]
 DB = REPO / "leads" / "freshsites.db"
 SENDER = "freshsites@sites.propagate.media"
 SMTP_HOST = "c1100730.sgvps.net"
-SMTP_LOGIN = "mike@kentbusinesses.com"
+SMTP_LOGIN = "freshsites@sites.propagate.media"
 REVIEW_FALLBACK = "tyrone@propagate.media"  # only used if lead email is empty
 
 
@@ -56,15 +56,10 @@ def send(slug: str) -> bool:
 
     raw, _original_to = generate_email(lead)
 
-    # The emailer sets From: freshsites@sites.propagate.media in the body, but the
-    # kentbusinesses relay rejects any MAIL FROM that isn't hosted on its own server
-    # (550 "not hosted on this server"). Rewrite From: to the relay account and keep
-    # Reply-To: freshsites@sites.propagate.media so replies land in the right inbox.
+    # Now sending directly from the real freshsites@sites.propagate.media mailbox
+    # (credentials fixed 2026-09) - no relay workaround needed. From: is already
+    # correct in the generated body. Ensure Reply-To is set explicitly.
     header, body = raw.split("\n\n", 1)
-    if re.search(r"^From:.*$", header, re.M):
-        header = re.sub(r"^From:.*$", f"From: FreshSites <{SMTP_LOGIN}>", header, count=1, flags=re.M)
-    else:
-        header = f"From: FreshSites <{SMTP_LOGIN}>\n" + header
     if "Reply-To:" not in header:
         header = header.rstrip() + f"\nReply-To: {SENDER}"
     raw = header + "\n\n" + body

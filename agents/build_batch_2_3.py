@@ -214,14 +214,14 @@ folder.aliases.sent = "INBOX.Sent"
 folder.aliases.drafts = "INBOX.Drafts"
 folder.aliases.trash = "INBOX.Trash"
 backend.type = "imap"
-backend.host = "mail.propagate.media"
+backend.host = "c1100730.sgvps.net"
 backend.port = 993
 backend.encryption.type = "tls"
 backend.login = "freshsites@sites.propagate.media"
 backend.auth.type = "password"
 backend.auth.cmd = "~/.config/himalaya/get-password.sh freshsites@sites.propagate.media"
 message.send.backend.type = "smtp"
-message.send.backend.host = "mail.propagate.media"
+message.send.backend.host = "c1100730.sgvps.net"
 message.send.backend.port = 465
 message.send.backend.encryption.type = "tls"
 message.send.backend.login = "freshsites@sites.propagate.media"
@@ -236,7 +236,7 @@ message.send.save-copy = false
 def smtp_send_raw(message: str):
     pw_cmd = str(Path.home() / '.config/himalaya/get-password.sh')
     accounts = [
-        ('freshsites@sites.propagate.media', 'mail.propagate.media', message),
+        ('freshsites@sites.propagate.media', 'c1100730.sgvps.net', message),
         ('mike@kentbusinesses.com', 'c1100730.sgvps.net', re.sub(r'^From:.*$', 'From: Mike Review Relay <mike@kentbusinesses.com>\nReply-To: freshsites@sites.propagate.media', message, count=1, flags=re.M)),
     ]
     last_error = None
