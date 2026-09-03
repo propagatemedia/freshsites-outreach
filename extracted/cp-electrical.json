@@ -1,0 +1,70 @@
+{
+  "slug": "cp-electrical",
+  "name": "CP Electrical",
+  "industry": "Electrician",
+  "website": "https://cpelectrical.weebly.com/",
+  "phone": "07966 762034",
+  "email": "cpelectrical1@gmail.com",
+  "location": "57 New Rd, Newtown, Powys, SY16 1AR",
+  "brand_color": "#f5b301",
+  "services": [
+    "Domestic wiring",
+    "Fault finding",
+    "Consumer unit upgrades",
+    "Testing and certification",
+    "Lighting installs",
+    "Emergency call-outs"
+  ],
+  "audit_summary": "The current site is a free Weebly page - thin content, no real conversion path, and looks unfinished next to competing local electricians.",
+  "demo_url": "https://propagatemedia.github.io/freshsites-outreach/demos/cp-electrical.html",
+  "score": 4.7,
+  "score_breakdown": {
+    "weak_mobile": 0.8,
+    "no_h1": 0.48,
+    "no_cta_above_fold": 0.56,
+    "missing_email": 0.28
+  },
+  "original_audit": {
+    "url": "https://cpelectrical.weebly.com/",
+    "final_url": "https://cpelectrical.weebly.com/",
+    "http_status": 200,
+    "score": 4.7,
+    "candidate_score_100": 67,
+    "decision": "BUILD",
+    "severe_defects": [],
+    "conversion_assets": [
+      "phone",
+      "form"
+    ],
+    "trust_assets": [
+      "accreditations"
+    ],
+    "service_assets": [
+      "content_depth"
+    ],
+    "breakdown": {
+      "weak_mobile": 0.8,
+      "no_h1": 0.48,
+      "no_cta_above_fold": 0.56,
+      "missing_email": 0.28
+    },
+    "reasons": [
+      "No mobile viewport",
+      "No clear H1",
+      "Weak or missing CTA",
+      "No email visible"
+    ],
+    "title": "C.P.ELECTRICAL - Home",
+    "h1": [],
+    "word_count": 1061,
+    "image_count": 5,
+    "form_count": 1,
+    "tel_links": 0,
+    "mail_links": 0,
+    "mobile_viewport": false,
+    "platform_signals": [
+      "Weebly"
+    ]
+  },
+  "created_at": "2026-09-02T16:56:29.347115"
+}
