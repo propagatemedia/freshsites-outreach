@@ -1,0 +1,15 @@
+{
+  "brand_color": "#003d7a",
+  "services": [
+    "Emergency plumbing",
+    "Bathroom installation",
+    "Heating systems",
+    "Drainage",
+    "Boiler repair"
+  ],
+  "about": "London's trusted plumbing service since 1979. 24/7 emergency response. 200+ skilled engineers across London.",
+  "phone": "020 7736 6868",
+  "hours": "Monday-Friday: 8:00-17:30 | Saturday: 8:00-12:00",
+  "location": "London",
+  "images": []
+}
