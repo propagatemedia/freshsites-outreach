@@ -34,6 +34,25 @@ def get_password():
     return r.stdout.strip()
 
 
+def enforce_send_gates(lead_row: dict) -> None:
+    """Hard block: refuses to send unless pipeline_stage=final_approved
+    AND it's a weekday office hour. Raises RuntimeError otherwise."""
+    from datetime import datetime
+
+    stage = lead_row.get("pipeline_stage")
+    if stage != "final_approved":
+        raise RuntimeError(
+            f"BLOCKED: pipeline_stage='{stage}', must be 'final_approved' "
+            f"(run through Gates 1-4 + Tyrone final green light first)"
+        )
+
+    now = datetime.now()
+    if now.weekday() >= 5:  # 5=Sat, 6=Sun
+        raise RuntimeError(f"BLOCKED: weekend ({now.strftime('%A')}), office-hours-only send window")
+    if not (9 <= now.hour < 17):
+        raise RuntimeError(f"BLOCKED: outside office hours (9am-5pm), current time {now.strftime('%H:%M')}")
+
+
 def get_lead(slug: str) -> dict:
     conn = sqlite3.connect(str(DB))
     conn.row_factory = sqlite3.Row
@@ -53,6 +72,8 @@ def send(slug: str) -> bool:
     if not to_email:
         print(f"BLOCKED: no email for {slug}")
         return False
+
+    enforce_send_gates(lead)  # raises RuntimeError if not final_approved / wrong window
 
     raw, _original_to = generate_email(lead)
 
