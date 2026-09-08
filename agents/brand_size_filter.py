@@ -10,7 +10,6 @@ import re
 REJECT_PATTERNS = [
     r'\bsince\s+19\d{2}\b',              # "since 1979" - long-established
     r'\b(200|300|400|500)\+?\s*(vans|engineers|tradespeople|staff)\b',
-    r'\b\d{2,3}\+?\s*years?\s+(of\s+)?experience\b',  # only flags 20+ handled below
     r'£\d{1,3}(\.\d+)?m(illion)?\s+(revenue|turnover)',
     r'\bnational(ly)?\s+(recognised|known|trusted)\b',
     r'\bfranchise\b',
@@ -24,20 +23,33 @@ REVIEW_COUNT = re.compile(r'\b(\d{3,})\s*(reviews|ratings)\b', re.I)
 
 def check_brand_size(extracted_text: str, review_count: int = 0) -> dict:
     """
-    Returns {'reject': bool, 'reasons': [...]}
+    Returns {'reject': bool, 'reasons': [...], 'flag_for_gate1': bool}
     extracted_text: raw scraped about/homepage text
     review_count: from Google Business profile if available
+
+    'reject' = auto-reject, never reaches Gate 1 (strong/multiple signals only)
+    'flag_for_gate1' = weak single signal, pass through as a note but let
+                       the human-equivalent Gate 1 agents make the call
     """
     reasons = []
+    weak_reasons = []
     text = extracted_text or ""
 
     for pattern in REJECT_PATTERNS:
         if re.search(pattern, text, re.I):
             reasons.append(f"matched pattern: {pattern}")
 
+    # Years alone is NOT a reject signal (sole traders say "28 years experience"
+    # all the time). A single scale-word match (nav link "Meet the Team") is also
+    # weak on its own. Only hard-reject on years+scale IF there are 2+ distinct
+    # scale words found (reduces one-off false positives like nav menu items).
     years_match = LARGE_YEARS.search(text)
+    scale_words_found = set(w.lower() for w in re.findall(r'\b(team|staff|vans?|engineers|branches?|depots?|nationwide)\b', text, re.I))
     if years_match and int(years_match.group(1)) >= 20:
-        reasons.append(f"{years_match.group(1)}+ years trading (established)")
+        if len(scale_words_found) >= 3:
+            reasons.append(f"{years_match.group(1)}+ years trading AND 3+ distinct scale signals {scale_words_found} (established brand)")
+        elif len(scale_words_found) >= 1:
+            weak_reasons.append(f"{years_match.group(1)}+ years trading + weak signal(s) {scale_words_found} (verify in Gate 1, could be nav-link false positive)")
 
     if MULTI_LOCATION_HINT.search(text):
         reasons.append("multi-location/branch language detected")
@@ -52,6 +64,8 @@ def check_brand_size(extracted_text: str, review_count: int = 0) -> dict:
     return {
         'reject': len(reasons) > 0,
         'reasons': reasons,
+        'flag_for_gate1': len(weak_reasons) > 0,
+        'weak_reasons': weak_reasons,
     }
 
 
