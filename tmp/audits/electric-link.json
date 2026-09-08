@@ -1,0 +1,38 @@
+{
+  "url": "https://www.electriclink.co.uk/",
+  "final_url": "https://www.electriclink.co.uk/",
+  "http_status": 200,
+  "score": 7.7,
+  "candidate_score_100": 100,
+  "decision": "REJECT",
+  "severe_defects": [],
+  "conversion_assets": [
+    "phone",
+    "email",
+    "cta"
+  ],
+  "trust_assets": [
+    "reviews",
+    "accreditations"
+  ],
+  "service_assets": [
+    "content_depth"
+  ],
+  "breakdown": {
+    "no_h1": 0.48,
+    "no_contact_form": 0.44
+  },
+  "reasons": [
+    "No clear H1",
+    "No contact form"
+  ],
+  "title": "Electric Link - Electrician in South Croydon - CR2 9PB",
+  "h1": [],
+  "word_count": 2549,
+  "image_count": 2,
+  "form_count": 0,
+  "tel_links": 2,
+  "mail_links": 2,
+  "mobile_viewport": true,
+  "platform_signals": []
+}

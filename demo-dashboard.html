@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshSites Demo Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { 
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        h1 { font-size: 2em; margin-bottom: 10px; color: #00d4ff; }
+        .stats { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .stat { 
+            background: rgba(0, 212, 255, 0.05);
+            padding: 15px;
+            border-left: 3px solid #00d4ff;
+            border-radius: 4px;
+        }
+        .stat-number { font-size: 1.8em; color: #00d4ff; font-weight: bold; }
+        .stat-label { font-size: 0.85em; color: #888; margin-top: 5px; }
+        
+        .filters { 
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #00d4ff;
+            background: transparent;
+            color: #00d4ff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9em;
+        }
+        .filter-btn.active {
+            background: #00d4ff;
+            color: #0a0a0a;
+        }
+        .filter-btn:hover { background: rgba(0, 212, 255, 0.2); }
+        
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .demo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .demo-card:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        .demo-card a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .demo-card a:hover { text-decoration: underline; }
+        .demo-name { font-size: 1.1em; margin-bottom: 8px; }
+        .demo-score {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: #00d4ff;
+            margin-bottom: 8px;
+        }
+        .demo-status {
+            font-size: 0.9em;
+            color: #888;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .status-sent { color: #4ade80; }
+        .status-pending { color: #fbbf24; }
+        .status-engaged { color: #60a5fa; }
+        .status-deleted { color: #ef4444; }
+        
+        .open-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #00d4ff;
+            color: #0a0a0a;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+        .open-btn:hover {
+            background: #00a8c7;
+            transform: scale(1.05);
+        }
+        
+        .empty { text-align: center; color: #666; padding: 40px; }
+        
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 FreshSites Demo Dashboard</h1>
+            <p>Live prospects • Auto lifecycle • 15-day cleanup</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" id="stat-total">25</div>
+                    <div class="stat-label">Sent</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="stat-engaged">0</div>
+                    <div class="stat-label">Engaged</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="stat-expired">0</div>
+                    <div class="stat-label">Expiring Soon</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterBy('all')">All</button>
+            <button class="filter-btn" onclick="filterBy('best')">Score 0-1</button>
+            <button class="filter-btn" onclick="filterBy('strong')">Score 2-3</button>
+            <button class="filter-btn" onclick="filterBy('solid')">Score 3-4</button>
+            <button class="filter-btn" onclick="filterBy('engaged')">Engaged</button>
+        </div>
+        
+        <div class="demos-grid" id="demos-grid">
+            <!-- Populated by JavaScript -->
+        </div>
+        
+        <footer>
+            <p>Lifecycle: Send (Day 0) → Resend (Day 5) → Check (Day 10) → Delete (Day 15)</p>
+            <p>Demos auto-delete unless prospect replies</p>
+        </footer>
+    </div>
+    
+    <script>
+        const demos = [
+            { name: "ElectriServe Ltd", score: 0.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/electriserve-ltd.html", status: "sent", category: "best" },
+            { name: "Radnor Joinery", score: 0.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/radnor-joinery.html", status: "sent", category: "best" },
+            { name: "Ceredigion Plumbing", score: 1.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/ceredigion-plumbing-supplies.html", status: "sent", category: "best" },
+            { name: "Heat & Flow", score: 1.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/heat-and-flow.html", status: "sent", category: "best" },
+            { name: "Ricky Mobile Mechanic", score: 2.3, url: "https://propagatemedia.github.io/freshsites-outreach/demos/ricky-mobile-mechanic-diagnostics.html", status: "sent", category: "strong" },
+            { name: "Roofing Services West Wales", score: 2.5, url: "https://propagatemedia.github.io/freshsites-outreach/demos/roofing-services-west-wales.html", status: "sent", category: "strong" },
+            { name: "Callum McKay Slaters", score: 2.9, url: "https://propagatemedia.github.io/freshsites-outreach/demos/callum-mckay-slaters-ltd.html", status: "sent", category: "strong" },
+            { name: "Ron Hill Motors", score: 3.2, url: "https://propagatemedia.github.io/freshsites-outreach/demos/ron-hill-motors.html", status: "sent", category: "solid" },
+            { name: "Crossing Garage", score: 3.5, url: "https://propagatemedia.github.io/freshsites-outreach/demos/crossing-garage.html", status: "sent", category: "solid" },
+            { name: "Ross of Rutherglen", score: 3.5, url: "https://propagatemedia.github.io/freshsites-outreach/demos/ross-of-rutherglen.html", status: "sent", category: "solid" },
+            { name: "B D Motors Ltd", score: 3.6, url: "https://propagatemedia.github.io/freshsites-outreach/demos/bd-motors-ltd.html", status: "sent", category: "solid" },
+            { name: "K.F. Autos Waterlooville", score: 3.7, url: "https://propagatemedia.github.io/freshsites-outreach/demos/kf-autos-waterlooville.html", status: "sent", category: "solid" },
+            { name: "M E R Industries", score: 3.8, url: "https://propagatemedia.github.io/freshsites-outreach/demos/mer-industries.html", status: "sent", category: "solid" },
+            { name: "Knighton Steel", score: 3.8, url: "https://propagatemedia.github.io/freshsites-outreach/demos/knighton-steel-framed-buildings.html", status: "sent", category: "solid" },
+            { name: "SM Plumbing & Heating", score: 3.8, url: "https://propagatemedia.github.io/freshsites-outreach/demos/sm-plumbing-and-heating.html", status: "sent", category: "solid" },
+            { name: "Pimlico Plumbers", score: 4.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/pimlico-plumbers.html", status: "sent", category: "marginal" },
+            { name: "Walthamstow Builders", score: 4.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/walthamstow-builders.html", status: "sent", category: "marginal" },
+            { name: "Brombick Electrical", score: 4.7, url: "https://propagatemedia.github.io/freshsites-outreach/demos/electricians-in-bromley-brombick-electrical.html", status: "sent", category: "marginal" },
+            { name: "Plumbers Bromley - Trusted", score: 5.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/plumbers-in-bromley-which-trusted-traders-100-years-exp.html", status: "sent", category: "marginal" },
+            { name: "Tony Dear Plumbing", score: 5.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/local-plumbing-repairs-in-bromley.html", status: "sent", category: "marginal" },
+            { name: "Brilliant Plumbing", score: 5.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/plumber-in-bromley-brilliant-plumbing-services.html", status: "sent", category: "marginal" },
+            { name: "Emergency Plumber Bromley", score: 5.0, url: "https://propagatemedia.github.io/freshsites-outreach/demos/emergency-plumber-bromley.html", status: "sent", category: "marginal" },
+        ];
+        
+        let currentFilter = 'all';
+        
+        function renderDemos(filter = 'all') {
+            const grid = document.getElementById('demos-grid');
+            let filtered = demos;
+            
+            if (filter !== 'all') {
+                filtered = demos.filter(d => d.category === filter || (filter === 'engaged' && d.status === 'engaged'));
+            }
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="empty">No demos found</div>';
+                return;
+            }
+            
+            grid.innerHTML = filtered.map(demo => `
+                <div class="demo-card">
+                    <a href="${demo.url}" target="_blank">
+                        📱 ${demo.name}
+                        <span style="margin-left: auto;">↗</span>
+                    </a>
+                    <div class="demo-score">Score: ${demo.score.toFixed(1)}</div>
+                    <div class="demo-status status-${demo.status}">
+                        ${demo.status === 'sent' ? '✓ Sent' : demo.status === 'engaged' ? '💬 Prospect Replied' : '⏳ Pending'}
+                    </div>
+                    <button class="open-btn" onclick="window.open('${demo.url}', '_blank')">View Demo</button>
+                </div>
+            `).join('');
+        }
+        
+        function filterBy(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderDemos(category);
+        }
+        
+        // Initial render
+        renderDemos();
+    </script>
+</body>
+</html>

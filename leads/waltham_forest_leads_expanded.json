@@ -1,0 +1,47 @@
+{
+  "location": "Waltham Forest, London + nearby (Newham, Walthamstow, Leyton)",
+  "timestamp": "2026-09-04T12:57:08.702691Z",
+  "total_discovered": 56,
+  "qualified_leads": 3,
+  "leads": [
+    {
+      "name": "Property maintenance & services in Waltham Forest",
+      "industry": "plumber",
+      "website": "https://pimlicoplumbers.com/",
+      "phone": "",
+      "email": "sales@pimlicoplumbers.com",
+      "score": 4.0,
+      "score_breakdown": {
+        "no_phone": 1.0
+      },
+      "email_verified": true,
+      "area": "Waltham Forest, London"
+    },
+    {
+      "name": "Innovative Building Solutions for Your Needs",
+      "industry": "builder",
+      "website": "https://walthamstowbuilders.co.uk/",
+      "phone": "",
+      "email": "info@walthamstowbuilders.co.uk",
+      "score": 4.0,
+      "score_breakdown": {
+        "no_phone": 1.0
+      },
+      "email_verified": true,
+      "area": "Waltham Forest, London"
+    },
+    {
+      "name": "R N M Building Services Ltd",
+      "industry": "builder",
+      "website": "https://www.rnmconstruction.co.uk/",
+      "phone": "",
+      "email": "rnmbuildingservicesltd@yahoo.com",
+      "area": "Walthamstow, London",
+      "score": 4.0,
+      "score_breakdown": {
+        "no_phone": 1.0
+      },
+      "email_verified": true
+    }
+  ]
+}

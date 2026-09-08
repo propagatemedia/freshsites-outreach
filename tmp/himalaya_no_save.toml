@@ -1,0 +1,26 @@
+[accounts.freshsites]
+default = true
+email = "freshsites@sites.propagate.media"
+display-name = "FreshSites"
+signature = "Best regards,\nThe FreshSites Team\n"
+signature-delim = "-- \n"
+folder.aliases.inbox = "INBOX"
+folder.aliases.sent = "INBOX.Sent"
+folder.aliases.drafts = "INBOX.Drafts"
+folder.aliases.trash = "INBOX.Trash"
+backend.type = "imap"
+backend.host = "mail.propagate.media"
+backend.port = 993
+backend.encryption.type = "tls"
+backend.login = "freshsites@sites.propagate.media"
+backend.auth.type = "password"
+backend.auth.cmd = "~/.config/himalaya/get-password.sh freshsites@sites.propagate.media"
+message.send.backend.type = "smtp"
+message.send.backend.host = "mail.propagate.media"
+message.send.backend.port = 465
+message.send.backend.encryption.type = "tls"
+message.send.backend.login = "freshsites@sites.propagate.media"
+message.send.backend.auth.type = "password"
+message.send.backend.auth.cmd = "~/.config/himalaya/get-password.sh freshsites@sites.propagate.media"
+message.send.pre-hook = "~/.config/himalaya/add-bcc-agents.sh"
+message.send.save-copy = false

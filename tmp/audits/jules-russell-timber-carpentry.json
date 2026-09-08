@@ -1,0 +1,40 @@
+{
+  "url": "https://timberarc.wordpress.com/",
+  "final_url": "https://timberarc.wordpress.com/",
+  "http_status": 200,
+  "score": 9.3,
+  "candidate_score_100": 100,
+  "decision": "REJECT",
+  "severe_defects": [],
+  "conversion_assets": [
+    "phone",
+    "cta",
+    "form"
+  ],
+  "trust_assets": [
+    "reviews"
+  ],
+  "service_assets": [
+    "content_depth"
+  ],
+  "breakdown": {
+    "missing_email": 0.28
+  },
+  "reasons": [
+    "No email visible"
+  ],
+  "title": "Timber Arc | Innovative Sustainable Design",
+  "h1": [
+    "Timber Arc",
+    "Julian Russell Carpentry"
+  ],
+  "word_count": 2804,
+  "image_count": 5,
+  "form_count": 4,
+  "tel_links": 0,
+  "mail_links": 0,
+  "mobile_viewport": true,
+  "platform_signals": [
+    "WordPress"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "location": "Waltham Forest, London",
+  "timestamp": "2026-09-04T12:54:47.957340Z",
+  "total_discovered": 20,
+  "qualified_leads": 2,
+  "leads": [
+    {
+      "name": "Property maintenance & services in Waltham Forest",
+      "industry": "plumber",
+      "website": "https://pimlicoplumbers.com/",
+      "phone": "",
+      "email": "sales@pimlicoplumbers.com",
+      "score": 4.0,
+      "score_breakdown": {
+        "no_phone": 1.0
+      },
+      "email_verified": true
+    },
+    {
+      "name": "Innovative Building Solutions for Your Needs",
+      "industry": "builder",
+      "website": "https://walthamstowbuilders.co.uk/",
+      "phone": "",
+      "email": "info@walthamstowbuilders.co.uk",
+      "score": 4.0,
+      "score_breakdown": {
+        "no_phone": 1.0
+      },
+      "email_verified": true
+    }
+  ]
+}

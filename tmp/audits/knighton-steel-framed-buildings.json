@@ -1,0 +1,45 @@
+{
+  "url": "https://knighton-steelframedbuildings.co.uk/",
+  "final_url": "https://knighton-steelframedbuildings.co.uk/",
+  "http_status": 200,
+  "score": 3.8,
+  "candidate_score_100": 0,
+  "decision": "BUILD",
+  "severe_defects": [
+    "ssl_certificate_invalid"
+  ],
+  "conversion_assets": [
+    "phone",
+    "email",
+    "cta"
+  ],
+  "trust_assets": [],
+  "service_assets": [
+    "content_depth"
+  ],
+  "breakdown": {
+    "weak_mobile": 0.8,
+    "no_contact_form": 1.0,
+    "social_proof": 0.4,
+    "severe_site_defect": 1.0,
+    "weak_value_prop": 1.0
+  },
+  "reasons": [
+    "Severe defect: ssl_certificate_invalid",
+    "SSL certificate invalid - browser may warn/block visitors",
+    "No mobile viewport",
+    "No contact form",
+    "No trust/review/accreditation signal"
+  ],
+  "title": "Knighton Steel Framed Buildings Ltd | Agricultural Buildings | Farm Store",
+  "h1": [
+    "Welcome to Knighton Steel Framed Buildings Ltd"
+  ],
+  "word_count": 426,
+  "image_count": 24,
+  "form_count": 0,
+  "tel_links": 0,
+  "mail_links": 1,
+  "mobile_viewport": false,
+  "platform_signals": []
+}

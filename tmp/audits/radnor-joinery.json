@@ -1,0 +1,43 @@
+{
+  "url": "http://radnorjoinery.co.uk/",
+  "final_url": "http://radnorjoinery.co.uk/",
+  "http_status": 200,
+  "score": 0,
+  "candidate_score_100": 5,
+  "decision": "BUILD",
+  "severe_defects": [],
+  "conversion_assets": [
+    "cta"
+  ],
+  "trust_assets": [],
+  "service_assets": [],
+  "breakdown": {
+    "weak_mobile": 0.8,
+    "no_h1": 0.48,
+    "phone_hidden": 0.72,
+    "no_contact_form": 0.44,
+    "missing_email": 0.28,
+    "thin_imagery": 0.4,
+    "weak_value_prop": 0.6,
+    "social_proof": 0.4
+  },
+  "reasons": [
+    "No mobile viewport",
+    "No clear H1",
+    "Phone not visible/clickable",
+    "No contact form",
+    "No email visible",
+    "Thin imagery (0)",
+    "Thin content (108 words)",
+    "No trust/review/accreditation signal"
+  ],
+  "title": "Web Server's Default Page",
+  "h1": [],
+  "word_count": 108,
+  "image_count": 0,
+  "form_count": 0,
+  "tel_links": 0,
+  "mail_links": 0,
+  "mobile_viewport": false,
+  "platform_signals": []
+}

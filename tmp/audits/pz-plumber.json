@@ -1,0 +1,40 @@
+{
+  "url": "http://pzplumber.co.uk/",
+  "final_url": "http://pzplumber.co.uk/",
+  "http_status": 200,
+  "score": 8.9,
+  "candidate_score_100": 100,
+  "decision": "REJECT",
+  "severe_defects": [],
+  "conversion_assets": [
+    "phone",
+    "email",
+    "cta"
+  ],
+  "trust_assets": [
+    "reviews",
+    "accreditations"
+  ],
+  "service_assets": [
+    "service_depth",
+    "content_depth"
+  ],
+  "breakdown": {
+    "no_contact_form": 0.44
+  },
+  "reasons": [
+    "No contact form"
+  ],
+  "title": "Home - PZ Plumber Limited - Plumbing, Heating & Gas: Affordable Plumbers in London.",
+  "h1": [
+    "Emergency Plumber",
+    "Stay Safe at home"
+  ],
+  "word_count": 1626,
+  "image_count": 22,
+  "form_count": 0,
+  "tel_links": 0,
+  "mail_links": 0,
+  "mobile_viewport": true,
+  "platform_signals": []
+}

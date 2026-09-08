@@ -1,0 +1,42 @@
+{
+  "url": "https://cpelectrical.weebly.com/",
+  "final_url": "https://cpelectrical.weebly.com/",
+  "http_status": 200,
+  "score": 4.7,
+  "candidate_score_100": 67,
+  "decision": "BUILD",
+  "severe_defects": [],
+  "conversion_assets": [
+    "phone",
+    "form"
+  ],
+  "trust_assets": [
+    "accreditations"
+  ],
+  "service_assets": [
+    "content_depth"
+  ],
+  "breakdown": {
+    "weak_mobile": 0.8,
+    "no_h1": 0.48,
+    "no_cta_above_fold": 0.56,
+    "missing_email": 0.28
+  },
+  "reasons": [
+    "No mobile viewport",
+    "No clear H1",
+    "Weak or missing CTA",
+    "No email visible"
+  ],
+  "title": "C.P.ELECTRICAL - Home",
+  "h1": [],
+  "word_count": 1061,
+  "image_count": 5,
+  "form_count": 1,
+  "tel_links": 0,
+  "mail_links": 0,
+  "mobile_viewport": false,
+  "platform_signals": [
+    "Weebly"
+  ]
+}

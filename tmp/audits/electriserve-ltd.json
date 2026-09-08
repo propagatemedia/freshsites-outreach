@@ -1,0 +1,48 @@
+{
+  "url": "https://electriserve.co.uk/",
+  "final_url": "https://electriserve.co.uk/",
+  "http_status": 200,
+  "score": 0,
+  "candidate_score_100": 0,
+  "decision": "BUILD",
+  "severe_defects": [
+    "parking_page",
+    "blank_page"
+  ],
+  "conversion_assets": [],
+  "trust_assets": [],
+  "service_assets": [],
+  "breakdown": {
+    "weak_mobile": 0.8,
+    "no_h1": 0.48,
+    "phone_hidden": 0.72,
+    "no_cta_above_fold": 0.56,
+    "no_contact_form": 1.0,
+    "missing_email": 0.28,
+    "thin_imagery": 0.4,
+    "weak_value_prop": 1.0,
+    "social_proof": 0.4,
+    "severe_site_defect": 1.0
+  },
+  "reasons": [
+    "Severe defect: parking_page, blank_page",
+    "No mobile viewport",
+    "No clear H1",
+    "Phone not visible/clickable",
+    "Weak or missing CTA",
+    "No contact form",
+    "No email visible",
+    "Thin imagery (0)",
+    "Thin content (1 words)",
+    "No trust/review/accreditation signal"
+  ],
+  "title": "",
+  "h1": [],
+  "word_count": 1,
+  "image_count": 0,
+  "form_count": 0,
+  "tel_links": 0,
+  "mail_links": 0,
+  "mobile_viewport": false,
+  "platform_signals": []
+}

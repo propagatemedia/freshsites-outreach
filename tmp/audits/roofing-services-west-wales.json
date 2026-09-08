@@ -1,0 +1,42 @@
+{
+  "url": "https://roofingserviceswestwales.co.uk/",
+  "final_url": "https://roofingserviceswestwales.co.uk/",
+  "http_status": 200,
+  "score": 2.5,
+  "candidate_score_100": 0,
+  "decision": "BUILD",
+  "severe_defects": [
+    "closed_site"
+  ],
+  "conversion_assets": [],
+  "trust_assets": [],
+  "service_assets": [],
+  "breakdown": {
+    "phone_hidden": 0.72,
+    "no_cta_above_fold": 0.56,
+    "no_contact_form": 1.0,
+    "missing_email": 0.28,
+    "social_proof": 0.4,
+    "severe_site_defect": 1.0,
+    "weak_value_prop": 1.0
+  },
+  "reasons": [
+    "Severe defect: closed_site",
+    "Phone not visible/clickable",
+    "Weak or missing CTA",
+    "No contact form",
+    "No email visible",
+    "No trust/review/accreditation signal"
+  ],
+  "title": "Sorry this website is now closed",
+  "h1": [
+    "Sorry this website is now closed"
+  ],
+  "word_count": 230,
+  "image_count": 5,
+  "form_count": 0,
+  "tel_links": 0,
+  "mail_links": 0,
+  "mobile_viewport": true,
+  "platform_signals": []
+}
