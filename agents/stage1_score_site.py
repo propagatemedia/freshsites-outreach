@@ -39,6 +39,19 @@ def score_site(html: str, http_status: int, load_time_s: float) -> dict:
         score -= 3.0
         reasons.append("parking page")
 
+    dead_site_markers = [
+        'sorry this website is now closed',   # it'seeze
+        'account suspended',                    # cPanel
+        'domain parked free',                   # GoDaddy
+        'this account has been suspended',
+        'website coming soon',
+        'default web page',
+    ]
+    is_dead_site = any(marker in html.lower() for marker in dead_site_markers) or http_status == 0
+    if is_dead_site:
+        score -= 5.0
+        reasons.append("DEAD SITE (not a rebuild candidate - route to no-website/SMS list, not email+demo track)")
+
     if '<meta name="viewport"' not in html:
         score -= 1.0
         reasons.append("no mobile viewport meta (not responsive)")
@@ -48,7 +61,8 @@ def score_site(html: str, http_status: int, load_time_s: float) -> dict:
         reasons.append("no visible contact method")
 
     score = max(0.0, min(10.0, score))
-    return {'score': round(score, 1), 'reasons': reasons}
+    return {'score': round(score, 1), 'reasons': reasons, 'is_dead_site': is_dead_site,
+            'needs_browser_verify': not is_dead_site and len(html) < 2000}
 
 
 def process_lead(lead_id: int, name: str, website: str):
@@ -56,13 +70,13 @@ def process_lead(lead_id: int, name: str, website: str):
 
     start = time.time()
     result = subprocess.run(
-        ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}', '-m', '15', website],
+        ['curl', '-s', '-L', '-o', '/dev/null', '-w', '%{http_code}', '-m', '15', website],
         capture_output=True, text=True
     )
     http_status = int(result.stdout.strip()) if result.stdout.strip().isdigit() else 0
     load_time = time.time() - start
 
-    html_result = subprocess.run(['curl', '-s', '-m', '15', website], capture_output=True, text=True)
+    html_result = subprocess.run(['curl', '-s', '-L', '-m', '15', website], capture_output=True, text=True)
     html = html_result.stdout
 
     scoring = score_site(html, http_status, load_time)
@@ -75,6 +89,8 @@ def process_lead(lead_id: int, name: str, website: str):
         'lead_id': lead_id,
         'score': scoring['score'],
         'reasons': scoring['reasons'],
+        'is_dead_site': scoring['is_dead_site'],
+        'needs_browser_verify': scoring['needs_browser_verify'],
         'http_status': http_status,
         'load_time_s': round(load_time, 2),
         'screenshot_path': screenshot_path,
@@ -99,14 +115,29 @@ def run_batch(lead_ids=None):
         r = process_lead(lead_id, name, website)
         results.append(r)
 
-        c.execute(
-            "UPDATE leads SET score = ?, pipeline_stage = 'screenshotted', updated_at = ? WHERE id = ?",
-            (r['score'], datetime.now().isoformat(), lead_id)
-        )
-        c.execute(
-            "INSERT INTO gate_log (lead_id, gate_name, agent, verdict, notes, created_at) VALUES (?, ?, ?, ?, ?, ?)",
-            (lead_id, 'stage1_score', 'brand_size_filter.py', 'SCORED', json.dumps(r['reasons']), datetime.now().isoformat())
-        )
+        now = datetime.now().isoformat()
+
+        if r['is_dead_site']:
+            # Dead sites never reach Gate 1 - they're not rebuild candidates,
+            # they're "no working website" leads. Route straight to SMS list.
+            c.execute(
+                "UPDATE leads SET score = ?, pipeline_stage = 'reclassify_no_website', status = 'no_website_sms_candidate', updated_at = ? WHERE id = ?",
+                (r['score'], now, lead_id)
+            )
+            c.execute(
+                "INSERT INTO gate_log (lead_id, gate_name, agent, verdict, notes, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+                (lead_id, 'stage1_score', 'stage1_score_site.py', 'DEAD_SITE_AUTO_REJECT',
+                 f"Auto-routed to SMS list, skipped Gate 1 entirely: {json.dumps(r['reasons'])}", now)
+            )
+        else:
+            c.execute(
+                "UPDATE leads SET score = ?, pipeline_stage = 'screenshotted', updated_at = ? WHERE id = ?",
+                (r['score'], now, lead_id)
+            )
+            c.execute(
+                "INSERT INTO gate_log (lead_id, gate_name, agent, verdict, notes, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+                (lead_id, 'stage1_score', 'stage1_score_site.py', 'SCORED', json.dumps(r['reasons']), now)
+            )
 
     conn.commit()
     conn.close()
