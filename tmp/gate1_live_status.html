@@ -11,11 +11,8 @@
   .lead-name { font-weight: 600; font-size: 0.95em; margin-bottom: 6px; display:flex; justify-content:space-between; }
   .agent-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.82em; padding: 3px 0; }
   .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
-  .running { background:#fbbf24; box-shadow:0 0 6px #fbbf24; animation: pulse 1.2s infinite; }
   .pass { background:#4ade80; }
   .reject { background:#ef4444; }
-  @keyframes pulse { 0%{opacity:1;} 50%{opacity:0.4;} 100%{opacity:1;} }
-  .label-running { color:#fbbf24; }
   .label-pass { color:#4ade80; }
   .label-reject { color:#ef4444; font-weight:600; }
   .verdict-badge { font-size:0.7em; padding:2px 8px; border-radius:10px; }
@@ -26,27 +23,41 @@
   .progress-bar-fill { background: linear-gradient(90deg,#00d4ff,#4ade80); height:100%; transition: width 0.4s; }
   .progress-text { font-size:0.8em; color:var(--muted-foreground,#888); margin-top:4px; }
   .mistake-banner { background:rgba(239,68,68,0.15); border:1px solid #ef4444; border-radius:6px; padding:8px 12px; margin-bottom:14px; font-size:0.85em; color:#fca5a5; }
+  .summary { display:flex; gap:14px; margin-bottom:16px; }
+  .summary-box { flex:1; text-align:center; border-radius:8px; padding:10px; }
+  .summary-num { font-size:1.6em; font-weight:700; }
 </style>
 </head>
 <body>
-  <h2>🔍 Gate 1 Retroactive QA — 8 already-emailed leads</h2>
-  <div class="sub">2 independent agents per lead (Agent A + Agent B), real browser check</div>
+  <h2>Gate 1 Retroactive QA — COMPLETE</h2>
+  <div class="sub">8 already-emailed leads, 2 independent agents each, real browser check</div>
 
   <div class="progress-wrap">
-    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:50%"></div></div>
-    <div class="progress-text">8 of 16 agent checks complete (50%) — Batch 1 of 2 done</div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+    <div class="progress-text">16 of 16 agent checks complete (100%)</div>
   </div>
 
-  <div class="mistake-banner">⚠️ Morgan Motors Carmarthen was sent in error — site is clean/modern, both agents REJECT</div>
+  <div class="summary">
+    <div class="summary-box" style="background:rgba(74,222,128,0.1)">
+      <div class="summary-num" style="color:#4ade80">7</div>
+      <div style="font-size:0.8em;color:#888">Legitimate sends</div>
+    </div>
+    <div class="summary-box" style="background:rgba(239,68,68,0.1)">
+      <div class="summary-num" style="color:#ef4444">1</div>
+      <div style="font-size:0.8em;color:#888">Sent in error</div>
+    </div>
+  </div>
+
+  <div class="mistake-banner">⚠️ Morgan Motors Carmarthen sent in error — site confirmed clean/modern by both agents, should never have gone out</div>
 
   <div class="grid">
     <div class="lead">
-      <div class="lead-name">MPG Tyres & Exhausts <span class="verdict-badge badge-pass">PASS</span></div>
+      <div class="lead-name">MPG Tyres & Exhausts <span class="verdict-badge badge-pass">LEGIT</span></div>
       <div class="agent-row"><span><span class="dot pass"></span>Agent A</span><span class="label-pass">PASS</span></div>
       <div class="agent-row"><span><span class="dot pass"></span>Agent B</span><span class="label-pass">PASS</span></div>
     </div>
     <div class="lead">
-      <div class="lead-name">Scott's MOT Centre <span class="verdict-badge badge-pass">PASS</span></div>
+      <div class="lead-name">Scott's MOT Centre <span class="verdict-badge badge-pass">LEGIT</span></div>
       <div class="agent-row"><span><span class="dot pass"></span>Agent A</span><span class="label-pass">PASS</span></div>
       <div class="agent-row"><span><span class="dot pass"></span>Agent B</span><span class="label-pass">PASS</span></div>
     </div>
@@ -56,29 +67,29 @@
       <div class="agent-row"><span><span class="dot reject"></span>Agent B</span><span class="label-reject">REJECT</span></div>
     </div>
     <div class="lead">
-      <div class="lead-name">Merthyr Road Garage <span class="verdict-badge badge-pass">PASS</span></div>
+      <div class="lead-name">Merthyr Road Garage <span class="verdict-badge badge-pass">LEGIT</span></div>
       <div class="agent-row"><span><span class="dot pass"></span>Agent A</span><span class="label-pass">PASS</span></div>
       <div class="agent-row"><span><span class="dot pass"></span>Agent B</span><span class="label-pass">PASS</span></div>
     </div>
     <div class="lead">
-      <div class="lead-name">East Anglian Tankering</div>
-      <div class="agent-row"><span><span class="dot running"></span>Agent A</span><span class="label-running">running</span></div>
-      <div class="agent-row"><span><span class="dot running"></span>Agent B</span><span class="label-running">running</span></div>
+      <div class="lead-name">East Anglian Tankering <span class="verdict-badge badge-pass">LEGIT</span></div>
+      <div class="agent-row"><span><span class="dot pass"></span>Agent A</span><span class="label-pass">PASS</span></div>
+      <div class="agent-row"><span><span class="dot pass"></span>Agent B</span><span class="label-pass">PASS</span></div>
     </div>
     <div class="lead">
-      <div class="lead-name">John Reeves Waste Mgmt</div>
-      <div class="agent-row"><span><span class="dot running"></span>Agent A</span><span class="label-running">running</span></div>
-      <div class="agent-row"><span><span class="dot running"></span>Agent B</span><span class="label-running">running</span></div>
+      <div class="lead-name">John Reeves Waste Mgmt <span class="verdict-badge badge-pass">LEGIT</span></div>
+      <div class="agent-row"><span><span class="dot pass"></span>Agent A</span><span class="label-pass">PASS</span></div>
+      <div class="agent-row"><span><span class="dot pass"></span>Agent B</span><span class="label-pass">PASS</span></div>
     </div>
     <div class="lead">
-      <div class="lead-name">By-Product Services</div>
-      <div class="agent-row"><span><span class="dot running"></span>Agent A</span><span class="label-running">running</span></div>
-      <div class="agent-row"><span><span class="dot running"></span>Agent B</span><span class="label-running">running</span></div>
+      <div class="lead-name">By-Product Services <span class="verdict-badge badge-pass">LEGIT</span></div>
+      <div class="agent-row"><span><span class="dot pass"></span>Agent A</span><span class="label-pass">PASS</span></div>
+      <div class="agent-row"><span><span class="dot pass"></span>Agent B</span><span class="label-pass">PASS</span></div>
     </div>
     <div class="lead">
-      <div class="lead-name">Drainage Solutions Ltd</div>
-      <div class="agent-row"><span><span class="dot running"></span>Agent A</span><span class="label-running">running</span></div>
-      <div class="agent-row"><span><span class="dot running"></span>Agent B</span><span class="label-running">running</span></div>
+      <div class="lead-name">Drainage Solutions Ltd <span class="verdict-badge badge-pass">LEGIT</span></div>
+      <div class="agent-row"><span><span class="dot pass"></span>Agent A</span><span class="label-pass">PASS</span></div>
+      <div class="agent-row"><span><span class="dot pass"></span>Agent B</span><span class="label-pass">PASS</span></div>
     </div>
   </div>
 </body>
