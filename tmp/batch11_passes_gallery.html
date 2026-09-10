@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--card, #111); color: var(--foreground, #eee); padding: 20px; margin:0; }
+  h2 { margin: 0 0 4px 0; }
+  .sub { color: var(--muted-foreground, #888); margin-bottom: 24px; font-size: 0.9em; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { border: 1px solid var(--border, #333); border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.03); }
+  .card img { width: 100%; display: block; border-bottom: 1px solid var(--border, #333); }
+  .card-body { padding: 14px; }
+  .card-name { font-weight: 700; font-size: 1.05em; margin-bottom: 4px; }
+  .card a { color: #00d4ff; text-decoration: none; font-size: 0.85em; word-break: break-all; }
+  .card a:hover { text-decoration: underline; }
+  .verdict-badge { font-size: 0.75em; padding: 3px 10px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+  .badge-pass { background: rgba(74,222,128,0.15); color: #4ade80; }
+  .badge-borderline { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .notes { font-size: 0.82em; color: var(--muted-foreground, #999); margin-top: 6px; }
+</style>
+</head>
+<body>
+<h2>Batch 11: Real candidates found (deep-pull, positions 11-20)</h2>
+<div class="sub">2 clean passes + 1 borderline, out of 10 checked</div>
+
+<div class="grid">
+  <div class="card">
+    <img src="batch11_screenshots/bz-electrical.png">
+    <div class="card-body">
+      <div class="verdict-badge badge-pass">PASS - real candidate</div>
+      <div class="card-name">BZ Electrical</div>
+      <a href="http://www.bzelectrical.co.uk/index.htm" target="_blank">http://www.bzelectrical.co.uk/index.htm</a>
+      <div class="notes">Early-2000s bright blue table layout, Times New Roman headings, glossy button icons, zero responsive design. Real business (Bryan, Part P registered).</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="batch11_screenshots/west-derby-plumbers.png">
+    <div class="card-body">
+      <div class="verdict-badge badge-pass">PASS - real candidate</div>
+      <div class="card-name">West Derby Plumbers</div>
+      <a href="https://www.westderbyplumbers.co.uk/" target="_blank">https://www.westderbyplumbers.co.uk/</a>
+      <div class="notes">Thin single-page site, broken placeholder hours ("00:00am-00:00am"), no reviews/gallery/credentials, single stock hero photo only. Real business (Lewis).</div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="batch11_screenshots/proactive-plumbing.png">
+    <div class="card-body">
+      <div class="verdict-badge badge-borderline">BORDERLINE</div>
+      <div class="card-name">Proactive Plumbing Services</div>
+      <a href="https://proactiveplumbingservices.co.uk/" target="_blank">https://proactiveplumbingservices.co.uk/</a>
+      <div class="notes">Otherwise modern/professional (26yrs, Gallery/Reviews pages) but has a live layout bug: fixed "leave a review" banner overlaps and cuts off the hero headline text.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
