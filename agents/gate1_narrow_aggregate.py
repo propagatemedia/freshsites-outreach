@@ -35,12 +35,44 @@ DIMENSION_LABELS = [
 
 
 def aggregate_scores(lead_id: int, scores: list, reasonings: list) -> dict:
-    """scores: list of 4 ints (1/3/6/10). reasonings: list of 4 strings."""
+    """scores: list of 4 ints (1/3/6/10) in DIMENSION_LABELS order.
+    reasonings: list of 4 strings.
+
+    Dimensions 0 and 3 (dead_site_or_national_brand, real_business_and_trade_match)
+    are near-binary PRE-FILTERS, not design-quality signal - almost any legitimate
+    small business scores 10 on both regardless of how good/bad its design is.
+    Averaging them in with the two real design-quality dimensions (1, 2) drowns
+    out the actual signal and creates false ambiguity (confirmed in pilot test:
+    both a genuinely good site and a genuinely bad site triggered NEEDS_TIEBREAKER
+    because dims 0/3 were 10/10 for both, pulling the average up regardless of
+    the real design scores).
+
+    Fixed structure:
+      - dims 0 and 3 are HARD GATES: either scores 1 -> instant AUTO_REJECT
+        (dead site, national brand, directory page, or wrong trade - none of
+        these are rebuild candidates regardless of design quality)
+      - dims 1 and 2 (mobile/photography, layout/CTA) are the actual design
+        signal - only these two are averaged for the survive/reject decision
+    """
     if len(scores) != 4:
         raise ValueError(f"Expected exactly 4 scores, got {len(scores)}")
 
-    avg = statistics.mean(scores)
-    max_spread = max(scores) - min(scores)
+    gate_scores = [scores[0], scores[3]]
+    design_scores = [scores[1], scores[2]]
+
+    if any(s == 1 for s in gate_scores):
+        return {
+            'lead_id': lead_id,
+            'scores': scores,
+            'avg': None,
+            'max_spread': None,
+            'decision': 'AUTO_REJECT',
+            'reason': 'hard gate failed (dead site / national brand / directory page / wrong trade)',
+            'reasonings': reasonings,
+        }
+
+    avg = statistics.mean(design_scores)
+    max_spread = max(design_scores) - min(design_scores)
 
     ambiguous = (3.5 < avg < 7.0) or (max_spread > 5)
 
