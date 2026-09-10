@@ -1,0 +1,39 @@
+{
+  "name": "Sparrow Roofing",
+  "trade": "Roofer",
+  "location": "Manchester / Cheshire",
+  "address": "Unit 253, Peel House, 30 The Downs, Altrincham, Cheshire, WA14 2PX",
+  "phone": "07496817809",
+  "years": "Since 2014",
+  "owner": "Christian",
+  "services": [
+    "Roof Repair",
+    "Flat Roofing (EPDM, felt, fibreglass)",
+    "Gutter Repairs",
+    "Chimney Repairs",
+    "Fascia and Soffit",
+    "Velux Window Repairs"
+  ],
+  "trust": [
+    "4.9 stars / 434 Google Reviews",
+    "10 Year Guarantee",
+    "NFRC Registered",
+    "100% Satisfaction Guarantee"
+  ],
+  "testimonials": [
+    {
+      "quote": "Christian is our roofer of choice. He is reliable, creative and honest.",
+      "author": "Ann Cheryl Armstrong"
+    },
+    {
+      "quote": "I can't thank him enough for his meticulous craftsmanship and attention to detail. The nicest tradie I have ever met.",
+      "author": "Renee Bradford"
+    },
+    {
+      "quote": "Turned up early for the initial assessment and returned within the week for the fix. Quick and efficient.",
+      "author": "Ben Stevens"
+    }
+  ],
+  "about": "Family-run roofing business serving Manchester and Cheshire since 2014. Reliable roof repair, flat roofing, gutter and chimney work.",
+  "slug": "sparrow-roofing"
+}

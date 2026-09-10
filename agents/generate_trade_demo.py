@@ -118,9 +118,22 @@ def generate(data: dict) -> str:
     key = vertical_key(data)
     v = VERTICALS[key]
     name = data.get("name", "Local Business")
+    if not name or name.strip() == "" or name == "Local Business":
+        raise ValueError(
+            f"REFUSED TO BUILD: extracted data has no real business name "
+            f"(slug={data.get('slug')!r}). This is the exact bug that produced "
+            f"placeholder demos before (Callum McKay Slaters, Ross of Rutherglen, "
+            f"SM Plumbing). Fix the extraction JSON's 'name' field before building."
+        )
     slug = data.get("slug") or slugify(name)
     phone = data.get("phone", "")
     tel = clean_phone(phone)
+    if not tel:
+        raise ValueError(
+            f"REFUSED TO BUILD: extracted data has no phone number for {name!r} "
+            f"(slug={slug!r}). A demo with no working tel: link is useless - "
+            f"fix the extraction JSON's 'phone' field before building."
+        )
     email = data.get("email") or data.get("contact_email") or ""
     location = data.get("location") or data.get("address") or ""
     services = data.get("services") or v["services"]

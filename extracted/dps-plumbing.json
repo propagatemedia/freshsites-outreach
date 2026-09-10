@@ -1,0 +1,30 @@
+{
+  "name": "DPS Plumbing",
+  "trade": "Plumber & Bathroom Fitter",
+  "location": "Salford / Manchester",
+  "address": "55 Edmund Street, Salford, Greater Manchester M6 5WQ",
+  "phone": "07875 298163",
+  "email": "daniel@dps-plumbing.info",
+  "years": "13+ years",
+  "owner": "Daniel",
+  "services": [
+    "Bathroom Installation",
+    "Bathroom Renovations",
+    "General Plumbing",
+    "Shower Installation & Repairs",
+    "Toilet Installation & Repairs",
+    "Tap Installation & Repairs",
+    "Pipe Repairs & Leak Detection",
+    "Kitchen Plumbing"
+  ],
+  "trust": [
+    "4.9-star average rating",
+    "No call-out fees",
+    "Written guarantee",
+    "Fully insured",
+    "Same-day service available"
+  ],
+  "hours": "Open 24 Hours, Monday - Sunday",
+  "about": "Based in Salford, serving Manchester homeowners for over 13 years. Fixed prices, written guarantee, no call-out fees. Specialises in Victorian terrace and Edwardian property plumbing challenges.",
+  "slug": "dps-plumbing"
+}

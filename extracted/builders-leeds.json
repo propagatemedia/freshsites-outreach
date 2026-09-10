@@ -1,0 +1,27 @@
+{
+  "name": "J S Building Contractors",
+  "trade": "Builder",
+  "location": "Leeds / West Yorkshire",
+  "phone": "07967 194163",
+  "email": "info@builders-leeds.co.uk",
+  "services": [
+    "Extensions",
+    "Refurbishments",
+    "Loft Conversions",
+    "Garden Rooms",
+    "Kitchens & Bathrooms",
+    "Brickwork",
+    "Plastering & Rendering",
+    "Garage Conversions",
+    "Carpentry",
+    "Decorating"
+  ],
+  "trust": [
+    "Full plans-to-completion service",
+    "Full liability insurance",
+    "Staged payment plans, no money up front",
+    "Works with McNicholas Architects"
+  ],
+  "about": "Professional building company offering full plans-to-completion service across West Yorkshire: extensions, refurbishments, garden rooms, loft conversions.",
+  "slug": "builders-leeds"
+}

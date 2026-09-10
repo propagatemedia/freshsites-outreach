@@ -1,0 +1,25 @@
+{
+  "name": "JP Electrical & EV Solutions",
+  "trade": "Electrician / EV Installer",
+  "location": "Leeds / West Yorkshire",
+  "address": "Unit 8A, Pickering Street, Armley, Leeds, LS12 2QG",
+  "phone": "0113 418 0501",
+  "email": "info@jpelectrical.work",
+  "services": [
+    "Domestic Rewiring",
+    "Consumer Units",
+    "EV Charger Installation",
+    "Commercial Electrical",
+    "24/7 Emergency Callouts",
+    "Smart Home Automation",
+    "EICR Testing"
+  ],
+  "trust": [
+    "NICEIC Approved Contractor",
+    "Which? Trusted Trader",
+    "OZEV-approved EV installer",
+    "24/7 emergency response"
+  ],
+  "about": "JKP Electrical Limited trading as JP Electrical & EV Solutions. NICEIC-approved electricians serving Leeds and West Yorkshire with domestic, commercial and EV charging installation services.",
+  "slug": "jp-electrical-ev"
+}

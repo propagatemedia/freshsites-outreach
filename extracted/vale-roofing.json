@@ -1,0 +1,39 @@
+{
+  "name": "Vale Roofing Ltd",
+  "trade": "Roofer",
+  "location": "Manchester",
+  "phone": "0735-256-5964",
+  "email": "info@valeroofingltd.co.uk",
+  "services": [
+    "New Roofs",
+    "Roof Repairs",
+    "Flat Roofing (EPDM/bitumen)",
+    "Chimney Repairs",
+    "Fascias & Soffits",
+    "Gutter Repairs & Cleaning",
+    "Dry Ridge & Dry Verge Systems"
+  ],
+  "trust": [
+    "24/7 emergency roofing",
+    "Fully trained and insured roofers"
+  ],
+  "testimonials": [
+    {
+      "quote": "Fantastic service from start to finish. The team were punctual, tidy, and the new roof looks brilliant!",
+      "author": "Mark D."
+    },
+    {
+      "quote": "Quick response to a roof leak. Professional, friendly, and the repair was completed the same day.",
+      "author": "Sarah L."
+    }
+  ],
+  "coverage": [
+    "Manchester",
+    "Salford",
+    "Stockport",
+    "Oldham"
+  ],
+  "note_for_build": "Source site has a placeholder phone bug showing '555-555-5555' next to the real number - use the real number 0735-256-5964 only, do not carry over the placeholder junk.",
+  "about": "Professional roofing solutions for homes and businesses across Manchester - new installations, emergency repairs, flat roofing, chimney and gutter work.",
+  "slug": "vale-roofing"
+}

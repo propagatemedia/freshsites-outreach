@@ -1,0 +1,51 @@
+{
+  "name": "Manchester Electrical Services (M-EI)",
+  "trade": "Electrician",
+  "location": "South Manchester",
+  "phone": "0161 611 0044 / 07493 508439",
+  "email": "info@m-ei.co.uk",
+  "years": "20+ years",
+  "owner": "Lee",
+  "hours": "Mon - Sat 8am - 5pm",
+  "services": [
+    "Fuse Box / Consumer Unit Installation",
+    "Extension Wiring & Rewiring",
+    "Full House Rewires",
+    "Kitchen Rewires",
+    "Loft Conversion Wiring",
+    "Lighting & Power Installation",
+    "EICR Inspections",
+    "CCTV Services",
+    "PAT Testing"
+  ],
+  "trust": [
+    "NICEIC Registered",
+    "City & Guilds and Part P qualified",
+    "5 Year NICEIC Backed Guarantee",
+    "20 Yrs Experience"
+  ],
+  "testimonials": [
+    {
+      "quote": "Lee completed all of the electrics in our new kitchen extension. Communication was great and everything promised was fulfilled to a high standard.",
+      "author": "Mrs N Colclough"
+    },
+    {
+      "quote": "Lee fitted a new fuse box for us. He explained everything, the work was neat and tidy and he turned up on time.",
+      "author": "Mr D Lee"
+    }
+  ],
+  "coverage": [
+    "Manchester",
+    "Sale",
+    "Timperley",
+    "Didsbury",
+    "Chorlton",
+    "Trafford",
+    "Salford",
+    "Knutsford",
+    "Wilmslow",
+    "Stockport"
+  ],
+  "about": "NICEIC registered, insured electricians with 20 years experience covering South Manchester & Cheshire.",
+  "slug": "m-ei-electrical"
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Leeds Plumbing & Heating (Mario Martin)",
+  "trade": "Plumber & Heating Engineer",
+  "location": "Shadwell, Leeds (LS17/LS8, Wetherby LS22)",
+  "phone": "07850 971471 / 0113 273 7197",
+  "email": "enquiries@leedsplumbingandheating.co.uk",
+  "years": "Since 1984 (40+ years)",
+  "owner": "Mario Martin, Eng Tech, LCGI, MCIPHE, RP",
+  "services": [
+    "Gas Fires",
+    "Gas Cookers",
+    "Water Heaters",
+    "Bathroom Installations",
+    "Shower Rooms",
+    "General Plumbing",
+    "Kitchen Plumbing",
+    "Radiator Bleeding & Replacements"
+  ],
+  "trust": [
+    "Gas Safe registered",
+    "Britain's Favourite Plumber award (Chartered Institute of Plumbing and Heating Engineering)",
+    "Approved Tradesperson by Leeds City Council (Leeds Directory Green Tick)"
+  ],
+  "testimonials": [
+    {
+      "quote": "I cannot speak too highly of his expertise, his unfailing good humour and the feeling that he always leaves of a job well done.",
+      "author": "GNC, Leeds LS8"
+    },
+    {
+      "quote": "I have always found Mario to be trustworthy and very hardworking. These attributes have helped him establish a thriving business relying very much on personal recommendation.",
+      "author": "HT, Leeds"
+    }
+  ],
+  "note_for_build": "Source site has broken JS counters showing '0 Years of Experience / 0 Satisfied Customers / 0 Complaints' - do NOT carry these over, use the real stated facts (since 1984, 40+ years) instead.",
+  "about": "Mario Martin has run his own plumbing and heating business since 1984, Gas Safe registered, based in Shadwell, Leeds, serving north Leeds and Wetherby areas.",
+  "slug": "leeds-plumbing-heating"
+}

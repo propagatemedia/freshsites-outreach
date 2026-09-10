@@ -1,0 +1,146 @@
+{
+  "dps-plumbing": {
+    "name": "DPS Plumbing",
+    "trade": "Plumber & Bathroom Fitter",
+    "location": "Salford / Manchester",
+    "address": "55 Edmund Street, Salford, Greater Manchester M6 5WQ",
+    "phone": "07875 298163",
+    "email": "daniel@dps-plumbing.info",
+    "years": "13+ years",
+    "owner": "Daniel",
+    "services": ["Bathroom Installation", "Bathroom Renovations", "General Plumbing", "Shower Installation & Repairs", "Toilet Installation & Repairs", "Tap Installation & Repairs", "Pipe Repairs & Leak Detection", "Kitchen Plumbing"],
+    "trust": ["4.9-star average rating", "No call-out fees", "Written guarantee", "Fully insured", "Same-day service available"],
+    "hours": "Open 24 Hours, Monday - Sunday",
+    "about": "Based in Salford, serving Manchester homeowners for over 13 years. Fixed prices, written guarantee, no call-out fees. Specialises in Victorian terrace and Edwardian property plumbing challenges."
+  },
+  "aquadash-plumbing": {
+    "name": "AquaDash Plumbing",
+    "trade": "Emergency Plumber",
+    "location": "Manchester / Greater Manchester",
+    "phone": "07871 003404",
+    "email": "contact@aquadashplumbing.com",
+    "services": ["Emergency Plumber 24/7", "Fixing Pipes", "Repair Water Heaters", "Toilet Repair", "Drain & Sink Unblocking", "Tap & Shower Repair", "Garden Tap Installation", "Electric Shower Installation", "Saniflo Macerator Installation", "Bathroom Refurbishment", "Drainage & Outdoor Plumbing"],
+    "trust": ["No call-out fee", "Licensed & insured", "Gas Safe engineers", "12 month guarantee", "60 min typical arrival", "24/7 including bank holidays"],
+    "testimonials": [
+      {"quote": "Fast, professional and honest. The engineer fixed our leaking pipe in under an hour and left the place spotless.", "author": "Sarah J.", "location": "Stockport"},
+      {"quote": "Excellent from booking to completion. Friendly on the phone, engineer turned up when they said.", "author": "Fatema K.", "location": "Salford"},
+      {"quote": "Struggled with the water heater for weeks and they sorted it in one visit. Fair price, no upselling.", "author": "Olivia W.", "location": "Manchester"}
+    ],
+    "coverage": ["Manchester", "Salford", "Stockport", "Bolton", "Bury", "Oldham", "Rochdale", "Wigan", "Altrincham"],
+    "about": "Family-run emergency plumbers covering Manchester and Greater Manchester. Fixed prices agreed before work starts, no call-out fee, 12 month guarantee."
+  },
+  "m-ei-electrical": {
+    "name": "Manchester Electrical Services (M-EI)",
+    "trade": "Electrician",
+    "location": "South Manchester",
+    "phone": "0161 611 0044 / 07493 508439",
+    "email": "info@m-ei.co.uk",
+    "years": "20+ years",
+    "owner": "Lee",
+    "hours": "Mon - Sat 8am - 5pm",
+    "services": ["Fuse Box / Consumer Unit Installation", "Extension Wiring & Rewiring", "Full House Rewires", "Kitchen Rewires", "Loft Conversion Wiring", "Lighting & Power Installation", "EICR Inspections", "CCTV Services", "PAT Testing"],
+    "trust": ["NICEIC Registered", "City & Guilds and Part P qualified", "5 Year NICEIC Backed Guarantee", "20 Yrs Experience"],
+    "testimonials": [
+      {"quote": "Lee completed all of the electrics in our new kitchen extension. Communication was great and everything promised was fulfilled to a high standard.", "author": "Mrs N Colclough"},
+      {"quote": "Lee fitted a new fuse box for us. He explained everything, the work was neat and tidy and he turned up on time.", "author": "Mr D Lee"}
+    ],
+    "coverage": ["Manchester", "Sale", "Timperley", "Didsbury", "Chorlton", "Trafford", "Salford", "Knutsford", "Wilmslow", "Stockport"],
+    "about": "NICEIC registered, insured electricians with 20 years experience covering South Manchester & Cheshire."
+  },
+  "sparrow-roofing": {
+    "name": "Sparrow Roofing",
+    "trade": "Roofer",
+    "location": "Manchester / Cheshire",
+    "address": "Unit 253, Peel House, 30 The Downs, Altrincham, Cheshire, WA14 2PX",
+    "phone": "07496817809",
+    "years": "Since 2014",
+    "owner": "Christian",
+    "services": ["Roof Repair", "Flat Roofing (EPDM, felt, fibreglass)", "Gutter Repairs", "Chimney Repairs", "Fascia and Soffit", "Velux Window Repairs"],
+    "trust": ["4.9 stars / 434 Google Reviews", "10 Year Guarantee", "NFRC Registered", "100% Satisfaction Guarantee"],
+    "testimonials": [
+      {"quote": "Christian is our roofer of choice. He is reliable, creative and honest.", "author": "Ann Cheryl Armstrong"},
+      {"quote": "I can't thank him enough for his meticulous craftsmanship and attention to detail. The nicest tradie I have ever met.", "author": "Renee Bradford"},
+      {"quote": "Turned up early for the initial assessment and returned within the week for the fix. Quick and efficient.", "author": "Ben Stevens"}
+    ],
+    "about": "Family-run roofing business serving Manchester and Cheshire since 2014. Reliable roof repair, flat roofing, gutter and chimney work."
+  },
+  "jp-electrical-ev": {
+    "name": "JP Electrical & EV Solutions",
+    "trade": "Electrician / EV Installer",
+    "location": "Leeds / West Yorkshire",
+    "address": "Unit 8A, Pickering Street, Armley, Leeds, LS12 2QG",
+    "phone": "0113 418 0501",
+    "email": "info@jpelectrical.work",
+    "services": ["Domestic Rewiring", "Consumer Units", "EV Charger Installation", "Commercial Electrical", "24/7 Emergency Callouts", "Smart Home Automation", "EICR Testing"],
+    "trust": ["NICEIC Approved Contractor", "Which? Trusted Trader", "OZEV-approved EV installer", "24/7 emergency response"],
+    "about": "JKP Electrical Limited trading as JP Electrical & EV Solutions. NICEIC-approved electricians serving Leeds and West Yorkshire with domestic, commercial and EV charging installation services."
+  },
+  "builders-leeds": {
+    "name": "J S Building Contractors",
+    "trade": "Builder",
+    "location": "Leeds / West Yorkshire",
+    "phone": "07967 194163",
+    "email": "info@builders-leeds.co.uk",
+    "services": ["Extensions", "Refurbishments", "Loft Conversions", "Garden Rooms", "Kitchens & Bathrooms", "Brickwork", "Plastering & Rendering", "Garage Conversions", "Carpentry", "Decorating"],
+    "trust": ["Full plans-to-completion service", "Full liability insurance", "Staged payment plans, no money up front", "Works with McNicholas Architects"],
+    "about": "Professional building company offering full plans-to-completion service across West Yorkshire: extensions, refurbishments, garden rooms, loft conversions."
+  },
+  "vale-roofing": {
+    "name": "Vale Roofing Ltd",
+    "trade": "Roofer",
+    "location": "Manchester",
+    "phone": "0735-256-5964",
+    "email": "info@valeroofingltd.co.uk",
+    "services": ["New Roofs", "Roof Repairs", "Flat Roofing (EPDM/bitumen)", "Chimney Repairs", "Fascias & Soffits", "Gutter Repairs & Cleaning", "Dry Ridge & Dry Verge Systems"],
+    "trust": ["24/7 emergency roofing", "Fully trained and insured roofers"],
+    "testimonials": [
+      {"quote": "Fantastic service from start to finish. The team were punctual, tidy, and the new roof looks brilliant!", "author": "Mark D."},
+      {"quote": "Quick response to a roof leak. Professional, friendly, and the repair was completed the same day.", "author": "Sarah L."}
+    ],
+    "coverage": ["Manchester", "Salford", "Stockport", "Oldham"],
+    "note_for_build": "Source site has a placeholder phone bug showing '555-555-5555' next to the real number - use the real number 0735-256-5964 only, do not carry over the placeholder junk.",
+    "about": "Professional roofing solutions for homes and businesses across Manchester - new installations, emergency repairs, flat roofing, chimney and gutter work."
+  },
+  "dl-roofing": {
+    "name": "DL Roofing",
+    "trade": "Roofer",
+    "location": "Bolton / Manchester",
+    "address": "11 Loweswater Rd, Farnworth, Bolton BL4 0PL",
+    "phone": "07925423002",
+    "email": "dlroofing90@gmail.com",
+    "years": "Over 30 years",
+    "services": ["Slating", "Roof Tiling", "Lead Substitute Work", "Guttering", "Soffits & Fascias", "Flat Roofs"],
+    "trust": ["Over 120 five-star Google reviews", "Fully qualified & insured", "Covers North West England"],
+    "about": "Professional roofing contractor based in Bolton with over 30 years of local roofing experience serving Bolton and Manchester."
+  },
+  "kws-builders": {
+    "name": "KWS Builders",
+    "trade": "Builder",
+    "location": "Manchester",
+    "address": "3.7, Universal Square, Devonshire St, Manchester M12 6JH",
+    "phone": "07404 155474",
+    "email": "info@kwsbuilder.co.uk",
+    "years": "30+ years combined experience",
+    "hours": "Mon-Sat 9:00-8:00pm, Sunday closed",
+    "services": ["House Extensions", "New Build", "Airbnb / HMO Conversion", "House Renovation & Refurbishment", "Loft Conversion / Dormer", "Cellar & Garage Conversion", "Underfloor Heating & Screed", "Planning Permission Services"],
+    "trust": ["Fully insured", "Aligned with UK building regulations", "Clear quotes, no hidden costs"],
+    "about": "Trusted builders in Manchester for extensions, conversions, renovations and new builds - planned properly, built carefully, finished to a high standard."
+  },
+  "leeds-plumbing-heating": {
+    "name": "Leeds Plumbing & Heating (Mario Martin)",
+    "trade": "Plumber & Heating Engineer",
+    "location": "Shadwell, Leeds (LS17/LS8, Wetherby LS22)",
+    "phone": "07850 971471 / 0113 273 7197",
+    "email": "enquiries@leedsplumbingandheating.co.uk",
+    "years": "Since 1984 (40+ years)",
+    "owner": "Mario Martin, Eng Tech, LCGI, MCIPHE, RP",
+    "services": ["Gas Fires", "Gas Cookers", "Water Heaters", "Bathroom Installations", "Shower Rooms", "General Plumbing", "Kitchen Plumbing", "Radiator Bleeding & Replacements"],
+    "trust": ["Gas Safe registered", "Britain's Favourite Plumber award (Chartered Institute of Plumbing and Heating Engineering)", "Approved Tradesperson by Leeds City Council (Leeds Directory Green Tick)"],
+    "testimonials": [
+      {"quote": "I cannot speak too highly of his expertise, his unfailing good humour and the feeling that he always leaves of a job well done.", "author": "GNC, Leeds LS8"},
+      {"quote": "I have always found Mario to be trustworthy and very hardworking. These attributes have helped him establish a thriving business relying very much on personal recommendation.", "author": "HT, Leeds"}
+    ],
+    "note_for_build": "Source site has broken JS counters showing '0 Years of Experience / 0 Satisfied Customers / 0 Complaints' - do NOT carry these over, use the real stated facts (since 1984, 40+ years) instead.",
+    "about": "Mario Martin has run his own plumbing and heating business since 1984, Gas Safe registered, based in Shadwell, Leeds, serving north Leeds and Wetherby areas."
+  }
+}

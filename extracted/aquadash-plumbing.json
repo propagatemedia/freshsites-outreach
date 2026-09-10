@@ -1,0 +1,58 @@
+{
+  "name": "AquaDash Plumbing",
+  "trade": "Emergency Plumber",
+  "location": "Manchester / Greater Manchester",
+  "phone": "07871 003404",
+  "email": "contact@aquadashplumbing.com",
+  "services": [
+    "Emergency Plumber 24/7",
+    "Fixing Pipes",
+    "Repair Water Heaters",
+    "Toilet Repair",
+    "Drain & Sink Unblocking",
+    "Tap & Shower Repair",
+    "Garden Tap Installation",
+    "Electric Shower Installation",
+    "Saniflo Macerator Installation",
+    "Bathroom Refurbishment",
+    "Drainage & Outdoor Plumbing"
+  ],
+  "trust": [
+    "No call-out fee",
+    "Licensed & insured",
+    "Gas Safe engineers",
+    "12 month guarantee",
+    "60 min typical arrival",
+    "24/7 including bank holidays"
+  ],
+  "testimonials": [
+    {
+      "quote": "Fast, professional and honest. The engineer fixed our leaking pipe in under an hour and left the place spotless.",
+      "author": "Sarah J.",
+      "location": "Stockport"
+    },
+    {
+      "quote": "Excellent from booking to completion. Friendly on the phone, engineer turned up when they said.",
+      "author": "Fatema K.",
+      "location": "Salford"
+    },
+    {
+      "quote": "Struggled with the water heater for weeks and they sorted it in one visit. Fair price, no upselling.",
+      "author": "Olivia W.",
+      "location": "Manchester"
+    }
+  ],
+  "coverage": [
+    "Manchester",
+    "Salford",
+    "Stockport",
+    "Bolton",
+    "Bury",
+    "Oldham",
+    "Rochdale",
+    "Wigan",
+    "Altrincham"
+  ],
+  "about": "Family-run emergency plumbers covering Manchester and Greater Manchester. Fixed prices agreed before work starts, no call-out fee, 12 month guarantee.",
+  "slug": "aquadash-plumbing"
+}

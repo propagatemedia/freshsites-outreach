@@ -1,0 +1,27 @@
+{
+  "name": "KWS Builders",
+  "trade": "Builder",
+  "location": "Manchester",
+  "address": "3.7, Universal Square, Devonshire St, Manchester M12 6JH",
+  "phone": "07404 155474",
+  "email": "info@kwsbuilder.co.uk",
+  "years": "30+ years combined experience",
+  "hours": "Mon-Sat 9:00-8:00pm, Sunday closed",
+  "services": [
+    "House Extensions",
+    "New Build",
+    "Airbnb / HMO Conversion",
+    "House Renovation & Refurbishment",
+    "Loft Conversion / Dormer",
+    "Cellar & Garage Conversion",
+    "Underfloor Heating & Screed",
+    "Planning Permission Services"
+  ],
+  "trust": [
+    "Fully insured",
+    "Aligned with UK building regulations",
+    "Clear quotes, no hidden costs"
+  ],
+  "about": "Trusted builders in Manchester for extensions, conversions, renovations and new builds - planned properly, built carefully, finished to a high standard.",
+  "slug": "kws-builders"
+}

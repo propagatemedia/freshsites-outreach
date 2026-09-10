@@ -1,0 +1,24 @@
+{
+  "name": "DL Roofing",
+  "trade": "Roofer",
+  "location": "Bolton / Manchester",
+  "address": "11 Loweswater Rd, Farnworth, Bolton BL4 0PL",
+  "phone": "07925423002",
+  "email": "dlroofing90@gmail.com",
+  "years": "Over 30 years",
+  "services": [
+    "Slating",
+    "Roof Tiling",
+    "Lead Substitute Work",
+    "Guttering",
+    "Soffits & Fascias",
+    "Flat Roofs"
+  ],
+  "trust": [
+    "Over 120 five-star Google reviews",
+    "Fully qualified & insured",
+    "Covers North West England"
+  ],
+  "about": "Professional roofing contractor based in Bolton with over 30 years of local roofing experience serving Bolton and Manchester.",
+  "slug": "dl-roofing"
+}
